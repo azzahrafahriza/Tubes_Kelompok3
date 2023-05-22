@@ -1,5 +1,3 @@
-// import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:tubes/pusatBantuan.dart';
 import 'package:tubes/faq.dart';
@@ -7,13 +5,10 @@ import 'package:tubes/sk.dart';
 import 'package:tubes/notifikasi.dart';
 import 'package:tubes/promo_dan_berita.dart';
 import 'package:tubes/riwayat.dart';
-// import 'package:tubes/main.dart';
-// import 'package:http/http.dart' as http;
-// import 'dart:convert';
-// import 'riwayat.dart';
-// void main() {
-//   runApp(MyApp());
-// }
+import 'package:tubes/loginpage.dart';
+import 'package:tubes/login.dart';
+import 'package:tubes/register.dart';
+
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -31,7 +26,7 @@ class MyAppState extends State<MyApp> {
     Center(child: Promo()),
     Center(child: Text("tiga")),
     Center(child: Riwayat()),
-    Center(child: Text("lima")),
+    Center(child: Loginpage()),
   ];
 
   void onItemTap(int index) {
@@ -52,6 +47,9 @@ class MyAppState extends State<MyApp> {
         "/notifikasi": (context) => Notifikasi(),
         "/promo": (context) => (Promo()),
         "/riwayat": (context) => (Riwayat()),
+        "/loginpage": (context) => (Loginpage()),
+        "/login": (context) => (Login()),
+        "/register": (context) => (Register()),
       },
       home: Scaffold(
         body: halaman[idx],
@@ -70,7 +68,7 @@ class MyAppState extends State<MyApp> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.receipt), label: "My Learning"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person), label: "My Learning"),
+                icon: Icon(Icons.person), label: "Akunku"),
           ],
         ),
       ),
