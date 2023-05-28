@@ -1,80 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tubes/pusatBantuan.dart';
-import 'package:tubes/faq.dart';
-import 'package:tubes/sk.dart';
-import 'package:tubes/notifikasi.dart';
-import 'package:tubes/promo_dan_berita.dart';
-import 'package:tubes/riwayat.dart';
-import 'package:tubes/loginpage.dart';
-import 'package:tubes/login.dart';
-import 'package:tubes/register.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-  @override
-  MyAppState createState() {
-    return MyAppState();
-  }
-}
-
-class MyAppState extends State<MyApp> {
-  int idx = 0;
-
-  static List<Center> halaman = [
-    Center(child: Home()),
-    Center(child: Promo()),
-    Center(child: Text("tiga")),
-    Center(child: Riwayat()),
-    Center(child: Loginpage()),
-  ];
-
-  void onItemTap(int index) {
-    setState(() {
-      idx = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Coba Tubes",
-      routes: {
-        "/pusatBantuan": (context) => PusatBantuan(),
-        "/home": (context) => MyApp(),
-        "/faq": (context) => Faq(),
-        "/sk": (context) => Sk(),
-        "/notifikasi": (context) => Notifikasi(),
-        "/promo": (context) => (Promo()),
-        "/riwayat": (context) => (Riwayat()),
-        "/loginpage": (context) => (Loginpage()),
-        "/login": (context) => (Login()),
-        "/register": (context) => (Register()),
-      },
-      home: Scaffold(
-        body: halaman[idx],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: idx,
-          selectedItemColor: Color(0xffBF7700),
-          backgroundColor: Color.fromARGB(0, 181, 235, 4),
-          unselectedItemColor: Colors.blue,
-          onTap: onItemTap,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.discount), label: "Promo"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.calculate_outlined), label: "My Learning"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.receipt), label: "My Learning"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person), label: "Akunku"),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -191,15 +117,15 @@ class Home extends StatelessWidget {
                               children: <Widget>[
                                 Expanded(
                                     child: ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {Navigator.pushNamed(context, "/pengajuan");},
                                   child: Text(
-                                    "Clear",
-                                    style: TextStyle(fontFamily: 'Poppins'),
+                                    "Ajukan Perpanjangan",
+                                    style: TextStyle(fontFamily: GoogleFonts.poppins().fontFamily),
                                   ),
                                 )),
                                 Expanded(
                                     child: ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {Navigator.pushNamed(context, "/statusPerpanjangan");},
                                   child: Text("Filter",
                                       style: TextStyle(fontFamily: 'Poppins')),
                                 )),
@@ -246,7 +172,7 @@ class Home extends StatelessWidget {
                                     padding: const EdgeInsets.only(
                                         right: 24, top: 24.0),
                                     child: ElevatedButton(
-                                        onPressed: () {},
+                                        onPressed: () {Navigator.pushNamed(context, "/topup");},
                                         child: Text('Top Up',
                                             style: TextStyle(
                                                 fontFamily: 'Poppins'))),
@@ -290,7 +216,7 @@ class Home extends StatelessWidget {
                         padding: const EdgeInsets.all(24.0),
                         child: ElevatedButton.icon(
                           icon: Icon(Icons.add_circle),
-                          onPressed: () {},
+                          onPressed: () {Navigator.pushNamed(context, "/bayar");},
                           label: Padding(
                             padding: const EdgeInsets.all(24.0),
                             child: Text(
@@ -403,7 +329,9 @@ class Home extends StatelessWidget {
                 ],
               ),
             ],
-          ))),
+          )
+        )
+      ),
     );
   }
 }

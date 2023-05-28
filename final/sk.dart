@@ -21,7 +21,8 @@ class _SkState extends State<Sk> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20.0), // Radius melengkung pada sudut kiri bawah
-                  bottomRight: Radius.circular(20.0), // Radius melengkung pada sudut kanan bawah
+                  bottomRight: Radius.circular(20.0), 
+                  // Radius melengkung pada sudut kanan bawah
                 ),
                 color: Color.fromARGB(255,232,231,231), // Warna latar belakang AppBar
               ),
