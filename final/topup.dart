@@ -27,12 +27,12 @@ class _TopupState extends State<Topup> {
               ),
               child: AppBar(
                 backgroundColor: Colors.transparent, // Atur latar belakang AppBar menjadi transparan
-                elevation: 0, // Hilangkan efek bayangan pada AppBar
+                elevation: 0, // Hilangkan efek bayangan pada AppBartopup
                 leading: IconButton(
                   padding: EdgeInsets.only(top: 15.0),
                   icon: Icon(Icons.arrow_back_ios_new_rounded),
                   onPressed: () {
-                    Navigator.pushNamed(context, "/home");
+                    Navigator.pushNamed(context, "/pilihTopup");
                   },
                   color: Colors.black,
                   iconSize: 24.0,
@@ -206,7 +206,7 @@ class _TopupState extends State<Topup> {
                     });
                   },
                   initiallyExpanded: _isExpanded2,
-                  title: Text("Internet / Mobile-Banking",
+                  title: Text("E-Wallet",
                     style: TextStyle(
                       color: _isExpanded2 ? Color(0xFF14213D) : Colors.white,
                       fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily,
@@ -236,7 +236,7 @@ class _TopupState extends State<Topup> {
                               ),
                             ),
                             SizedBox(width: 10),
-                            Text("BCA", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
+                            Text("Gopay", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
                       ),
@@ -263,7 +263,7 @@ class _TopupState extends State<Topup> {
                               ),
                             ),
                             SizedBox(width: 10),
-                            Text("BNI", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
+                            Text("ShopeePay", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
                       ),
@@ -290,7 +290,7 @@ class _TopupState extends State<Topup> {
                               ),
                             ),
                             SizedBox(width: 10),
-                            Text("Mandiri", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
+                            Text("Dana", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
                       ),
@@ -317,7 +317,7 @@ class _TopupState extends State<Topup> {
                               ),
                             ),
                             SizedBox(width: 10),
-                            Text("BSI", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
+                            Text("Ovo", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
                       ),
@@ -344,7 +344,7 @@ class _TopupState extends State<Topup> {
                       ),
                     ),
                   ),
-                  onPressed: (){}, 
+                  onPressed: (){Navigator.pushNamed(context, "/virtualAkunTopup");}, 
                   child: Text("Continue", style: TextStyle(fontSize: 18, color: Colors.white, letterSpacing: 2, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),)
                 ),
               )

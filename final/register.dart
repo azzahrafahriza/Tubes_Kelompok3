@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -49,10 +50,12 @@ class _RegisterState extends State<Register> {
                 child: Text(
                   'Register',
                   style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.0,
-                      fontSize: 24.0),
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.0,
+                    fontSize: 24.0,
+                    fontFamily: GoogleFonts.poppins().fontFamily
+                  ),
                 ),
               ),
               centerTitle: true,
@@ -72,27 +75,38 @@ class _RegisterState extends State<Register> {
                     style: TextStyle(
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold,
+                      fontFamily: GoogleFonts.poppins().fontFamily
                     ),
                   ),
                   SizedBox(height: 30.0),
                   TextFormField(
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: GoogleFonts.poppins().fontFamily,
+                      letterSpacing: 1
+                    ),
                     decoration: InputDecoration(
                       fillColor: Color(0xFFD9D9D9),
                       filled: true,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       labelText: 'Nama',
-                      labelStyle:
-                          TextStyle(fontSize: 18.0), // Atur ukuran label teks
+                      labelStyle:TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: GoogleFonts.poppins().fontFamily
+                      ), // Atur ukuran label teks
                       contentPadding: EdgeInsets.symmetric(
-                          horizontal: 16.0,
-                          vertical: 12.0), // Atur padding pada konten
+                        horizontal: 16.0,
+                        vertical: 12.0
+                      ), // Atur padding pada konten
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -106,20 +120,29 @@ class _RegisterState extends State<Register> {
                   ),
                   SizedBox(height: 30.0),
                   TextFormField(
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: GoogleFonts.poppins().fontFamily,
+                      letterSpacing: 1
+                    ),
                     decoration: InputDecoration(
                       fillColor: Color(0xFFD9D9D9),
                       filled: true,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       labelText: 'Nama UMKM',
-                      labelStyle:
-                          TextStyle(fontSize: 18.0), // Atur ukuran label teks
+                      labelStyle: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: GoogleFonts.poppins().fontFamily
+                      ), // Atur ukuran label teks
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 16.0,
                           vertical: 12.0), // Atur padding pada konten
@@ -136,21 +159,29 @@ class _RegisterState extends State<Register> {
                   ),
                   SizedBox(height: 30.0),
                   TextFormField(
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: GoogleFonts.poppins().fontFamily
+                    ),
                     decoration: InputDecoration(
                       fillColor: Color(0xFFD9D9D9),
                       filled: true,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       labelText: 'Email',
-
-                      labelStyle:
-                          TextStyle(fontSize: 18.0), // Atur ukuran label teks
+                      labelStyle:TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: GoogleFonts.poppins().fontFamily
+                      ), // Atur ukuran label teks
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 16.0,
                           vertical:
@@ -168,21 +199,30 @@ class _RegisterState extends State<Register> {
                   ),
                   SizedBox(height: 30.0),
                   TextFormField(
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: GoogleFonts.poppins().fontFamily
+                    ),
                     decoration: InputDecoration(
                       fillColor: Color(0xFFD9D9D9),
                       filled: true,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       labelText: 'Password',
 
-                      labelStyle:
-                          TextStyle(fontSize: 18.0), // Atur ukuran label teks
+                      labelStyle:TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: GoogleFonts.poppins().fontFamily
+                      ), // Atur ukuran label teks
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 16.0,
                           vertical:
@@ -200,21 +240,29 @@ class _RegisterState extends State<Register> {
                   ),
                   SizedBox(height: 30.0),
                   TextFormField(
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: GoogleFonts.poppins().fontFamily
+                    ),
                     decoration: InputDecoration(
                       fillColor: Color(0xFFD9D9D9),
                       filled: true,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       labelText: 'Konfirmasi Password',
-
-                      labelStyle:
-                          TextStyle(fontSize: 18.0), // Atur ukuran label teks
+                      labelStyle:TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: GoogleFonts.poppins().fontFamily
+                      ), // Atur ukuran label teks
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 16.0,
                           vertical:
@@ -232,21 +280,30 @@ class _RegisterState extends State<Register> {
                   ),
                   SizedBox(height: 30.0),
                   TextFormField(
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: GoogleFonts.poppins().fontFamily
+                    ),
                     decoration: InputDecoration(
                       fillColor: Color(0xFFD9D9D9),
                       filled: true,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       labelText: 'No.telp',
 
-                      labelStyle:
-                          TextStyle(fontSize: 18.0), // Atur ukuran label teks
+                      labelStyle:TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: GoogleFonts.poppins().fontFamily
+                      ), // Atur ukuran label teks
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 16.0,
                           vertical: 12.0), // Atur padding pada konten
@@ -280,6 +337,7 @@ class _RegisterState extends State<Register> {
                           if (_formKey.currentState!.validate()) {
                             setState(() {
                               _name = textEditController.text;
+                              Navigator.pushNamed(context, "/login");
                             });
                           }
                         },

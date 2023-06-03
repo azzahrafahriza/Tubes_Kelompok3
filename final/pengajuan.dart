@@ -91,7 +91,7 @@ class _PengajuanState extends State<Pengajuan> {
                           "Alasan Perpanjangan Pembayaran",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                             fontFamily: GoogleFonts.poppins().fontFamily,
                           ),

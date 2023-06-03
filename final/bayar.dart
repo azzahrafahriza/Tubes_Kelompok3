@@ -206,7 +206,7 @@ class _BayarState extends State<Bayar> {
                     });
                   },
                   initiallyExpanded: _isExpanded2,
-                  title: Text("Internet / Mobile-Banking",
+                  title: Text("E-Wallet",
                     style: TextStyle(
                       color: _isExpanded2 ? Color(0xFF14213D) : Colors.white,
                       fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily,
@@ -236,7 +236,7 @@ class _BayarState extends State<Bayar> {
                               ),
                             ),
                             SizedBox(width: 10),
-                            Text("BCA", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
+                            Text("Gopay", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
                       ),
@@ -263,7 +263,7 @@ class _BayarState extends State<Bayar> {
                               ),
                             ),
                             SizedBox(width: 10),
-                            Text("BNI", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
+                            Text("ShopeePay", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
                       ),
@@ -290,7 +290,7 @@ class _BayarState extends State<Bayar> {
                               ),
                             ),
                             SizedBox(width: 10),
-                            Text("Mandiri", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
+                            Text("Dana", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
                       ),
@@ -317,7 +317,7 @@ class _BayarState extends State<Bayar> {
                               ),
                             ),
                             SizedBox(width: 10),
-                            Text("BSI", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
+                            Text("Ovo", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
                       ),
@@ -327,7 +327,7 @@ class _BayarState extends State<Bayar> {
               ),
               Container(
                 margin: EdgeInsets.only(top:30),
-                width: MediaQuery.of(context).size.width*0.95,
+                width: MediaQuery.of(context).size.width*0.9,
                 height: MediaQuery.of(context).size.height*0.05,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
@@ -360,7 +360,7 @@ class _BayarState extends State<Bayar> {
                       ),
                     ),
                   ),
-                  onPressed: (){}, 
+                  onPressed: (){Navigator.pushNamed(context, "/virtualAkunBayar");}, 
                   child: Text("Continue", style: TextStyle(fontSize: 18, color: Colors.white, letterSpacing: 2, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),)
                 ),
               )

@@ -93,20 +93,20 @@ class _FaqState extends State<Faq> {
                 header: Text(
                   title,
                   style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
                     color: Colors.white,
                     fontFamily: GoogleFonts.poppins().fontFamily
                   ),
                 ),
                 collapsed: SizedBox.shrink(), // Menyembunyikan konten terlipat secara default
-                expanded: Container( // Ubah warna sesuai keinginan Anda
+                expanded: SizedBox( // Ubah warna sesuai keinginan Anda
                   width: 400,
                   child: Column(
                     children: [
                       Text(
                         expand,
-                        style: TextStyle(fontSize: 18, color: Colors.white, fontFamily: GoogleFonts.poppins().fontFamily),
+                        style: TextStyle(fontSize: 16, color: Colors.white, fontFamily: GoogleFonts.poppins().fontFamily),
                       ),
                       // Tambahkan konten terlipat tambahan di sini jika diperlukan
                     ],

@@ -72,7 +72,7 @@ class _SkState extends State<Sk> {
                         children: [
                           Text("1 . ",  style: TextStyle(fontFamily: GoogleFonts.poppins().fontFamily,fontWeight: FontWeight.bold, fontSize: 16)),
                           Container(
-                            width: 400,
+                            width: MediaQuery.of(context).size.width*0.8,
                             child: Text("Lorem ipsum dolor sit,  amet consectetur  adipisicing elit.  Sed a, at asperiores labore  mo di quae. Asperiores, animi dolor ", style: TextStyle(fontFamily: GoogleFonts.poppins().fontFamily,fontWeight: FontWeight.bold, fontSize: 16),)),
                         ],
                       ),
@@ -82,7 +82,7 @@ class _SkState extends State<Sk> {
                       children: [
                         Text("2. ",  style: TextStyle(fontFamily: GoogleFonts.poppins().fontFamily,fontWeight: FontWeight.bold, fontSize: 16)),
                         Container(
-                          width: 400,
+                          width: MediaQuery.of(context).size.width*0.8,
                           child: Text("Lorem ipsum dolor sit,  amet consectetur  adipisicing elit.  Sed a, at asperiores labore  mo di quae. Asperiores, animi dolor ", style: TextStyle(fontFamily: GoogleFonts.poppins().fontFamily,fontWeight: FontWeight.bold, fontSize: 16),)
                         ),
                       ],
@@ -93,7 +93,7 @@ class _SkState extends State<Sk> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            width: 400,
+                            width: MediaQuery.of(context).size.width*0.8,
                             child: Text("Dengan ini sepakat untuk menerapkan hal-hal pokok yang selanjutnya akan disebut sebagai Struktur Pembiayaan", style: TextStyle(fontFamily: GoogleFonts.poppins().fontFamily,fontWeight: FontWeight.bold, fontSize: 16),)
                           ),
                         ],
@@ -103,7 +103,7 @@ class _SkState extends State<Sk> {
                 ),
               ),
             ),
-            SizedBox(height: 450,),
+            SizedBox(height: MediaQuery.of(context).size.height*0.3,),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(

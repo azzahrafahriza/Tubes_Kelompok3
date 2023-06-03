@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -30,28 +31,20 @@ class _LoginState extends State<Login> {
             child: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0,
-              leading: IconButton(
-                padding: EdgeInsets.only(top: 15.0),
-                icon: Icon(Icons.arrow_back_ios_new_rounded),
-                onPressed: () {
-                  Navigator.pushNamed(context, "/home");
-                },
-                color: Colors.black,
-                iconSize: 24.0,
-              ),
               title: Container(
                 padding: const EdgeInsets.only(top: 15.0),
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Login',
                   style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.0,
-                      fontSize: 24.0),
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.0,
+                    fontSize: 24.0,
+                    fontFamily: GoogleFonts.poppins().fontFamily
+                  ),
                 ),
               ),
-              centerTitle: true,
             ),
           ),
         ),
@@ -68,55 +61,76 @@ class _LoginState extends State<Login> {
                     style: TextStyle(
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold,
+                      fontFamily: GoogleFonts.poppins().fontFamily
                     ),
                   ),
                   SizedBox(height: 30.0),
                   TextFormField(
+                    style: TextStyle(
+                      fontFamily: GoogleFonts.poppins().fontFamily,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 2
+                    ),
                     decoration: InputDecoration(
                       fillColor: Color(0xFFD9D9D9),
                       filled: true,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       labelText: 'Username/Email',
-                      labelStyle:
-                          TextStyle(fontSize: 18.0), // Atur ukuran label teks
+                      labelStyle: TextStyle(
+                        fontFamily: GoogleFonts.poppins().fontFamily,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 2
+                      ), // Atur ukuran label teks
                       contentPadding: EdgeInsets.symmetric(
-                          horizontal: 16.0,
-                          vertical: 12.0), // Atur padding pada konten
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Please enter your username';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      _username = value!;
-                    },
+                      horizontal: 16.0,
+                      vertical: 12.0), // Atur padding pada konten
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter your username';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _username = value!;
+                  },
                   ),
                   SizedBox(height: 30.0),
                   TextFormField(
+                    style: TextStyle(
+                      fontFamily: GoogleFonts.poppins().fontFamily,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 2
+                    ),
                     decoration: InputDecoration(
                       fillColor: Color(0xFFD9D9D9),
                       filled: true,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(),
+                        borderSide: BorderSide.none,
                       ),
                       labelText: 'Password',
-
                       labelStyle:
-                          TextStyle(fontSize: 18.0), // Atur ukuran label teks
+                          TextStyle(
+                            fontFamily: GoogleFonts.poppins().fontFamily,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: 2
+                          ), // Atur ukuran label teks
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 16.0,
                           vertical:
@@ -152,20 +166,20 @@ class _LoginState extends State<Login> {
                               if (_formKey.currentState!.validate()) {
                                 setState(() {
                                   _username = textEditController.text;
+                                  Navigator.pushNamed(context, "/home");
                                 });
                               }
                             },
-                            child: Text('Login'),
+                            child: Text('Login', style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, fontSize: 18, ),),
                             style: ElevatedButton.styleFrom(
-                              primary: Color(
-                                  0xFFFCA311), // Warna latar belakang tombol
+                              primary: Color(0xFFFCA311), // Warna latar belakang tombol
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25.0),
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(height: 16.0), // Jarak antara tombol dan teks
+                        const SizedBox(height: 1), // Jarak antara tombol dan teks
                         TextButton(
                           onPressed: () {
                             Navigator.pushNamed(context, "/register");
@@ -176,17 +190,22 @@ class _LoginState extends State<Login> {
                                 TextSpan(
                                   text: "Don't Have an Account? ",
                                   style: TextStyle(
-                                    fontSize: 16.0,
+                                    fontSize: 12.0,
                                     color: Colors.black,
                                     decoration: TextDecoration.underline,
+                                    fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily,
+                                    letterSpacing: 2
                                   ),
                                 ),
                                 TextSpan(
                                   text: 'Register',
                                   style: TextStyle(
-                                      fontSize: 16.0,
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.bold),
+                                    fontSize: 12.0,
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily,
+                                    letterSpacing: 2
+                                  ),
                                 ),
                               ],
                             ),

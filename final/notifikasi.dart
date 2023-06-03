@@ -48,50 +48,26 @@ class _NotifikasiState extends State<Notifikasi> {
             bottom: TabBar(
               padding: EdgeInsets.only(top:25),
               indicatorSize: TabBarIndicatorSize.tab,
-              indicatorPadding: EdgeInsets.symmetric(horizontal: 100.0),
+              indicatorPadding: EdgeInsets.symmetric(horizontal: 50.0),
               indicatorColor: Colors.white,
               tabs: [
                 Tab(
-                  child: Container(
-                    width: 100.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100.0), // Ubah nilai sesuai keinginan
-                      color: Color(0xFFE8C9C9)
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                      },
-                      hoverColor: Colors.transparent,
-                      child: Center(child: Text('Promo', 
-                        style: TextStyle(
-                          fontFamily: GoogleFonts.poppins().fontFamily,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black
-                        ),
-                      )),
+                  child: Text('Promo', 
+                    style: TextStyle(
+                      fontFamily: GoogleFonts.poppins().fontFamily,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black
                     ),
                   ),
                 ),
                 Tab(
-                  child: Container(
-                    width: 100.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100.0), // Ubah nilai sesuai keinginan
-                      color: Color(0xFFE8C9C9)
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                      },
-                      hoverColor: Colors.transparent,
-                      child: Center(child: Text('Konfirmasi', 
-                        style: TextStyle(
-                          fontFamily: GoogleFonts.poppins().fontFamily,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black
-                        ),
-                      )),
+                  child: Text('Konfirmasi', 
+                    style: TextStyle(
+                      fontFamily: GoogleFonts.poppins().fontFamily,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black
                     ),
                   ),
                 ),

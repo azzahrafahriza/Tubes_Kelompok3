@@ -63,22 +63,20 @@ class _PusatBantuanState extends State<PusatBantuan> {
                   style: ElevatedButton.styleFrom(
                     // Warna teks
                     textStyle: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: GoogleFonts.poppins()
-                            .fontFamily), // Mengatur ukuran font
-                    fixedSize:
-                        Size(450, 100), // Mengatur tinggi dan lebar tombol
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 8.0), // Padding
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: GoogleFonts.poppins().fontFamily
+                    ), 
+                    fixedSize:Size(350, 100), // Mengatur tinggi dan lebar tombol
+                    padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Padding
                     shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(90.0), // Border radius
+                      borderRadius: BorderRadius.circular(90.0), // Border radius
                     ),
-                    backgroundColor:
-                        Color(0xFFFCA311), // Mengatur jarak ikon dan label
+                    backgroundColor:Color(0xFFFCA311), // Mengatur jarak ikon dan label
                   ).merge(ButtonStyle(
-                      iconSize: MaterialStateProperty.all<double>(50))),
+                      iconSize: MaterialStateProperty.all<double>(40)
+                    )
+                  ),
                   onPressed: () {},
                   icon: Padding(
                     padding: const EdgeInsets.only(right: 20.0),
@@ -89,7 +87,7 @@ class _PusatBantuanState extends State<PusatBantuan> {
                   ),
                   label: Padding(
                     padding: const EdgeInsets.only(left: 8.0),
-                    child: Text("Hubungi kami di 081290161938"),
+                    child: Text("Hubungi kami di 081290161938", style: TextStyle(fontSize: 16),),
                   ),
                 )),
             Padding(
@@ -103,7 +101,7 @@ class _PusatBantuanState extends State<PusatBantuan> {
                         fontFamily: GoogleFonts.poppins()
                             .fontFamily), // Mengatur ukuran font
                     fixedSize:
-                        Size(450, 100), // Mengatur tinggi dan lebar tombol
+                        Size(350, 100), // Mengatur tinggi dan lebar tombol
                     padding: EdgeInsets.symmetric(
                         horizontal: 16.0, vertical: 8.0), // Padding
                     shape: RoundedRectangleBorder(
@@ -113,7 +111,7 @@ class _PusatBantuanState extends State<PusatBantuan> {
                     backgroundColor:
                         Color(0xFFFCA311), // Mengatur jarak ikon dan label
                   ).merge(ButtonStyle(
-                      iconSize: MaterialStateProperty.all<double>(50))),
+                      iconSize: MaterialStateProperty.all<double>(40))),
                   onPressed: () {},
                   icon: Padding(
                     padding: const EdgeInsets.fromLTRB(20, 20, 30, 20),
@@ -123,7 +121,7 @@ class _PusatBantuanState extends State<PusatBantuan> {
                     ),
                   ),
                   label: Align(
-                      alignment: Alignment.centerLeft, child: Text("WhatsApp")),
+                      alignment: Alignment.centerLeft, child: Text("WhatsApp", style: TextStyle(fontSize: 16),)),
                 )),
             Padding(
                 padding: const EdgeInsets.only(top: 40.0),
@@ -136,7 +134,7 @@ class _PusatBantuanState extends State<PusatBantuan> {
                         fontFamily: GoogleFonts.poppins()
                             .fontFamily), // Mengatur ukuran font
                     fixedSize:
-                        Size(450, 100), // Mengatur tinggi dan lebar tombol
+                        Size(350, 100), // Mengatur tinggi dan lebar tombol
                     padding: EdgeInsets.symmetric(
                         horizontal: 16.0, vertical: 8.0), // Padding
                     shape: RoundedRectangleBorder(
@@ -146,7 +144,7 @@ class _PusatBantuanState extends State<PusatBantuan> {
                     backgroundColor:
                         Color(0xFFFCA311), // Mengatur jarak ikon dan label
                   ).merge(ButtonStyle(
-                      iconSize: MaterialStateProperty.all<double>(50))),
+                      iconSize: MaterialStateProperty.all<double>(40))),
                   onPressed: () {
                     Navigator.pushNamed(context, "/faq");
                   },
@@ -158,7 +156,7 @@ class _PusatBantuanState extends State<PusatBantuan> {
                     ),
                   ),
                   label: Align(
-                      alignment: Alignment.centerLeft, child: Text("FAQ")),
+                      alignment: Alignment.centerLeft, child: Text("FAQ", style: TextStyle(fontSize: 16),)),
                 )),
             Padding(
                 padding: const EdgeInsets.only(top: 40.0),
@@ -171,7 +169,7 @@ class _PusatBantuanState extends State<PusatBantuan> {
                         fontFamily: GoogleFonts.poppins()
                             .fontFamily), // Mengatur ukuran font
                     fixedSize:
-                        Size(450, 100), // Mengatur tinggi dan lebar tombol
+                        Size(350, 100), // Mengatur tinggi dan lebar tombol
                     padding: EdgeInsets.symmetric(
                         horizontal: 16.0, vertical: 8.0), // Padding
                     shape: RoundedRectangleBorder(
@@ -181,7 +179,7 @@ class _PusatBantuanState extends State<PusatBantuan> {
                     backgroundColor:
                         Color(0xFF14213D), // Mengatur jarak ikon dan label
                   ).merge(ButtonStyle(
-                      iconSize: MaterialStateProperty.all<double>(50))),
+                      iconSize: MaterialStateProperty.all<double>(40))),
                   onPressed: () {
                     Navigator.pushNamed(context, "/sk");
                   },

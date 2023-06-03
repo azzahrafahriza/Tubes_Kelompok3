@@ -5,210 +5,212 @@ class NotifikasiKiri extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return 
-      Row(
-        children: [
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.only(top:50),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20.0),
-                  topRight: Radius.circular(20.0),
+      SingleChildScrollView(
+        child: Row(
+          children: [
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(top:50),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0),
+                  ),
+                  color: Color(0xFFE5E5E5)
                 ),
-                color: Color(0xFFE5E5E5)
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(15,15,15,25),
-                    child: Text("Terbaru", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold),),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
-                          child: Icon(Icons.discount, size: 22,),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0,10,0,10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Diskon 50% Parsel Ramadhan", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
-                              Container(
-                                child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
-                                width: 450,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top:20.0),
-                                child: SizedBox(
-                                  height: 1, // Atur tinggi underline sesuai kebutuhan
-                                  width: 450,
-                                  child: Container(
-                                    color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(15,15,15,25),
+                      child: Text("Terbaru", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold),),
                     ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
-                          child: Icon(Icons.discount, size: 22,),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0,10,0,10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Diskon 50% Parsel Ramadhan", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
-                              Container(
-                                child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
-                                width: 450,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top:20.0),
-                                child: SizedBox(
-                                  height: 1, // Atur tinggi underline sesuai kebutuhan
-                                  width: 450,
-                                  child: Container(
-                                    color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
-                                  ),
-                                ),
-                              )
-                            ],
+                    Container(
+                      decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
+                            child: Icon(Icons.discount, size: 22,),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
-                          child: Icon(Icons.discount, size: 22,),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0,10,0,10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Diskon 50% Parsel Ramadhan", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
-                              Container(
-                                child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
-                                width: 450,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top:20.0),
-                                child: SizedBox(
-                                  height: 1, // Atur tinggi underline sesuai kebutuhan
-                                  width: 450,
-                                  child: Container(
-                                    color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
-                                  ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0,10,0,10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Diskon 50% Parsel Ramadhan", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
+                                Container(
+                                  child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
+                                  width: MediaQuery.of(context).size.width*0.8,
                                 ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
-                          child: Icon(Icons.discount, size: 22,),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0,10,0,10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Diskon 50% Parsel Ramadhan", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
-                              Container(
-                                child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
-                                width: 450,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top:20.0),
-                                child: SizedBox(
-                                  height: 1, // Atur tinggi underline sesuai kebutuhan
-                                  width: 450,
-                                  child: Container(
-                                    color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
+                                Padding(
+                                  padding: const EdgeInsets.only(top:20.0),
+                                  child: SizedBox(
+                                    height: 1, // Atur tinggi underline sesuai kebutuhan
+                                    width: MediaQuery.of(context).size.width*0.8,
+                                    child: Container(
+                                      color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
+                                    ),
                                   ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
-                          child: Icon(Icons.discount, size: 22,),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0,10,0,10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Diskon 50% Parsel Ramadhan", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
-                              Container(
-                                child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
-                                width: 450,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top:20.0),
-                                child: SizedBox(
-                                  height: 1, // Atur tinggi underline sesuai kebutuhan
-                                  width: 450,
-                                  child: Container(
-                                    color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
+                    Container(
+                      decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
+                            child: Icon(Icons.discount, size: 22,),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0,10,0,10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Diskon 50% Parsel Ramadhan", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
+                                Container(
+                                  child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
+                                  width: MediaQuery.of(context).size.width*0.8,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top:20.0),
+                                  child: SizedBox(
+                                    height: 1, // Atur tinggi underline sesuai kebutuhan
+                                    width: MediaQuery.of(context).size.width*0.8,
+                                    child: Container(
+                                      color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
+                                    ),
                                   ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                    Container(
+                      decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
+                            child: Icon(Icons.discount, size: 22,),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0,10,0,10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Diskon 50% Parsel Ramadhan", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
+                                Container(
+                                  child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
+                                  width: MediaQuery.of(context).size.width*0.8,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top:20.0),
+                                  child: SizedBox(
+                                    height: 1, // Atur tinggi underline sesuai kebutuhan
+                                    width: MediaQuery.of(context).size.width*0.8,
+                                    child: Container(
+                                      color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
+                            child: Icon(Icons.discount, size: 22,),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0,10,0,10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Diskon 50% Parsel Ramadhan", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
+                                Container(
+                                  child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
+                                  width: MediaQuery.of(context).size.width*0.8,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top:20.0),
+                                  child: SizedBox(
+                                    height: 1, // Atur tinggi underline sesuai kebutuhan
+                                    width: MediaQuery.of(context).size.width*0.8,
+                                    child: Container(
+                                      color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
+                            child: Icon(Icons.discount, size: 22,),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0,10,0,10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Diskon 50% Parsel Ramadhan", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
+                                Container(
+                                  child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
+                                  width: MediaQuery.of(context).size.width*0.8,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top:20.0),
+                                  child: SizedBox(
+                                    height: 1, // Atur tinggi underline sesuai kebutuhan
+                                    width: MediaQuery.of(context).size.width*0.8,
+                                    child: Container(
+                                      color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       )
     ;
   }

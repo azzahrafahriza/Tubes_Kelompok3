@@ -42,13 +42,13 @@ class NotifikasiKanan extends StatelessWidget {
                               Text("Permohonanmu Sudah Diterima", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
                               Container(
                                 child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
-                                width: 450,
+                                width: MediaQuery.of(context).size.width*0.8,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top:20.0),
                                 child: SizedBox(
                                   height: 1, // Atur tinggi underline sesuai kebutuhan
-                                  width: 450,
+                                  width: MediaQuery.of(context).size.width*0.8,
                                   child: Container(
                                     color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
                                   ),
@@ -78,13 +78,13 @@ class NotifikasiKanan extends StatelessWidget {
                               Text("Permohonanmu ditolak", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
                               Container(
                                 child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
-                                width: 450,
+                                width: MediaQuery.of(context).size.width*0.8,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top:20.0),
                                 child: SizedBox(
                                   height: 1, // Atur tinggi underline sesuai kebutuhan
-                                  width: 450,
+                                  width: MediaQuery.of(context).size.width*0.8,
                                   child: Container(
                                     color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
                                   ),
