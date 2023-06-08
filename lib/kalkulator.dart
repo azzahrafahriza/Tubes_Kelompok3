@@ -179,7 +179,7 @@ class _KalkulatorState extends State<Kalkulator> {
                           width: MediaQuery.of(context).size.width * 0.5,
                           child: ElevatedButton(
                             style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.transparent)),
-                            onPressed: (){}, 
+                            onPressed: (){Navigator.pushNamed(context, '/sk');}, 
                             child: Text("Pinjam Sekarang", style: TextStyle(letterSpacing: 1,fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),)
                           ),
                         )
@@ -265,7 +265,7 @@ class _KalkulatorState extends State<Kalkulator> {
                           width: MediaQuery.of(context).size.width * 0.5,
                           child: ElevatedButton(
                             style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.transparent)),
-                            onPressed: (){}, 
+                            onPressed: (){Navigator.pushNamed(context, '/sk');},
                             child: Text("Pinjam Sekarang", style: TextStyle(letterSpacing: 1,fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),)
                           ),
                         )
@@ -351,7 +351,7 @@ class _KalkulatorState extends State<Kalkulator> {
                           width: MediaQuery.of(context).size.width * 0.5,
                           child: ElevatedButton(
                             style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.transparent)),
-                            onPressed: (){}, 
+                            onPressed: (){Navigator.pushNamed(context, '/sk');},
                             child: Text("Pinjam Sekarang", style: TextStyle(letterSpacing: 1,fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),)
                           ),
                         )
@@ -437,7 +437,7 @@ class _KalkulatorState extends State<Kalkulator> {
                           width: MediaQuery.of(context).size.width * 0.5,
                           child: ElevatedButton(
                             style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.transparent)),
-                            onPressed: (){}, 
+                            onPressed: (){Navigator.pushNamed(context, '/sk');},
                             child: Text("Pinjam Sekarang", style: TextStyle(letterSpacing: 1,fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),)
                           ),
                         )

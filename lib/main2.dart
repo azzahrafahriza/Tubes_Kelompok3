@@ -4,7 +4,7 @@ import 'package:tubes/pusatBantuan.dart';
 import 'package:tubes/faq.dart';
 import 'package:tubes/sk.dart';
 import 'package:tubes/notifikasi.dart';
-import 'package:tubes/promo_dan_berita.dart';
+import 'promo.dart';
 import 'package:tubes/pengajuan.dart';
 import 'package:tubes/statusPerpanjangan.dart';
 import 'kalkulator.dart';
@@ -20,18 +20,30 @@ import 'profile.dart';
 import 'editprofile.dart';
 import 'ubah_akun_detail.dart';
 import 'tarikTunai.dart';
+import 'artikel.dart';
+import 'detailPromo.dart';
+import 'detailArtikel.dart';
 
+
+// class MainRouting extends StatefulWidget {
+//   const MainRouting({Key? key}) : super(key: key);
+//   @override
+//   MainRoutingState createState() {
+//     return MainRoutingState();
+//   }
+// }
 
 class MainRouting extends StatefulWidget {
-  const MainRouting({Key? key}) : super(key: key);
+  final int selectedIndex;
+
+  MainRouting({required this.selectedIndex});
+
   @override
-  MainRoutingState createState() {
-    return MainRoutingState();
-  }
+  MainRoutingState createState() => MainRoutingState();
 }
 
 class MainRoutingState extends State<MainRouting> {
-  int idx = 0;
+  int _currentIndex = 0;
 
   static List<Center> halaman = [
     Center(child: Home()),
@@ -40,25 +52,24 @@ class MainRoutingState extends State<MainRouting> {
     Center(child: Profile()),
   ];
 
-  void onItemTap(int index) {
-    setState(() {
-      idx = index;
-    });
+  void initState() {
+    super.initState();
+    _currentIndex = widget.selectedIndex;
   }
 
   void onTabChange(int index) {
     setState(() {
-      idx = index;
+      _currentIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "PINJAMYUK",
+      title: "FUNDFLEX",
       routes: {
         "/pusatBantuan": (context) => PusatBantuan(),
-        "/home": (context) => MainRouting(),
+        "/home": (context) => MainRouting(selectedIndex: 0,),
         "/faq": (context) => Faq(),
         "/sk": (context) => Sk(),
         "/notifikasi": (context) => Notifikasi(),
@@ -76,6 +87,9 @@ class MainRoutingState extends State<MainRouting> {
         "/editprofile": (context) => (EditProfile()),
         "/editdetailprofile": (context) => (EditDetailProfile()),
         "/tarikTunai": (context) => (TarikTunai()),
+        "/artikel": (context) => (Artikel()),
+        "/detailPromo": (context) => (DetailPromo()),
+        "/detailArtikel": (context) => (DetailArtikel()),
       },
       home: Scaffold(
         bottomNavigationBar: Container(
@@ -86,9 +100,10 @@ class MainRoutingState extends State<MainRouting> {
               vertical: 10
             ),
             child: GNav(
+              selectedIndex: _currentIndex,
               backgroundColor: Color(0xffE5E5E5).withOpacity(0.6),
               color: Color(0xff14213D),
-              activeColor: Colors.white,
+              activeColor: Color(0xff14213D),
               tabBackgroundColor: Color(0xffFCA311),
               gap: 8,
               padding: EdgeInsets.all(16),
@@ -104,7 +119,7 @@ class MainRoutingState extends State<MainRouting> {
             ),
           ),
         ),
-        body: halaman[idx],
+        body: halaman[_currentIndex],
       ),
     );
   }

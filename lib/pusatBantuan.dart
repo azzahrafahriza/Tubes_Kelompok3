@@ -181,7 +181,7 @@ class _PusatBantuanState extends State<PusatBantuan> {
                   ).merge(ButtonStyle(
                       iconSize: MaterialStateProperty.all<double>(40))),
                   onPressed: () {
-                    Navigator.pushNamed(context, "/sk");
+                    
                   },
                   icon: Padding(
                     padding: const EdgeInsets.fromLTRB(20, 20, 30, 20),

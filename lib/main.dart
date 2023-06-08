@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'login.dart';
 import 'register.dart';
 import 'main2.dart';
-// import 'notifikasiKanan.dart';
-// import 'notifikasiKiri.dart';
 
 
 
@@ -17,16 +15,19 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "PINJEMYUK",
+      title: "FUNDFLEX",
+      // debugShowCheckedModeBanner: false,
       routes: {
         "/login":(context)=> Login(),
         "/register":(context)=> Register(),
-        "/home": (context) => MainRouting(),
+        "/home": (context) => MainRouting(selectedIndex: 0,),
         // "/login":(context)=> Login(),
       },
       initialRoute: "/login",
-    )
-    
-    ;
+    );
   }
 }
+
+
+
+

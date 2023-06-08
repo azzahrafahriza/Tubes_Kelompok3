@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'nominal.dart';
 
 class TarikTunai extends StatefulWidget {
   const TarikTunai({super.key});
@@ -344,7 +345,15 @@ class _TarikTunaiState extends State<TarikTunai> {
                       ),
                     ),
                   ),
-                  onPressed: (){}, 
+                  onPressed: (){
+                    showModalBottomSheet(
+                      backgroundColor: Colors.transparent,
+                      context: context, 
+                      builder: (BuildContext context){
+                        return Nominal();
+                      }
+                    );
+                  }, 
                   child: Text("Continue", style: TextStyle(fontSize: 18, color: Colors.white, letterSpacing: 2, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),)
                 ),
               )

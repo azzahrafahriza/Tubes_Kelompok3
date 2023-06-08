@@ -29,6 +29,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Color(0xfff6f1f1),
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
             child: Container(

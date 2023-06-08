@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'main2.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -33,7 +34,11 @@ class _EditProfileState extends State<EditProfile> {
                 padding: EdgeInsets.only(top: 15.0),
                 icon: Icon(Icons.arrow_back_ios_new_rounded),
                 onPressed: () {
-                  Navigator.pushNamed(context, "/profile");
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainRouting(selectedIndex: 3)),
+                    (route) => false,
+                  );
                 },
                 color: Colors.black,
                 iconSize: 24.0,

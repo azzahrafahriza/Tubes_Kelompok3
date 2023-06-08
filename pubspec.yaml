@@ -34,8 +34,6 @@ dependencies:
   google_fonts: ^2.1.0
   percent_indicator: ^3.4.0
   google_nav_bar: ^5.0.6
-
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -73,6 +71,8 @@ flutter:
     - asset/shopeepay.png
     - asset/mandiri.png
     - asset/logo2.png
+    - asset/square.png
+    - asset/logoCrop.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

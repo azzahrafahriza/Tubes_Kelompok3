@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'main2.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -289,7 +290,13 @@ class _HomeState extends State<Home> {
                       ),
                       backgroundColor: Color(0xfffca311)
                     ),
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => MainRouting(selectedIndex: 2)),
+                        (route) => false,
+                      );
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -321,7 +328,16 @@ class _HomeState extends State<Home> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text("Promo", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.white, fontSize: 16, letterSpacing: 1),),
-                            Text("Lihat Semua >", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.white, fontSize: 16, letterSpacing: 1),),
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(builder: (context) => MainRouting(selectedIndex: 1)),
+                                (route) => false,
+                              );
+                              },
+                              child: Text("Lihat Semua >", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.white, fontSize: 16, letterSpacing: 1),)
+                            ),
                           ],
                         ),
                       ),
@@ -331,91 +347,230 @@ class _HomeState extends State<Home> {
                           padding: const EdgeInsets.only(left:15.0),
                           child: Row(
                             children: [
-                              Container(
-                                margin: EdgeInsets.only(right: 10),
-                                width: MediaQuery.of(context).size.width*0.6,
-                                height: MediaQuery.of(context).size.height*0.13,
-                                child: Stack(
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.network("https://media.istockphoto.com/id/1415844404/id/foto/gelombang-percikan-daun-air.jpg?s=2048x2048&w=is&k=20&c=es5FtenDU--onwK445Th-M0VenVbC55J95oH__jIV-o=", 
-                                        fit: BoxFit.cover,
-                                        width: MediaQuery.of(context).size.width*0.6,
-                                        height: MediaQuery.of(context).size.height*0.13,
-                                        
-                                      ),
-                                    ),
-                                    Positioned(
-                                      bottom: 0,
-                                      child: GestureDetector(
-                                        onTap: (){},
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(left:20, bottom:5),
-                                          child: Text("Promo Lebaran", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.white, fontSize: 16, letterSpacing: 1, decoration: TextDecoration.underline,),),
+                              GestureDetector(
+                                onTap: () => Navigator.pushNamed(context, "/detailPromo"),
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  width: MediaQuery.of(context).size.width*0.6,
+                                  height: MediaQuery.of(context).size.height*0.13,
+                                  child: Stack(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(30.0),
+                                        child: Image.network("https://media.istockphoto.com/id/1415844404/id/foto/gelombang-percikan-daun-air.jpg?s=2048x2048&w=is&k=20&c=es5FtenDU--onwK445Th-M0VenVbC55J95oH__jIV-o=", 
+                                          fit: BoxFit.cover,
+                                          width: MediaQuery.of(context).size.width*0.6,
+                                          height: MediaQuery.of(context).size.height*0.13,
+                                          
                                         ),
                                       ),
-                                    )
-                                  ],
+                                      Positioned(
+                                        bottom: 0,
+                                        child: GestureDetector(
+                                          onTap: (){},
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left:20, bottom:5),
+                                            child: Text("Promo Lebaran", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.white, fontSize: 16, letterSpacing: 1, decoration: TextDecoration.underline,),),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
-                              Container(
-                                margin: EdgeInsets.only(right: 10),
-                                width: MediaQuery.of(context).size.width*0.6,
-                                height: MediaQuery.of(context).size.height*0.13,
-                                child: Stack(
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.network("https://media.istockphoto.com/id/1415844404/id/foto/gelombang-percikan-daun-air.jpg?s=2048x2048&w=is&k=20&c=es5FtenDU--onwK445Th-M0VenVbC55J95oH__jIV-o=", 
-                                        fit: BoxFit.cover,
-                                        width: MediaQuery.of(context).size.width*0.6,
-                                        height: MediaQuery.of(context).size.height*0.13,
-                                        
-                                      ),
-                                    ),
-                                    Positioned(
-                                      bottom: 0,
-                                      child: GestureDetector(
-                                        onTap: (){},
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(left:20, bottom:5),
-                                          child: Text("Promo Lebaran", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.white, fontSize: 16, letterSpacing: 1, decoration: TextDecoration.underline,),),
+                              GestureDetector(
+                                onTap: () => Navigator.pushNamed(context, "/detailPromo"),
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  width: MediaQuery.of(context).size.width*0.6,
+                                  height: MediaQuery.of(context).size.height*0.13,
+                                  child: Stack(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(30.0),
+                                        child: Image.network("https://media.istockphoto.com/id/1415844404/id/foto/gelombang-percikan-daun-air.jpg?s=2048x2048&w=is&k=20&c=es5FtenDU--onwK445Th-M0VenVbC55J95oH__jIV-o=", 
+                                          fit: BoxFit.cover,
+                                          width: MediaQuery.of(context).size.width*0.6,
+                                          height: MediaQuery.of(context).size.height*0.13,
+                                          
                                         ),
                                       ),
-                                    )
-                                  ],
+                                      Positioned(
+                                        bottom: 0,
+                                        child: GestureDetector(
+                                          onTap: (){},
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left:20, bottom:5),
+                                            child: Text("Promo Lebaran", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.white, fontSize: 16, letterSpacing: 1, decoration: TextDecoration.underline,),),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
-                              Container(
-                                margin: EdgeInsets.only(right: 10),
-                                width: MediaQuery.of(context).size.width*0.6,
-                                height: MediaQuery.of(context).size.height*0.13,
-                                child: Stack(
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.network("https://media.istockphoto.com/id/1415844404/id/foto/gelombang-percikan-daun-air.jpg?s=2048x2048&w=is&k=20&c=es5FtenDU--onwK445Th-M0VenVbC55J95oH__jIV-o=", 
-                                        fit: BoxFit.cover,
-                                        width: MediaQuery.of(context).size.width*0.6,
-                                        height: MediaQuery.of(context).size.height*0.13,
-                                        
-                                      ),
-                                    ),
-                                    Positioned(
-                                      bottom: 0,
-                                      child: GestureDetector(
-                                        onTap: (){},
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(left:20, bottom:5),
-                                          child: Text("Promo Lebaran", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.white, fontSize: 16, letterSpacing: 1, decoration: TextDecoration.underline,),),
+                              GestureDetector(
+                                onTap: () => Navigator.pushNamed(context, "/detailPromo"),
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  width: MediaQuery.of(context).size.width*0.6,
+                                  height: MediaQuery.of(context).size.height*0.13,
+                                  child: Stack(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(30.0),
+                                        child: Image.network("https://media.istockphoto.com/id/1415844404/id/foto/gelombang-percikan-daun-air.jpg?s=2048x2048&w=is&k=20&c=es5FtenDU--onwK445Th-M0VenVbC55J95oH__jIV-o=", 
+                                          fit: BoxFit.cover,
+                                          width: MediaQuery.of(context).size.width*0.6,
+                                          height: MediaQuery.of(context).size.height*0.13,
+                                          
                                         ),
                                       ),
-                                    )
-                                  ],
+                                      Positioned(
+                                        bottom: 0,
+                                        child: GestureDetector(
+                                          onTap: (){},
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left:20, bottom:5),
+                                            child: Text("Promo Lebaran", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.white, fontSize: 16, letterSpacing: 1, decoration: TextDecoration.underline,),),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
-                              
+                            ],
+                          ),
+                        )
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.05),
+                  width: MediaQuery.of(context).size.width*1,
+                  height: MediaQuery.of(context).size.height*0.2,
+                  color: Color(0xff14213D),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 15,
+                          right: 25,
+                          left: 25,
+                          bottom: 15
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Artikel", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.white, fontSize: 16, letterSpacing: 1),),
+                            GestureDetector(
+                              onTap: ()=> Navigator.pushNamed(context, "/artikel"),
+                              child: Text("Lihat Semua >", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.white, fontSize: 16, letterSpacing: 1),)
+                            ),
+                          ],
+                        ),
+                      ),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left:15.0),
+                          child: Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () => Navigator.pushNamed(context, "/detailArtikel"),
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  width: MediaQuery.of(context).size.width*0.6,
+                                  height: MediaQuery.of(context).size.height*0.13,
+                                  child: Stack(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(30.0),
+                                        child: Image.network("https://media.istockphoto.com/id/1415844404/id/foto/gelombang-percikan-daun-air.jpg?s=2048x2048&w=is&k=20&c=es5FtenDU--onwK445Th-M0VenVbC55J95oH__jIV-o=", 
+                                          fit: BoxFit.cover,
+                                          width: MediaQuery.of(context).size.width*0.6,
+                                          height: MediaQuery.of(context).size.height*0.13,
+                                          
+                                        ),
+                                      ),
+                                      Positioned(
+                                        bottom: 0,
+                                        child: GestureDetector(
+                                          onTap: (){},
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left:20, bottom:5),
+                                            child: Text("Promo Lebaran", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.white, fontSize: 16, letterSpacing: 1, decoration: TextDecoration.underline,),),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () => Navigator.pushNamed(context, "/detailArtikel"),
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  width: MediaQuery.of(context).size.width*0.6,
+                                  height: MediaQuery.of(context).size.height*0.13,
+                                  child: Stack(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(30.0),
+                                        child: Image.network("https://media.istockphoto.com/id/1415844404/id/foto/gelombang-percikan-daun-air.jpg?s=2048x2048&w=is&k=20&c=es5FtenDU--onwK445Th-M0VenVbC55J95oH__jIV-o=", 
+                                          fit: BoxFit.cover,
+                                          width: MediaQuery.of(context).size.width*0.6,
+                                          height: MediaQuery.of(context).size.height*0.13,
+                                          
+                                        ),
+                                      ),
+                                      Positioned(
+                                        bottom: 0,
+                                        child: GestureDetector(
+                                          onTap: (){},
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left:20, bottom:5),
+                                            child: Text("Promo Lebaran", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.white, fontSize: 16, letterSpacing: 1, decoration: TextDecoration.underline,),),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () => Navigator.pushNamed(context, "/detailArtikel"),
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  width: MediaQuery.of(context).size.width*0.6,
+                                  height: MediaQuery.of(context).size.height*0.13,
+                                  child: Stack(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(30.0),
+                                        child: Image.network("https://media.istockphoto.com/id/1415844404/id/foto/gelombang-percikan-daun-air.jpg?s=2048x2048&w=is&k=20&c=es5FtenDU--onwK445Th-M0VenVbC55J95oH__jIV-o=", 
+                                          fit: BoxFit.cover,
+                                          width: MediaQuery.of(context).size.width*0.6,
+                                          height: MediaQuery.of(context).size.height*0.13,
+                                          
+                                        ),
+                                      ),
+                                      Positioned(
+                                        bottom: 0,
+                                        child: GestureDetector(
+                                          onTap: (){},
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left:20, bottom:5),
+                                            child: Text("Promo Lebaran", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.white, fontSize: 16, letterSpacing: 1, decoration: TextDecoration.underline,),),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         )

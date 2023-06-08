@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'main2.dart';
 
 
 class Sk extends StatefulWidget {
@@ -118,7 +119,13 @@ class _SkState extends State<Sk> {
                             borderRadius: BorderRadius.circular(100)
                           )
                         ),
-                        onPressed: (){}, 
+                        onPressed: (){
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(builder: (context) => MainRouting(selectedIndex: 0)),
+                            (route) => false,
+                          );
+                        }, 
                         child: Text("Agree", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily,fontWeight: FontWeight.bold, letterSpacing: 2.0),)
                       ),
                     )

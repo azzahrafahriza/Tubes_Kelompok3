@@ -6,7 +6,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ListView2 extends StatelessWidget {
   const ListView2({Key? key}) : super(key: key);
-
+  static const warnaBiru = Color(0xff14213D);
+  static const warnaOren = Color(0xffFCA311);
+  static const warnaHitam = Colors.black;
+  static const warnaPutih = Colors.white;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -15,7 +18,7 @@ class ListView2 extends StatelessWidget {
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10), 
-          color: Color(0xffD9D9D9),
+          color: Color(0xffFCA311),
           ),
           margin: const EdgeInsets.all(12.0),
           child: SizedBox(
@@ -38,9 +41,9 @@ class ListView2 extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Pemohon", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),),
-                              Text("Tanggal", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),),
-                              Text("Sisa Bayar", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),),
+                              Text("Pemohon", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, color: warnaBiru),),
+                              Text("Tanggal", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, color: warnaBiru),),
+                              Text("Sisa Bayar", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, color: warnaBiru),),
                             ],
                           ),
                         ),
@@ -49,9 +52,9 @@ class ListView2 extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("User", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w400).fontFamily),),
-                              Text("04 April 2021", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w400).fontFamily),),
-                              Text("Rp. 100.000", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w400).fontFamily, color: Colors.red),),
+                              Text("User", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w400).fontFamily, color: Colors.white),),
+                              Text("04 April 2021", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w400).fontFamily, color: Colors.white),),
+                              Text("Rp. 100.000", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w400).fontFamily, color: Colors.white),),
                             ],
                           ),
                         ),
@@ -67,7 +70,7 @@ class ListView2 extends StatelessWidget {
                     height: MediaQuery.of(context).size.height*0.07,
                     width: MediaQuery.of(context).size.width*1,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Color(0xff14213D),
                       borderRadius: BorderRadius.circular(10)
                     ),
                     child: Column(
@@ -78,8 +81,8 @@ class ListView2 extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Perpanjangan - 2 Bulan", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),),
-                              Text("Diproses", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w400).fontFamily),),
+                              Text("Perpanjangan - 2 Bulan", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, color: Colors.white),),
+                              Text("Diproses", style: TextStyle(color:Colors.white, fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w400).fontFamily),),
                             ],
                           ),
                         ),
@@ -99,7 +102,10 @@ class ListView2 extends StatelessWidget {
 
 class ListView3 extends StatelessWidget {
   const ListView3({Key? key}) : super(key: key);
-
+  static const warnaBiru = Color(0xff14213D);
+  static const warnaOren = Color(0xffFCA311);
+  static const warnaHitam = Colors.black;
+  static const warnaPutih = Colors.white;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -108,7 +114,7 @@ class ListView3 extends StatelessWidget {
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10), 
-          color: Color(0xffD9D9D9),
+            color: warnaOren
           ),
           margin: const EdgeInsets.all(12.0),
           child: SizedBox(
@@ -131,9 +137,9 @@ class ListView3 extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Lama Bayar", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w400).fontFamily),),
-                              Text("Total Bayar", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w400).fontFamily),),
-                              Text("Status", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w400).fontFamily),),
+                              Text("Lama Bayar", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: warnaBiru),),
+                              Text("Total Bayar", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: warnaBiru),),
+                              Text("Status", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: warnaBiru),),
                             ],
                           ),
                         ),
@@ -142,9 +148,9 @@ class ListView3 extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("3 Bulan", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),),
-                              Text("Rp. 1.000.000", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),),
-                              Text("Lunas", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),),
+                              Text("3 Bulan", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, color: warnaPutih),),
+                              Text("Rp. 1.000.000", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, color: warnaPutih),),
+                              Text("Lunas", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, color: warnaPutih),),
                             ],
                           ),
                         ),
@@ -160,7 +166,7 @@ class ListView3 extends StatelessWidget {
                     height: MediaQuery.of(context).size.height*0.08,
                     width: MediaQuery.of(context).size.width*1,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: warnaBiru,
                       borderRadius: BorderRadius.circular(10)
                     ),
                     child: Column(
@@ -177,7 +183,7 @@ class ListView3 extends StatelessWidget {
                                 height: 30,
                               ),
                               SizedBox(width: 10,),
-                              Text("Peminjaman Pertama", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),),
+                              Text("Peminjaman Pertama", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, color: warnaPutih),),
                             ],
                           ),
                         ),
