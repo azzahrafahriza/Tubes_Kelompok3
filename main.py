@@ -38,18 +38,17 @@ app.add_middleware(
 @app.get("/init/")
 def init_db():
   try:
-    DB_NAME = "azka.db"
+    DB_NAME = "user.db"
     con = sqlite3.connect(DB_NAME)
     cur = con.cursor()
     create_table = """ CREATE TABLE user(
             ID      	INTEGER PRIMARY KEY 	AUTOINCREMENT,
-            username     	TEXT            	NOT NULL,
-            password    	TEXT            	NOT NULL,
             nama            TEXT                NOT NULL,
             nama_umkm       TEXT                NOT NULL,
-            jenis_umkm      TEXT                NOT NULL,
-            email           TEXT                NOT NULL,
-            no_telp         TEXT                NOT NULL
+            email           TEXT                NOT NULL UNIQUE,
+            password    	TEXT            	NOT NULL,
+            no_telp         TEXT                NOT NULL,
+            saldo           INT                 NULL
         );
 
         CREATE TABLE peminjaman(
@@ -75,11 +74,9 @@ from typing import Optional
 from pydantic import BaseModel
 
 class Mhs(BaseModel):
-   username: str
-   password: str
    nama: str
    nama_umkm: str
-   jenis_umkm: str
+   password: str
    email: str
    no_telp: str
 
@@ -89,24 +86,22 @@ class Mhs(BaseModel):
 @app.post("/tambah_user/", response_model=Mhs,status_code=201)  
 def tambah_user(m: Mhs,response: Response, request: Request):
    try:
-       DB_NAME = "azka.db"
+       DB_NAME = "user.db"
        con = sqlite3.connect(DB_NAME)
        cur = con.cursor()
        # hanya untuk test, rawal sql injecttion, gunakan spt SQLAlchemy
-       cur.execute("""insert into user (username,password,nama,nama_umkm,jenis_umkm,email,no_telp) values ( "{}","{}","{}","{}","{}","{}","{}")""".format(m.username,m.password,m.nama,m.nama_umkm,m.jenis_umkm,m.email,m.no_telp))
+       cur.execute("""insert into user (nama,nama_umkm,email,password,no_telp,saldo) values ( "{}","{}","{}","{}","{}",0)""".format(m.nama,m.nama_umkm,m.email,m.password,m.no_telp))
        con.commit() 
    except:
        print("oioi error")
        return ({"status":"terjadi error"})   
    finally:  	 
        con.close()
-   response.headers["Location"] = "/mahasiswa/{}".format(m.username) 
-   print(m.username)
-   print(m.password)
+   response.headers["Location"] = "/user/{}".format(m.email) 
    print(m.nama)
    print(m.nama_umkm)
-   print(m.jenis_umkm)
    print(m.email)
+   print(m.password)
    print(m.no_telp)
   
    return m
@@ -114,7 +109,7 @@ def tambah_user(m: Mhs,response: Response, request: Request):
 @app.get("/tampilkan_semua_user/")
 def tampil_semua_user():
    try:
-    DB_NAME = "azka.db"
+    DB_NAME = "user.db"
     con = sqlite3.connect(DB_NAME)
     cur = con.cursor()
     recs = []
@@ -126,13 +121,13 @@ def tampil_semua_user():
     con.close()
    return {"data":recs}
 
-@app.delete("/delete_user/{username}")
-def delete_user(username: str):
+@app.delete("/delete_user/{ID}")
+def delete_user(id: str):
     try:
-       DB_NAME = "azka.db"
+       DB_NAME = "user.db"
        con = sqlite3.connect(DB_NAME)
        cur = con.cursor()
-       sqlstr = "delete from user  where username='{}'".format(username)                 
+       sqlstr = "delete from user  where id='{}'".format(id)                 
        print(sqlstr) # debug 
        cur.execute(sqlstr)
        con.commit()
@@ -143,17 +138,17 @@ def delete_user(username: str):
     
     return {"status":"ok"}
 
-@app.get("/tampilkan_semua_user/{id}")
-def tampil_mhs_by_id(id: int):
-    try:
-        DB_NAME = "upi.db"
-        con = sqlite3.connect(DB_NAME)
-        cur = con.cursor()
-        recs = []
-        for row in cur.execute("SELECT * FROM user WHERE ID=?", (id)):
-            recs.append(row)
-    except:
-        return {"status": "Terjadi error"}
-    finally:
-        con.close()
-    return {"data": recs}
+# @app.get("/tampilkan_semua_user/{id}")
+# def tampil_mhs_by_id(id: int):
+#     try:
+#         DB_NAME = "upi.db"
+#         con = sqlite3.connect(DB_NAME)
+#         cur = con.cursor()
+#         recs = []
+#         for row in cur.execute("SELECT * FROM user WHERE ID=?", (id)):
+#             recs.append(row)
+#     except:
+#         return {"status": "Terjadi error"}
+#     finally:
+#         con.close()
+#     return {"data": recs}
