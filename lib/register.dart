@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -9,14 +10,42 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  late Future<int> respPost; //201 artinya berhasil
+  String url = "http://127.0.0.1:8000/tambah_user/";
+
   final _formKey = GlobalKey<FormState>();
-  final textEditController = TextEditingController();
+  final textTelp = TextEditingController();
+  final textNama = TextEditingController();
+  final textUMKM = TextEditingController();
+  final textEmail = TextEditingController();
+  final textPassword = TextEditingController();
+  final textKonf = TextEditingController();
   String _name = '';
   String _UMKM = '';
   String _email = '';
   String _password = '';
   String _konfpass = '';
-  int _Notelp = 0;
+  String _Notelp = '';
+
+  Future<int> insertData() async {
+    //data disimpan di body
+    final response = await http.post(Uri.parse(url), headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8'
+    }, body: """
+      {  
+        "nama": "$_name",
+        "nama_umkm": "$_UMKM",
+        "password": "$_password",
+        "email": "$_email",
+        "no_telp": "$_Notelp"} """);
+    return response.statusCode; //sukses kalau 201
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    respPost = Future.value(0); //init
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,12 +79,11 @@ class _RegisterState extends State<Register> {
                 child: Text(
                   'Register',
                   style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.0,
-                    fontSize: 24.0,
-                    fontFamily: GoogleFonts.poppins().fontFamily
-                  ),
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.0,
+                      fontSize: 24.0,
+                      fontFamily: GoogleFonts.poppins().fontFamily),
                 ),
               ),
               centerTitle: true,
@@ -73,19 +101,17 @@ class _RegisterState extends State<Register> {
                   Text(
                     'Create Your Account Here',
                     style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: GoogleFonts.poppins().fontFamily
-                    ),
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: GoogleFonts.poppins().fontFamily),
                   ),
                   SizedBox(height: 30.0),
                   TextFormField(
                     style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: GoogleFonts.poppins().fontFamily,
-                      letterSpacing: 1
-                    ),
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: GoogleFonts.poppins().fontFamily,
+                        letterSpacing: 1),
                     decoration: InputDecoration(
                       fillColor: Color(0xFFD9D9D9),
                       filled: true,
@@ -98,15 +124,14 @@ class _RegisterState extends State<Register> {
                         borderSide: BorderSide.none,
                       ),
                       labelText: 'Nama',
-                      labelStyle:TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: GoogleFonts.poppins().fontFamily
-                      ), // Atur ukuran label teks
+                      labelStyle: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: GoogleFonts.poppins()
+                              .fontFamily), // Atur ukuran label teks
                       contentPadding: EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 12.0
-                      ), // Atur padding pada konten
+                          horizontal: 16.0,
+                          vertical: 12.0), // Atur padding pada konten
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -114,6 +139,7 @@ class _RegisterState extends State<Register> {
                       }
                       return null;
                     },
+                    controller: textNama,
                     onSaved: (value) {
                       _name = value!;
                     },
@@ -121,11 +147,10 @@ class _RegisterState extends State<Register> {
                   SizedBox(height: 30.0),
                   TextFormField(
                     style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: GoogleFonts.poppins().fontFamily,
-                      letterSpacing: 1
-                    ),
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: GoogleFonts.poppins().fontFamily,
+                        letterSpacing: 1),
                     decoration: InputDecoration(
                       fillColor: Color(0xFFD9D9D9),
                       filled: true,
@@ -139,10 +164,10 @@ class _RegisterState extends State<Register> {
                       ),
                       labelText: 'Nama UMKM',
                       labelStyle: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: GoogleFonts.poppins().fontFamily
-                      ), // Atur ukuran label teks
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: GoogleFonts.poppins()
+                              .fontFamily), // Atur ukuran label teks
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 16.0,
                           vertical: 12.0), // Atur padding pada konten
@@ -153,6 +178,7 @@ class _RegisterState extends State<Register> {
                       }
                       return null;
                     },
+                    controller: textUMKM,
                     onSaved: (value) {
                       _UMKM = value!;
                     },
@@ -160,11 +186,10 @@ class _RegisterState extends State<Register> {
                   SizedBox(height: 30.0),
                   TextFormField(
                     style: TextStyle(
-                      fontSize: 16.0,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: GoogleFonts.poppins().fontFamily
-                    ),
+                        fontSize: 16.0,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: GoogleFonts.poppins().fontFamily),
                     decoration: InputDecoration(
                       fillColor: Color(0xFFD9D9D9),
                       filled: true,
@@ -177,11 +202,11 @@ class _RegisterState extends State<Register> {
                         borderSide: BorderSide.none,
                       ),
                       labelText: 'Email',
-                      labelStyle:TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: GoogleFonts.poppins().fontFamily
-                      ), // Atur ukuran label teks
+                      labelStyle: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: GoogleFonts.poppins()
+                              .fontFamily), // Atur ukuran label teks
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 16.0,
                           vertical:
@@ -193,6 +218,7 @@ class _RegisterState extends State<Register> {
                       }
                       return null;
                     },
+                    controller: textEmail,
                     onSaved: (value) {
                       _email = value!;
                     },
@@ -200,11 +226,10 @@ class _RegisterState extends State<Register> {
                   SizedBox(height: 30.0),
                   TextFormField(
                     style: TextStyle(
-                      fontSize: 16.0,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: GoogleFonts.poppins().fontFamily
-                    ),
+                        fontSize: 16.0,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: GoogleFonts.poppins().fontFamily),
                     decoration: InputDecoration(
                       fillColor: Color(0xFFD9D9D9),
                       filled: true,
@@ -218,11 +243,11 @@ class _RegisterState extends State<Register> {
                       ),
                       labelText: 'Password',
 
-                      labelStyle:TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: GoogleFonts.poppins().fontFamily
-                      ), // Atur ukuran label teks
+                      labelStyle: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: GoogleFonts.poppins()
+                              .fontFamily), // Atur ukuran label teks
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 16.0,
                           vertical:
@@ -234,6 +259,7 @@ class _RegisterState extends State<Register> {
                       }
                       return null;
                     },
+                    controller: textPassword,
                     onSaved: (value) {
                       _password = value!;
                     },
@@ -241,11 +267,10 @@ class _RegisterState extends State<Register> {
                   SizedBox(height: 30.0),
                   TextFormField(
                     style: TextStyle(
-                      fontSize: 16.0,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: GoogleFonts.poppins().fontFamily
-                    ),
+                        fontSize: 16.0,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: GoogleFonts.poppins().fontFamily),
                     decoration: InputDecoration(
                       fillColor: Color(0xFFD9D9D9),
                       filled: true,
@@ -258,11 +283,11 @@ class _RegisterState extends State<Register> {
                         borderSide: BorderSide.none,
                       ),
                       labelText: 'Konfirmasi Password',
-                      labelStyle:TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: GoogleFonts.poppins().fontFamily
-                      ), // Atur ukuran label teks
+                      labelStyle: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: GoogleFonts.poppins()
+                              .fontFamily), // Atur ukuran label teks
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 16.0,
                           vertical:
@@ -274,6 +299,7 @@ class _RegisterState extends State<Register> {
                       }
                       return null;
                     },
+                    controller: textKonf,
                     onSaved: (value) {
                       _konfpass = value!;
                     },
@@ -281,11 +307,10 @@ class _RegisterState extends State<Register> {
                   SizedBox(height: 30.0),
                   TextFormField(
                     style: TextStyle(
-                      fontSize: 16.0,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: GoogleFonts.poppins().fontFamily
-                    ),
+                        fontSize: 16.0,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: GoogleFonts.poppins().fontFamily),
                     decoration: InputDecoration(
                       fillColor: Color(0xFFD9D9D9),
                       filled: true,
@@ -299,11 +324,11 @@ class _RegisterState extends State<Register> {
                       ),
                       labelText: 'No.telp',
 
-                      labelStyle:TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: GoogleFonts.poppins().fontFamily
-                      ), // Atur ukuran label teks
+                      labelStyle: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: GoogleFonts.poppins()
+                              .fontFamily), // Atur ukuran label teks
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 16.0,
                           vertical: 12.0), // Atur padding pada konten
@@ -314,10 +339,10 @@ class _RegisterState extends State<Register> {
                       }
                       return null;
                     },
-                    controller: textEditController, //controller
+                    controller: textTelp, //controller
 
                     onSaved: (value) {
-                      _Notelp = value! as int;
+                      _Notelp = value!;
                     },
                   ),
                   SizedBox(height: 40.0),
@@ -336,7 +361,12 @@ class _RegisterState extends State<Register> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             setState(() {
-                              _name = textEditController.text;
+                              _name = textNama.text;
+                              _UMKM = textUMKM.text;
+                              _email = textEmail.text;
+                              _password = textPassword.text;
+                              _Notelp = textTelp.text;
+                              respPost = insertData();
                               Navigator.pushNamed(context, "/login");
                             });
                           }
@@ -352,6 +382,22 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                   ),
+                  FutureBuilder<int>(
+                      future: respPost,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          if (snapshot.data! == 201) {
+                            return Text("Proses Insert Berhasil!");
+                          }
+                          if (snapshot.data! == 0) {
+                            return Text("");
+                          } else {
+                            return Text("Proses insert gagal");
+                          }
+                        }
+                        // default: loading spinner.
+                        return const CircularProgressIndicator();
+                      })
                 ],
               ),
             ),
