@@ -6,6 +6,7 @@ from typing import Union
 from fastapi import FastAPI,Response,Request,HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import sqlite3
+import json
 
 app = FastAPI()
 
@@ -57,9 +58,16 @@ def init_db():
             jumlah_pinjaman INTEGER             NOT NULL,
             jumlah_tagihan  INTEGER             NOT NULL,
             tagihan_bulanan INTEGER             NOT NULL,
-	        tagihan_terbayarkan INTERTGER	    NOT NULL,
+	        tagihan_terbayarkan INTEGER	    NOT NULL,
             jangka_waktu    TEXT                NOT NULL,
             status          TEXT                NOT NULL 
+        );
+
+        CREATE TABLE promo(
+            idpromo         INTEGER PRIMARY KEY     AUTOINCREMENT,
+            judulpromo      TEXT                    NOT NULL,
+            tenggatpromo    TEXT                    NOT NULL,
+            desc            TEXT                    NOT NULL
         );
         """
     cur.executescript(create_table)
@@ -110,6 +118,32 @@ def tambah_user(m: Mhs,response: Response, request: Request):
   
    return m
 
+class Prm(BaseModel):
+   judulpromo: str
+   tenggat: str
+   desc: str
+
+@app.post("/tambah_promo/", response_model=Prm,status_code=201)  
+def tambah_user(m: Prm,response: Response, request: Request):
+   try:
+       DB_NAME = "user.db"
+       con = sqlite3.connect(DB_NAME)
+       cur = con.cursor()
+       # hanya untuk test, rawal sql injecttion, gunakan spt SQLAlchemy
+       cur.execute("""INSERT INTO promo (judulpromo,tenggatpromo,desc) values ( "{}","{}","{}")""".format(m.judulpromo,m.tenggat,m.desc))
+       con.commit() 
+   except:
+       print("oioi error")
+       return ({"status":"terjadi error"})   
+   finally:  	 
+       con.close()
+   response.headers["Location"] = "/promo/{}".format(m.judulpromo) 
+   print(m.judulpromo)
+   print(m.tenggat)
+   print(m.desc)
+  
+   return m
+
 @app.get("/tampilkan_semua_user/")
 def tampil_semua_user():
    try:
@@ -125,6 +159,59 @@ def tampil_semua_user():
     con.close()
    return {"data":recs}
 
+@app.get("/tampilkan_semua_promo/")
+def tampil_semua_promo():
+    try:
+        DB_NAME = "user.db"
+        con = sqlite3.connect(DB_NAME)
+        cur = con.cursor()
+        cur.execute("SELECT * FROM promo")
+        rows = cur.fetchall()
+
+        recs = []
+        for row in rows:
+            promo = {
+                "id": str(row[0]),
+                "judul": row[1],
+                "desc": row[3]
+            }
+            recs.append(promo)
+    except:
+        return {"status": "terjadi error"}   
+    finally:
+        con.close()
+    
+    return {"data": recs}
+
+@app.get("/tampilkan_promo_detail/{idpromo}")
+def tampil_promo_detail(idpromo: str):
+    try:
+        DB_NAME = "user.db"
+        con = sqlite3.connect(DB_NAME)
+        cur = con.cursor()
+        
+        # Update the SQL query to select a specific promo by ID
+        cur.execute("SELECT * FROM promo WHERE idpromo = ?", (idpromo,))
+        
+        row = cur.fetchone()  # Fetch a single row
+        
+        if row is None:
+            return {"status": "Promo not found"}
+
+        promo = {
+            "id": row[0],
+            "judul": row[1],
+            "tenggat": row[2],
+            "desc": row[3]
+        }
+        
+    except:
+        return {"status": "Terjadi error"}   
+    finally:
+        con.close()
+    
+    return promo
+
 @app.delete("/delete_user/{ID}")
 def delete_user(id: str):
     try:
@@ -132,6 +219,23 @@ def delete_user(id: str):
        con = sqlite3.connect(DB_NAME)
        cur = con.cursor()
        sqlstr = "delete from user  where id='{}'".format(id)                 
+       print(sqlstr) # debug 
+       cur.execute(sqlstr)
+       con.commit()
+    except:
+       return ({"status":"terjadi error"})   
+    finally:  	 
+       con.close()
+    
+    return {"status":"ok"}
+
+@app.delete("/delete_promo/{ID}")
+def delete_promo(id: str):
+    try:
+       DB_NAME = "user.db"
+       con = sqlite3.connect(DB_NAME)
+       cur = con.cursor()
+       sqlstr = "delete from promo  where idpromo='{}'".format(id)                 
        print(sqlstr) # debug 
        cur.execute(sqlstr)
        con.commit()
