@@ -47,6 +47,7 @@ def init_db():
             nama_umkm       TEXT                NOT NULL,
             email           TEXT                NOT NULL UNIQUE,
             password    	TEXT            	NOT NULL,
+	    pin			TEXT			NOT NULL,
             no_telp         TEXT                NOT NULL,
             saldo           INT                 NULL
         );
@@ -56,6 +57,7 @@ def init_db():
             jumlah_pinjaman INTEGER             NOT NULL,
             jumlah_tagihan  INTEGER             NOT NULL,
             tagihan_bulanan INTEGER             NOT NULL,
+	    tagihan_terbayarkan	INTERTGER	NOT NULL,
             jangka_waktu    TEXT                NOT NULL,
             status          TEXT                NOT NULL 
         );
