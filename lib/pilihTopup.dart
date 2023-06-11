@@ -14,9 +14,9 @@ class _PilihTopupState extends State<PilihTopup> {
     return MaterialApp(
       home: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
+          preferredSize: const Size.fromHeight(70.0), // Ukuran preferensi AppBar
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(
                     20.0), // Radius melengkung pada sudut kiri bawah
@@ -31,8 +31,8 @@ class _PilihTopupState extends State<PilihTopup> {
                   .transparent, // Atur latar belakang AppBar menjadi transparan
               elevation: 0, // Hilangkan efek bayangan pada AppBar
               leading: IconButton(
-                padding: EdgeInsets.only(top: 15.0),
-                icon: Icon(Icons.arrow_back_ios_new_rounded),
+                padding: const EdgeInsets.only(top: 15.0),
+                icon: const Icon(Icons.arrow_back_ios_new_rounded),
                 onPressed: () {
                   Navigator.pushNamed(context, "/home");
                 },
@@ -70,7 +70,7 @@ class _PilihTopupState extends State<PilihTopup> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height*0.3,
               child: GridView.count(
                 childAspectRatio: (25 / 10),
@@ -87,11 +87,11 @@ class _PilihTopupState extends State<PilihTopup> {
             ),
             Center(
               child: Container(
-                margin: EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 10),
                 width: MediaQuery.of(context).size.width * 0.90,
                 height: MediaQuery.of(context).size.height * 0.05,
                 child: DecoratedBox(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(100)),
                     color: Color(0xFFD9D9D9),
                   ),
@@ -110,7 +110,7 @@ class _PilihTopupState extends State<PilihTopup> {
                       hintStyle: TextStyle(
                         fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500,).fontFamily,
                         fontSize: 13,
-                        color: Color(0xFF979696),
+                        color: const Color(0xFF979696),
                       ),
                       border: InputBorder.none,
                     ),
@@ -122,7 +122,7 @@ class _PilihTopupState extends State<PilihTopup> {
             Container(
               width: double.infinity,
               height: 50,
-              margin: EdgeInsets.all(40.0),
+              margin: const EdgeInsets.all(40.0),
               decoration: BoxDecoration(
                 color: Colors.orange,
                 borderRadius: BorderRadius.circular(25),
@@ -153,7 +153,7 @@ class _PilihTopupState extends State<PilihTopup> {
     return Container(
       width: 50,
       height: 25,
-      margin: EdgeInsets.only(left: 25.0, right: 25.0, bottom: 10.0, top: 10.0),
+      margin: const EdgeInsets.only(left: 25.0, right: 25.0, bottom: 10.0, top: 10.0),
       decoration: BoxDecoration(
         color: Colors.orange,
         borderRadius: BorderRadius.circular(40),

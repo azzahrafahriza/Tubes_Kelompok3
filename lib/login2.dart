@@ -19,9 +19,9 @@ class _LoginState extends State<Login> {
     return MaterialApp(
       home: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(70.0),
+          preferredSize: const Size.fromHeight(70.0),
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(20.0),
                 bottomRight: Radius.circular(20.0),
@@ -50,7 +50,7 @@ class _LoginState extends State<Login> {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Form(
               key: _formKey,
               child: Column(
@@ -64,7 +64,7 @@ class _LoginState extends State<Login> {
                       fontFamily: GoogleFonts.poppins().fontFamily
                     ),
                   ),
-                  SizedBox(height: 30.0),
+                  const SizedBox(height: 30.0),
                   TextFormField(
                     style: TextStyle(
                       fontFamily: GoogleFonts.poppins().fontFamily,
@@ -73,7 +73,7 @@ class _LoginState extends State<Login> {
                       letterSpacing: 2
                     ),
                     decoration: InputDecoration(
-                      fillColor: Color(0xFFD9D9D9),
+                      fillColor: const Color(0xFFD9D9D9),
                       filled: true,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -90,7 +90,7 @@ class _LoginState extends State<Login> {
                         fontWeight: FontWeight.w500,
                         letterSpacing: 2
                       ), // Atur ukuran label teks
-                      contentPadding: EdgeInsets.symmetric(
+                      contentPadding: const EdgeInsets.symmetric(
                       horizontal: 16.0,
                       vertical: 12.0), // Atur padding pada konten
                   ),
@@ -104,7 +104,7 @@ class _LoginState extends State<Login> {
                     _username = value!;
                   },
                   ),
-                  SizedBox(height: 30.0),
+                  const SizedBox(height: 30.0),
                   TextFormField(
                     style: TextStyle(
                       fontFamily: GoogleFonts.poppins().fontFamily,
@@ -113,7 +113,7 @@ class _LoginState extends State<Login> {
                       letterSpacing: 2
                     ),
                     decoration: InputDecoration(
-                      fillColor: Color(0xFFD9D9D9),
+                      fillColor: const Color(0xFFD9D9D9),
                       filled: true,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -131,7 +131,7 @@ class _LoginState extends State<Login> {
                             fontWeight: FontWeight.w500,
                             letterSpacing: 2
                           ), // Atur ukuran label teks
-                      contentPadding: EdgeInsets.symmetric(
+                      contentPadding: const EdgeInsets.symmetric(
                           horizontal: 16.0,
                           vertical:
                               12.0), // Atur padding pada konten // Atur padding horizontal pada konten
@@ -146,7 +146,7 @@ class _LoginState extends State<Login> {
                       _password = value!;
                     },
                   ),
-                  SizedBox(height: 40.0),
+                  const SizedBox(height: 40.0),
                   Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -158,7 +158,7 @@ class _LoginState extends State<Login> {
                             borderRadius: BorderRadius.circular(25.0),
                             border: Border.all(
                               width: 2.0,
-                              color: Color(0xFFFCA311),
+                              color: const Color(0xFFFCA311),
                             ),
                           ),
                           child: ElevatedButton(
@@ -170,13 +170,13 @@ class _LoginState extends State<Login> {
                                 });
                               }
                             },
-                            child: Text('Login', style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, fontSize: 18, ),),
                             style: ElevatedButton.styleFrom(
-                              primary: Color(0xFFFCA311), // Warna latar belakang tombol
+                              backgroundColor: const Color(0xFFFCA311), // Warna latar belakang tombol
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25.0),
                               ),
                             ),
+                            child: Text('Login', style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, fontSize: 18, ),),
                           ),
                         ),
                         const SizedBox(height: 1), // Jarak antara tombol dan teks

@@ -17,9 +17,9 @@ class _SkState extends State<Sk> {
   MaterialApp(
       home: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
+          preferredSize: const Size.fromHeight(70.0), // Ukuran preferensi AppBar
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20.0), // Radius melengkung pada sudut kiri bawah
                   bottomRight: Radius.circular(20.0), 
@@ -31,8 +31,8 @@ class _SkState extends State<Sk> {
                 backgroundColor: Colors.transparent, // Atur latar belakang AppBar menjadi transparan
                 elevation: 0, // Hilangkan efek bayangan pada AppBar
                 leading: IconButton(
-                  padding: EdgeInsets.only(top: 15.0),
-                  icon: Icon(Icons.arrow_back_ios_new_rounded),
+                  padding: const EdgeInsets.only(top: 15.0),
+                  icon: const Icon(Icons.arrow_back_ios_new_rounded),
                   onPressed: () {
                     Navigator.pushNamed(context, "/pusatBantuan");
                   },
@@ -61,7 +61,7 @@ class _SkState extends State<Sk> {
             Align(
               alignment: Alignment.topLeft,
               child: Padding(
-                padding: EdgeInsets.fromLTRB(30,50,30,0),
+                padding: const EdgeInsets.fromLTRB(30,50,30,0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -72,7 +72,7 @@ class _SkState extends State<Sk> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("1 . ",  style: TextStyle(fontFamily: GoogleFonts.poppins().fontFamily,fontWeight: FontWeight.bold, fontSize: 16)),
-                          Container(
+                          SizedBox(
                             width: MediaQuery.of(context).size.width*0.8,
                             child: Text("Lorem ipsum dolor sit,  amet consectetur  adipisicing elit.  Sed a, at asperiores labore  mo di quae. Asperiores, animi dolor ", style: TextStyle(fontFamily: GoogleFonts.poppins().fontFamily,fontWeight: FontWeight.bold, fontSize: 16),)),
                         ],
@@ -82,7 +82,7 @@ class _SkState extends State<Sk> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("2. ",  style: TextStyle(fontFamily: GoogleFonts.poppins().fontFamily,fontWeight: FontWeight.bold, fontSize: 16)),
-                        Container(
+                        SizedBox(
                           width: MediaQuery.of(context).size.width*0.8,
                           child: Text("Lorem ipsum dolor sit,  amet consectetur  adipisicing elit.  Sed a, at asperiores labore  mo di quae. Asperiores, animi dolor ", style: TextStyle(fontFamily: GoogleFonts.poppins().fontFamily,fontWeight: FontWeight.bold, fontSize: 16),)
                         ),
@@ -93,7 +93,7 @@ class _SkState extends State<Sk> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
+                          SizedBox(
                             width: MediaQuery.of(context).size.width*0.8,
                             child: Text("Dengan ini sepakat untuk menerapkan hal-hal pokok yang selanjutnya akan disebut sebagai Struktur Pembiayaan", style: TextStyle(fontFamily: GoogleFonts.poppins().fontFamily,fontWeight: FontWeight.bold, fontSize: 16),)
                           ),
@@ -110,11 +110,11 @@ class _SkState extends State<Sk> {
               child: Row(
                 children: [
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 40,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFFFCA311),
+                          backgroundColor: const Color(0xFFFCA311),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(100)
                           )
@@ -122,7 +122,7 @@ class _SkState extends State<Sk> {
                         onPressed: (){
                           Navigator.pushAndRemoveUntil(
                             context,
-                            MaterialPageRoute(builder: (context) => MainRouting(selectedIndex: 0)),
+                            MaterialPageRoute(builder: (context) => const MainRouting(selectedIndex: 0)),
                             (route) => false,
                           );
                         }, 

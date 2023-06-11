@@ -18,16 +18,16 @@ class _NotifikasiState extends State<Notifikasi> {
         child: Scaffold(
           appBar: AppBar(
             toolbarHeight: 80,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(20.0),
                 bottomRight: Radius.circular(20.0),
               ),
             ),
-            backgroundColor: Color.fromARGB(255,232,231,231),
+            backgroundColor: const Color.fromARGB(255,232,231,231),
             leading: IconButton(
-            padding: EdgeInsets.only(top:25.0),
-            icon: Icon(Icons.arrow_back_ios_new_rounded),
+            padding: const EdgeInsets.only(top:25.0),
+            icon: const Icon(Icons.arrow_back_ios_new_rounded),
               onPressed: () {
                 Navigator.pushNamed(context, "/home");
               },
@@ -46,9 +46,9 @@ class _NotifikasiState extends State<Notifikasi> {
               ),
             ),
             bottom: TabBar(
-              padding: EdgeInsets.only(top:25),
+              padding: const EdgeInsets.only(top:25),
               indicatorSize: TabBarIndicatorSize.tab,
-              indicatorPadding: EdgeInsets.symmetric(horizontal: 50.0),
+              indicatorPadding: const EdgeInsets.symmetric(horizontal: 50.0),
               indicatorColor: Colors.white,
               tabs: [
                 Tab(
@@ -75,7 +75,7 @@ class _NotifikasiState extends State<Notifikasi> {
             ),
             centerTitle: true,
           ),
-          body: TabBarView(
+          body: const TabBarView(
               children: [
                 NotifikasiKiri(),
                 NotifikasiKanan()

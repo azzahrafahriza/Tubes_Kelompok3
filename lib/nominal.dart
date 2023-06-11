@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Nominal extends StatefulWidget {
@@ -35,7 +33,7 @@ class _NominalState extends State<Nominal> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height*0.6,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(15),
           topRight: Radius.circular(15),
@@ -43,7 +41,7 @@ class _NominalState extends State<Nominal> {
         color: warnaOren
       ),
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             Row(
@@ -52,7 +50,7 @@ class _NominalState extends State<Nominal> {
                 Text("Tarik tunai", style: gayaText(18, FontWeight.bold),),
                 GestureDetector(
                   onTap: () => Navigator.of(context).pop(),
-                  child: Icon(
+                  child: const Icon(
                     Icons.close
                   ),
                 )
@@ -63,7 +61,7 @@ class _NominalState extends State<Nominal> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 30.0),
+                  const SizedBox(height: 30.0),
                   TextFormField(
                     style: TextStyle(
                       fontFamily: GoogleFonts.poppins().fontFamily,
@@ -89,7 +87,7 @@ class _NominalState extends State<Nominal> {
                         fontWeight: FontWeight.w500,
                         letterSpacing: 2
                       ), // Atur ukuran label teks
-                      contentPadding: EdgeInsets.symmetric(
+                      contentPadding: const EdgeInsets.symmetric(
                       horizontal: 16.0,
                       vertical: 12.0), // Atur padding pada konten
                   ),
@@ -103,7 +101,7 @@ class _NominalState extends State<Nominal> {
                     _username = value!;
                   },
                   ),
-                  SizedBox(height: 30.0),
+                  const SizedBox(height: 30.0),
                   TextFormField(
                     keyboardType: TextInputType.number,
                     style: TextStyle(
@@ -131,7 +129,7 @@ class _NominalState extends State<Nominal> {
                             fontWeight: FontWeight.w500,
                             letterSpacing: 2
                           ), // Atur ukuran label teks
-                      contentPadding: EdgeInsets.symmetric(
+                      contentPadding: const EdgeInsets.symmetric(
                           horizontal: 16.0,
                           vertical:
                               12.0), // Atur padding pada konten // Atur padding horizontal pada konten
@@ -158,7 +156,7 @@ class _NominalState extends State<Nominal> {
                             borderRadius: BorderRadius.circular(15),
                             border: Border.all(
                               width: 2.0,
-                              color: Color(0xFFFCA311),
+                              color: const Color(0xFFFCA311),
                             ),
                           ),
                           child: ElevatedButton(
@@ -171,7 +169,7 @@ class _NominalState extends State<Nominal> {
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: warnaBiru, // Warna latar belakang tombol
+                              backgroundColor: warnaBiru, // Warna latar belakang tombol
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),

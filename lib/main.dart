@@ -6,7 +6,7 @@ import 'main2.dart';
 
 
 void main() {
-  runApp(Main());
+  runApp(const Main());
 }
 
 class Main extends StatelessWidget {
@@ -18,9 +18,9 @@ class Main extends StatelessWidget {
       title: "FUNDFLEX",
       // debugShowCheckedModeBanner: false,
       routes: {
-        "/login":(context)=> Login(),
-        "/register":(context)=> Register(),
-        "/home": (context) => MainRouting(selectedIndex: 0,),
+        "/login":(context)=> const Login(),
+        "/register":(context)=> const Register(),
+        "/home": (context) => const MainRouting(selectedIndex: 0,),
         // "/login":(context)=> Login(),
       },
       initialRoute: "/login",

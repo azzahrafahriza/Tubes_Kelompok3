@@ -15,9 +15,9 @@ class _PromoState extends State<Promo> {
     return MaterialApp(
         home: Scaffold(
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
+              preferredSize: const Size.fromHeight(70.0), // Ukuran preferensi AppBar
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(
                         20.0), // Radius melengkung pada sudut kiri bawah
@@ -31,8 +31,8 @@ class _PromoState extends State<Promo> {
                   backgroundColor: Colors
                       .transparent, // Atur latar belakang AppBar menjadi transparan
                   elevation: 0, // Hilangkan efek bayangan pada AppBar
-                  title: Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
+                  title: const Padding(
+                    padding: EdgeInsets.only(top: 15.0),
                     child: Text(
                       'Promo',
                       style: TextStyle(
@@ -46,10 +46,10 @@ class _PromoState extends State<Promo> {
                 ),
               ),
             ),
-            body: Center(
+            body: const Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
+                children: [
                   PromoCard(),
                 ],
               ),
@@ -64,7 +64,7 @@ class Rowrowrowtheboat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        margin: EdgeInsets.only(top: 20, bottom: 20),
+        margin: const EdgeInsets.only(top: 20, bottom: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -75,8 +75,8 @@ class Rowrowrowtheboat extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20), // <-- Radius
                   )),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
+                  child: const Padding(
+                    padding: EdgeInsets.only(
                       top: 30,
                       bottom: 30,
                       left: 10,
@@ -84,7 +84,7 @@ class Rowrowrowtheboat extends StatelessWidget {
                     ),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
+                        children: [
                           Icon(Icons.numbers),
                           SizedBox(
                             height: 10,
@@ -100,8 +100,8 @@ class Rowrowrowtheboat extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20), // <-- Radius
                   )),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
+                  child: const Padding(
+                    padding: EdgeInsets.only(
                       top: 30,
                       bottom: 30,
                       left: 10,
@@ -109,7 +109,7 @@ class Rowrowrowtheboat extends StatelessWidget {
                     ),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
+                        children: [
                           Icon(Icons.alarm_off),
                           SizedBox(
                             height: 10,
@@ -126,8 +126,8 @@ class Rowrowrowtheboat extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20), // <-- Radius
                     ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
+                  child: const Padding(
+                    padding: EdgeInsets.only(
                       top: 30,
                       bottom: 30,
                       left: 10,
@@ -135,7 +135,7 @@ class Rowrowrowtheboat extends StatelessWidget {
                     ),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
+                        children: [
                           Icon(Icons.propane_outlined),
                           SizedBox(
                             height: 10,
@@ -180,13 +180,13 @@ class PromoCard extends StatelessWidget {
       height: 200,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Color.fromARGB(255, 19, 15, 60),
+        color: const Color.fromARGB(255, 19, 15, 60),
         boxShadow: [
           BoxShadow(
-            color: Color.fromARGB(255, 245, 185, 73).withOpacity(0.5),
+            color: const Color.fromARGB(255, 245, 185, 73).withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 10,
-            offset: Offset(5, 5), // changes position of shadow
+            offset: const Offset(5, 5), // changes position of shadow
           ),
         ],
       ),
@@ -194,7 +194,7 @@ class PromoCard extends StatelessWidget {
         children: [
           Expanded(
               child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
                   bottomLeft: Radius.circular(20)),
@@ -210,11 +210,11 @@ class PromoCard extends StatelessWidget {
                   begin: Alignment.centerRight,
                   end: Alignment.center,
                   colors: [
-                    Color.fromARGB(255, 241, 170, 5).withOpacity(1),
-                    Color.fromARGB(255, 241, 170, 5).withOpacity(.3),
+                    const Color.fromARGB(255, 241, 170, 5).withOpacity(1),
+                    const Color.fromARGB(255, 241, 170, 5).withOpacity(.3),
                   ],
                 ),
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     bottomLeft: Radius.circular(20)),
               ),
@@ -222,13 +222,13 @@ class PromoCard extends StatelessWidget {
           )),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(20),
                       bottomRight: Radius.circular(20)),
                   color: Color.fromARGB(255, 241, 170, 5)),
-              child: Column(
-                children: const [
+              child: const Column(
+                children: [
                   SizedBox(
                     height: 75,
                     child: Align(

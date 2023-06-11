@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NotifikasiKiri extends StatelessWidget {
+  const NotifikasiKiri({super.key});
+
   @override
   Widget build(BuildContext context) {
     return 
@@ -10,8 +12,8 @@ class NotifikasiKiri extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-                margin: EdgeInsets.only(top:50),
-                decoration: BoxDecoration(
+                margin: const EdgeInsets.only(top:50),
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20.0),
                     topRight: Radius.circular(20.0),
@@ -26,13 +28,13 @@ class NotifikasiKiri extends StatelessWidget {
                       child: Text("Terbaru", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold),),
                     ),
                     Container(
-                      decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
+                      decoration: const BoxDecoration(color: Color(0xFFD9D9D9)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(15, 15, 5, 0),
                             child: Icon(Icons.discount, size: 22,),
                           ),
                           Padding(
@@ -41,9 +43,9 @@ class NotifikasiKiri extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("Diskon 50% Parsel Ramadhan", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
-                                Container(
-                                  child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
+                                SizedBox(
                                   width: MediaQuery.of(context).size.width*0.8,
+                                  child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top:20.0),
@@ -51,7 +53,7 @@ class NotifikasiKiri extends StatelessWidget {
                                     height: 1, // Atur tinggi underline sesuai kebutuhan
                                     width: MediaQuery.of(context).size.width*0.8,
                                     child: Container(
-                                      color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
+                                      color: const Color(0xFF747474), // Atur warna underline sesuai kebutuhan
                                     ),
                                   ),
                                 )
@@ -62,13 +64,13 @@ class NotifikasiKiri extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
+                      decoration: const BoxDecoration(color: Color(0xFFD9D9D9)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(15, 15, 5, 0),
                             child: Icon(Icons.discount, size: 22,),
                           ),
                           Padding(
@@ -77,9 +79,9 @@ class NotifikasiKiri extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("Diskon 50% Parsel Ramadhan", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
-                                Container(
-                                  child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
+                                SizedBox(
                                   width: MediaQuery.of(context).size.width*0.8,
+                                  child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top:20.0),
@@ -87,7 +89,7 @@ class NotifikasiKiri extends StatelessWidget {
                                     height: 1, // Atur tinggi underline sesuai kebutuhan
                                     width: MediaQuery.of(context).size.width*0.8,
                                     child: Container(
-                                      color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
+                                      color: const Color(0xFF747474), // Atur warna underline sesuai kebutuhan
                                     ),
                                   ),
                                 )
@@ -98,13 +100,13 @@ class NotifikasiKiri extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
+                      decoration: const BoxDecoration(color: Color(0xFFD9D9D9)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(15, 15, 5, 0),
                             child: Icon(Icons.discount, size: 22,),
                           ),
                           Padding(
@@ -113,9 +115,9 @@ class NotifikasiKiri extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("Diskon 50% Parsel Ramadhan", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
-                                Container(
-                                  child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
+                                SizedBox(
                                   width: MediaQuery.of(context).size.width*0.8,
+                                  child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top:20.0),
@@ -123,7 +125,7 @@ class NotifikasiKiri extends StatelessWidget {
                                     height: 1, // Atur tinggi underline sesuai kebutuhan
                                     width: MediaQuery.of(context).size.width*0.8,
                                     child: Container(
-                                      color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
+                                      color: const Color(0xFF747474), // Atur warna underline sesuai kebutuhan
                                     ),
                                   ),
                                 )
@@ -134,13 +136,13 @@ class NotifikasiKiri extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
+                      decoration: const BoxDecoration(color: Color(0xFFD9D9D9)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(15, 15, 5, 0),
                             child: Icon(Icons.discount, size: 22,),
                           ),
                           Padding(
@@ -149,9 +151,9 @@ class NotifikasiKiri extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("Diskon 50% Parsel Ramadhan", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
-                                Container(
-                                  child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
+                                SizedBox(
                                   width: MediaQuery.of(context).size.width*0.8,
+                                  child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top:20.0),
@@ -159,7 +161,7 @@ class NotifikasiKiri extends StatelessWidget {
                                     height: 1, // Atur tinggi underline sesuai kebutuhan
                                     width: MediaQuery.of(context).size.width*0.8,
                                     child: Container(
-                                      color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
+                                      color: const Color(0xFF747474), // Atur warna underline sesuai kebutuhan
                                     ),
                                   ),
                                 )
@@ -170,13 +172,13 @@ class NotifikasiKiri extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
+                      decoration: const BoxDecoration(color: Color(0xFFD9D9D9)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(15, 15, 5, 0),
                             child: Icon(Icons.discount, size: 22,),
                           ),
                           Padding(
@@ -185,9 +187,9 @@ class NotifikasiKiri extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("Diskon 50% Parsel Ramadhan", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.bold)),
-                                Container(
-                                  child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
+                                SizedBox(
                                   width: MediaQuery.of(context).size.width*0.8,
+                                  child: Text("Lorem ipsum dolor sit,  amet consectetur adipisicing elit. Sed a, at asperiores labore mo di quae. Asperiores, animi dolor", style: TextStyle(fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily, fontWeight: FontWeight.w500)),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top:20.0),
@@ -195,7 +197,7 @@ class NotifikasiKiri extends StatelessWidget {
                                     height: 1, // Atur tinggi underline sesuai kebutuhan
                                     width: MediaQuery.of(context).size.width*0.8,
                                     child: Container(
-                                      color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
+                                      color: const Color(0xFF747474), // Atur warna underline sesuai kebutuhan
                                     ),
                                   ),
                                 )

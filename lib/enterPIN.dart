@@ -4,14 +4,16 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 class PinEntryApp extends StatelessWidget {
+  const PinEntryApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
+          preferredSize: const Size.fromHeight(70.0), // Ukuran preferensi AppBar
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(
                     20.0), // Radius melengkung pada sudut kiri bawah
@@ -26,8 +28,8 @@ class PinEntryApp extends StatelessWidget {
                   .transparent, // Atur latar belakang AppBar menjadi transparan
               elevation: 0, // Hilangkan efek bayangan pada AppBar
               leading: IconButton(
-                padding: EdgeInsets.only(top: 15.0),
-                icon: Icon(Icons.arrow_back_ios_new_rounded),
+                padding: const EdgeInsets.only(top: 15.0),
+                icon: const Icon(Icons.arrow_back_ios_new_rounded),
                 onPressed: () {
                   Navigator.pushNamed(context, "/bayar");
                 },
@@ -59,14 +61,14 @@ class PinEntryApp extends StatelessWidget {
                 'Please enter your 6 digit PIN',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color.fromARGB(255, 107, 106, 106),
+                  color: const Color.fromARGB(255, 107, 106, 106),
                   // fontWeight: FontWeight.bold,
                   fontFamily: GoogleFonts.poppins().fontFamily,
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            Row(
+            const SizedBox(height: 20),
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 PinDot(),
@@ -77,7 +79,7 @@ class PinEntryApp extends StatelessWidget {
                 PinDot(),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(right: 20.0, left: 20.0),
               child: Text(
@@ -97,7 +99,7 @@ class PinEntryApp extends StatelessWidget {
                 child: GridView.count(
                   childAspectRatio: (20 / 10),
                   crossAxisCount: 3,
-                  children: [
+                  children: const [
                     KeyboardNum('1'),
                     KeyboardNum('2'),
                     KeyboardNum('3'),
@@ -125,7 +127,7 @@ class PinEntryApp extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 height: 50,
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                     bottom: 35.0, left: 35.0, right: 35.0, top: 35.0),
                 decoration: BoxDecoration(
                   color: Colors.orange,
@@ -156,13 +158,15 @@ class PinEntryApp extends StatelessWidget {
 }
 
 class PinDot extends StatelessWidget {
+  const PinDot({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 18,
       height: 18,
-      margin: EdgeInsets.only(top: 8, left: 8, right: 8),
-      decoration: BoxDecoration(
+      margin: const EdgeInsets.only(top: 8, left: 8, right: 8),
+      decoration: const BoxDecoration(
         shape: BoxShape.circle,
         color: Color.fromARGB(255, 214, 214, 214),
         // color: Colors.white,
@@ -174,7 +178,7 @@ class PinDot extends StatelessWidget {
 class KeyboardNum extends StatelessWidget {
   final String number;
 
-  KeyboardNum(this.number);
+  const KeyboardNum(this.number, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -183,9 +187,9 @@ class KeyboardNum extends StatelessWidget {
         // Handle number input
       },
       child: Container(
-        margin: EdgeInsets.all(10),
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
+        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
+        decoration: const BoxDecoration(
           // shape: BoxShape.circle,
           color: Color.fromARGB(0, 0, 0, 0),
         ),

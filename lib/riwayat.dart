@@ -18,7 +18,7 @@ class ListView2 extends StatelessWidget {
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10), 
-          color: Color(0xffFCA311),
+          color: const Color(0xffFCA311),
           ),
           margin: const EdgeInsets.all(12.0),
           child: SizedBox(
@@ -30,7 +30,7 @@ class ListView2 extends StatelessWidget {
                   bottom: 0,
                   right: 0,
                   left: 0,
-                  child: Container(
+                  child: SizedBox(
                     height: MediaQuery.of(context).size.height*0.12,
                     width: MediaQuery.of(context).size.width*1,
                     child: Column(
@@ -70,7 +70,7 @@ class ListView2 extends StatelessWidget {
                     height: MediaQuery.of(context).size.height*0.07,
                     width: MediaQuery.of(context).size.width*1,
                     decoration: BoxDecoration(
-                      color: Color(0xff14213D),
+                      color: const Color(0xff14213D),
                       borderRadius: BorderRadius.circular(10)
                     ),
                     child: Column(
@@ -126,7 +126,7 @@ class ListView3 extends StatelessWidget {
                   bottom: 0,
                   right: 0,
                   left: 0,
-                  child: Container(
+                  child: SizedBox(
                     height: MediaQuery.of(context).size.height*0.12,
                     width: MediaQuery.of(context).size.width*1,
                     child: Column(
@@ -177,12 +177,12 @@ class ListView3 extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Image(
+                              const Image(
                                 image: AssetImage('../asset/logo2.png'),
                                 width: 80,
                                 height: 30,
                               ),
-                              SizedBox(width: 10,),
+                              const SizedBox(width: 10,),
                               Text("Peminjaman Pertama", style: TextStyle(fontSize: 16, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, color: warnaPutih),),
                             ],
                           ),

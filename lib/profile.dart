@@ -4,7 +4,7 @@ import 'riwayat.dart';
 
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key});
+  const Profile({super.key});
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -29,11 +29,11 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color(0xfff6f1f1),
+        backgroundColor: const Color(0xfff6f1f1),
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
+          preferredSize: const Size.fromHeight(70.0), // Ukuran preferensi AppBar
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20.0), // Radius melengkung pada sudut kiri bawah
                   bottomRight: Radius.circular(20.0), // Radius melengkung pada sudut kanan bawah
@@ -61,7 +61,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
             ),
           ),
         body: Padding(
-          padding: EdgeInsets.only(top: 30),
+          padding: const EdgeInsets.only(top: 30),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -70,12 +70,12 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 68,
                       backgroundImage: NetworkImage(
                           "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"),
                     ),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Column(
@@ -95,7 +95,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                               ),
                             ),
                           ),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
@@ -109,12 +109,12 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                         ],
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     IconButton(
                       onPressed: () {
                         Navigator.pushNamed(context, "/editprofile");
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.edit_outlined,
                         size: 27,
                         color: Color.fromARGB(255, 80, 80, 80),
@@ -122,8 +122,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
-                Divider(
+                const SizedBox(height: 10),
+                const Divider(
                   color: Colors.grey,
                   thickness: 1,
                   indent: 35,
@@ -135,7 +135,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     children: [
                       TabBar(
                         indicatorSize: TabBarIndicatorSize.tab,
-                        indicatorPadding: EdgeInsets.symmetric(horizontal: 50.0),
+                        indicatorPadding: const EdgeInsets.symmetric(horizontal: 50.0),
                         indicatorColor: Colors.black,
                         controller: _tabController,
                         tabs: [
@@ -163,10 +163,10 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                       ),
                       Container(
                         height: 500,
-                        color: Color(0xfff6f1f1),
+                        color: const Color(0xfff6f1f1),
                         child: TabBarView(
                           controller: _tabController,
-                          children: [
+                          children: const [
                             Center(child: ListView2()),
                             Center(child: ListView3()),
                           ],

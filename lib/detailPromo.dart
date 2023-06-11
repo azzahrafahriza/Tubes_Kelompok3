@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'main2.dart';
-import 'promo.dart';
 
 
 
@@ -20,9 +19,9 @@ class _DetailPromoState extends State<DetailPromo> {
         builder: (context) => Container(
         child: Scaffold(
           appBar: PreferredSize(
-              preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
+              preferredSize: const Size.fromHeight(70.0), // Ukuran preferensi AppBar
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(
                         20.0), // Radius melengkung pada sudut kiri bawah
@@ -34,12 +33,12 @@ class _DetailPromoState extends State<DetailPromo> {
                 ),
                 child: AppBar(
                   leading: IconButton(
-                padding: EdgeInsets.only(top: 15.0),
-                icon: Icon(Icons.arrow_back_ios_new_rounded),
+                padding: const EdgeInsets.only(top: 15.0),
+                icon: const Icon(Icons.arrow_back_ios_new_rounded),
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => MainRouting(selectedIndex: 1)),
+                    MaterialPageRoute(builder: (context) => const MainRouting(selectedIndex: 1)),
                     (route) => false,
                   );
                 },
@@ -92,7 +91,7 @@ class _DetailPromoState extends State<DetailPromo> {
                   )
                 ),
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),
@@ -111,7 +110,7 @@ class _DetailPromoState extends State<DetailPromo> {
                           height: 40,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xffFCA311),
+                              backgroundColor: const Color(0xffFCA311),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20), 
                               ),
@@ -119,7 +118,7 @@ class _DetailPromoState extends State<DetailPromo> {
                             onPressed: (){
                               Navigator.pushAndRemoveUntil(
                                 context,
-                                MaterialPageRoute(builder: (context) => MainRouting(selectedIndex: 2)),
+                                MaterialPageRoute(builder: (context) => const MainRouting(selectedIndex: 2)),
                                 (route) => false,
                               );
                             },
@@ -131,7 +130,7 @@ class _DetailPromoState extends State<DetailPromo> {
                               ))
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         SizedBox(

@@ -47,7 +47,7 @@ def init_db():
             nama_umkm       TEXT                NOT NULL,
             email           TEXT                NOT NULL UNIQUE,
             password    	TEXT            	NOT NULL,
-	    pin			TEXT			NOT NULL,
+	        pin			    TEXT			    NOT NULL,
             no_telp         TEXT                NOT NULL,
             saldo           INT                 NULL
         );
@@ -57,7 +57,7 @@ def init_db():
             jumlah_pinjaman INTEGER             NOT NULL,
             jumlah_tagihan  INTEGER             NOT NULL,
             tagihan_bulanan INTEGER             NOT NULL,
-	    tagihan_terbayarkan	INTERTGER	NOT NULL,
+	        tagihan_terbayarkan INTERTGER	    NOT NULL,
             jangka_waktu    TEXT                NOT NULL,
             status          TEXT                NOT NULL 
         );
@@ -79,6 +79,7 @@ class Mhs(BaseModel):
    nama: str
    nama_umkm: str
    password: str
+   pin: str
    email: str
    no_telp: str
 
@@ -92,7 +93,7 @@ def tambah_user(m: Mhs,response: Response, request: Request):
        con = sqlite3.connect(DB_NAME)
        cur = con.cursor()
        # hanya untuk test, rawal sql injecttion, gunakan spt SQLAlchemy
-       cur.execute("""insert into user (nama,nama_umkm,email,password,no_telp,saldo) values ( "{}","{}","{}","{}","{}",0)""".format(m.nama,m.nama_umkm,m.email,m.password,m.no_telp))
+       cur.execute("""insert into user (nama,nama_umkm,email,password,pin,no_telp,saldo) values ( "{}","{}","{}","{}","{}","{}",0)""".format(m.nama,m.nama_umkm,m.email,m.password,m.pin,m.no_telp))
        con.commit() 
    except:
        print("oioi error")
@@ -104,6 +105,7 @@ def tambah_user(m: Mhs,response: Response, request: Request):
    print(m.nama_umkm)
    print(m.email)
    print(m.password)
+   print(m.pin)
    print(m.no_telp)
   
    return m

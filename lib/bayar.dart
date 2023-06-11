@@ -16,9 +16,9 @@ class _BayarState extends State<Bayar> {
   MaterialApp(
       home: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
+          preferredSize: const Size.fromHeight(70.0), // Ukuran preferensi AppBar
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20.0), // Radius melengkung pada sudut kiri bawah
                   bottomRight: Radius.circular(20.0), // Radius melengkung pada sudut kanan bawah
@@ -29,8 +29,8 @@ class _BayarState extends State<Bayar> {
                 backgroundColor: Colors.transparent, // Atur latar belakang AppBar menjadi transparan
                 elevation: 0, // Hilangkan efek bayangan pada AppBar
                 leading: IconButton(
-                  padding: EdgeInsets.only(top: 15.0),
-                  icon: Icon(Icons.arrow_back_ios_new_rounded),
+                  padding: const EdgeInsets.only(top: 15.0),
+                  icon: const Icon(Icons.arrow_back_ios_new_rounded),
                   onPressed: () {
                     Navigator.pushNamed(context, "/home");
                   },
@@ -58,10 +58,10 @@ class _BayarState extends State<Bayar> {
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(top:30, left: 15, right: 15),
+                margin: const EdgeInsets.only(top:30, left: 15, right: 15),
                 width: MediaQuery.of(context).size.width * 1,
                 decoration: BoxDecoration(
-                  color: _isExpanded ?Color(0xffE5E5E5) : Color(0xFF14213D),
+                  color: _isExpanded ?const Color(0xffE5E5E5) : const Color(0xFF14213D),
                   borderRadius: BorderRadius.circular(30)
                 ),
                 child: ExpansionTile(
@@ -74,7 +74,7 @@ class _BayarState extends State<Bayar> {
                   initiallyExpanded: _isExpanded,
                   title: Text("ATM",
                     style: TextStyle(
-                      color: _isExpanded ? Color(0xFF14213D) : Colors.white,
+                      color: _isExpanded ? const Color(0xFF14213D) : Colors.white,
                       fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily,
                       fontSize: 20
                     ),
@@ -88,7 +88,7 @@ class _BayarState extends State<Bayar> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(100)
                         ),
-                        margin: EdgeInsets.fromLTRB(10, 20, 10, 5),
+                        margin: const EdgeInsets.fromLTRB(10, 20, 10, 5),
                         // height: MediaQuery.of(context).size.width * 1,
                         child: Row(
                           children: [
@@ -101,7 +101,7 @@ class _BayarState extends State<Bayar> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text("BCA", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
@@ -115,7 +115,7 @@ class _BayarState extends State<Bayar> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(100)
                         ),
-                        margin: EdgeInsets.fromLTRB(10, 20, 10, 5),
+                        margin: const EdgeInsets.fromLTRB(10, 20, 10, 5),
                         // height: MediaQuery.of(context).size.width * 1,
                         child: Row(
                           children: [
@@ -128,7 +128,7 @@ class _BayarState extends State<Bayar> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text("BNI", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
@@ -142,7 +142,7 @@ class _BayarState extends State<Bayar> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(100)
                         ),
-                        margin: EdgeInsets.fromLTRB(10, 20, 10, 5),
+                        margin: const EdgeInsets.fromLTRB(10, 20, 10, 5),
                         // height: MediaQuery.of(context).size.width * 1,
                         child: Row(
                           children: [
@@ -155,7 +155,7 @@ class _BayarState extends State<Bayar> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text("Mandiri", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
@@ -169,7 +169,7 @@ class _BayarState extends State<Bayar> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(100)
                         ),
-                        margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                        margin: const EdgeInsets.fromLTRB(10, 20, 10, 20),
                         // height: MediaQuery.of(context).size.width * 1,
                         child: Row(
                           children: [
@@ -182,7 +182,7 @@ class _BayarState extends State<Bayar> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text("BSI", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
@@ -192,10 +192,10 @@ class _BayarState extends State<Bayar> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top:30, left: 15, right: 15),
+                margin: const EdgeInsets.only(top:30, left: 15, right: 15),
                 width: MediaQuery.of(context).size.width * 1,
                 decoration: BoxDecoration(
-                  color: _isExpanded2 ?Color(0xffE5E5E5) : Color(0xFF14213D),
+                  color: _isExpanded2 ?const Color(0xffE5E5E5) : const Color(0xFF14213D),
                   borderRadius: BorderRadius.circular(30)
                 ),
                 child: ExpansionTile(
@@ -208,7 +208,7 @@ class _BayarState extends State<Bayar> {
                   initiallyExpanded: _isExpanded2,
                   title: Text("E-Wallet",
                     style: TextStyle(
-                      color: _isExpanded2 ? Color(0xFF14213D) : Colors.white,
+                      color: _isExpanded2 ? const Color(0xFF14213D) : Colors.white,
                       fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily,
                       fontSize: 20
                     ),
@@ -222,7 +222,7 @@ class _BayarState extends State<Bayar> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(100)
                         ),
-                        margin: EdgeInsets.fromLTRB(10, 20, 10, 5),
+                        margin: const EdgeInsets.fromLTRB(10, 20, 10, 5),
                         // height: MediaQuery.of(context).size.width * 1,
                         child: Row(
                           children: [
@@ -235,7 +235,7 @@ class _BayarState extends State<Bayar> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text("Gopay", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
@@ -249,7 +249,7 @@ class _BayarState extends State<Bayar> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(100)
                         ),
-                        margin: EdgeInsets.fromLTRB(10, 20, 10, 5),
+                        margin: const EdgeInsets.fromLTRB(10, 20, 10, 5),
                         // height: MediaQuery.of(context).size.width * 1,
                         child: Row(
                           children: [
@@ -262,7 +262,7 @@ class _BayarState extends State<Bayar> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text("ShopeePay", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
@@ -276,7 +276,7 @@ class _BayarState extends State<Bayar> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(100)
                         ),
-                        margin: EdgeInsets.fromLTRB(10, 20, 10, 5),
+                        margin: const EdgeInsets.fromLTRB(10, 20, 10, 5),
                         // height: MediaQuery.of(context).size.width * 1,
                         child: Row(
                           children: [
@@ -289,7 +289,7 @@ class _BayarState extends State<Bayar> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text("Dana", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
@@ -303,7 +303,7 @@ class _BayarState extends State<Bayar> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(100)
                         ),
-                        margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                        margin: const EdgeInsets.fromLTRB(10, 20, 10, 20),
                         // height: MediaQuery.of(context).size.width * 1,
                         child: Row(
                           children: [
@@ -316,7 +316,7 @@ class _BayarState extends State<Bayar> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text("Ovo", style: TextStyle(fontSize: 20, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, color: Colors.black),)
                           ],
                         ),
@@ -326,12 +326,12 @@ class _BayarState extends State<Bayar> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top:30),
+                margin: const EdgeInsets.only(top:30),
                 width: MediaQuery.of(context).size.width*0.9,
                 height: MediaQuery.of(context).size.height*0.05,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  color: Color(0xFF339989), 
+                  color: const Color(0xFF339989), 
                 ),
                 child: GestureDetector(
                   onTap: () {},
@@ -353,7 +353,7 @@ class _BayarState extends State<Bayar> {
                 height: MediaQuery.of(context).size.height*0.05,
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFFCA311)),
+                    backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFFCA311)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100.0), // Atur radius lengkungan di sini

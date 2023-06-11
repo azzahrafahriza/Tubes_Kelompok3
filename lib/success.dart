@@ -17,13 +17,13 @@ class _SuksesState extends State<Sukses> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: 100),
+              const SizedBox(height: 100),
               Image.network(
                 'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
                 height: 200,
                 width: 250,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Text(
                 'Success',
                 style: TextStyle(
@@ -32,7 +32,7 @@ class _SuksesState extends State<Sukses> {
                   fontFamily: GoogleFonts.poppins().fontFamily,
                 ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
                 'Your purchase already done',
                 style: TextStyle(
@@ -40,7 +40,7 @@ class _SuksesState extends State<Sukses> {
                   fontFamily: GoogleFonts.poppins().fontFamily,
                 ),
               ),
-              SizedBox(height: 200),
+              const SizedBox(height: 200),
               Text(
                 'You will automatically redirect to homescreen in 3 second',
                 style: TextStyle(
@@ -51,7 +51,7 @@ class _SuksesState extends State<Sukses> {
               Container(
                 width: double.infinity,
                 height: 50,
-                margin: EdgeInsets.all(35.0),
+                margin: const EdgeInsets.all(35.0),
                 decoration: BoxDecoration(
                   color: Colors.orange,
                   borderRadius: BorderRadius.circular(25),

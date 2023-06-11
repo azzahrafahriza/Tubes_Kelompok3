@@ -19,9 +19,9 @@ class _DetailArtikelState extends State<DetailArtikel> {
         builder: (context) => Container(
         child: Scaffold(
           appBar: PreferredSize(
-              preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
+              preferredSize: const Size.fromHeight(70.0), // Ukuran preferensi AppBar
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(
                         20.0), // Radius melengkung pada sudut kiri bawah
@@ -33,12 +33,12 @@ class _DetailArtikelState extends State<DetailArtikel> {
                 ),
                 child: AppBar(
                   leading: IconButton(
-                padding: EdgeInsets.only(top: 15.0),
-                icon: Icon(Icons.arrow_back_ios_new_rounded),
+                padding: const EdgeInsets.only(top: 15.0),
+                icon: const Icon(Icons.arrow_back_ios_new_rounded),
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => Artikel()),
+                    MaterialPageRoute(builder: (context) => const Artikel()),
                     (route) => false,
                   );
                 },
@@ -91,7 +91,7 @@ class _DetailArtikelState extends State<DetailArtikel> {
                   )
                 ),
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),

@@ -16,14 +16,14 @@ class _PromoState extends State<Promo> {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {// Rute beranda Promo
-        '/detailPromo': (context) => DetailPromo(), // Rute detailPromo
+        '/detailPromo': (context) => const DetailPromo(), // Rute detailPromo
       },
       home: Container(
         child: Scaffold(
           appBar: PreferredSize(
-              preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
+              preferredSize: const Size.fromHeight(70.0), // Ukuran preferensi AppBar
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(
                         20.0), // Radius melengkung pada sudut kiri bawah
@@ -37,8 +37,8 @@ class _PromoState extends State<Promo> {
                   backgroundColor: Colors
                       .transparent, // Atur latar belakang AppBar menjadi transparan
                   elevation: 0, // Hilangkan efek bayangan pada AppBar
-                  title: Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
+                  title: const Padding(
+                    padding: EdgeInsets.only(top: 15.0),
                     child: Text(
                       'Promo',
                       style: TextStyle(
@@ -59,7 +59,7 @@ class _PromoState extends State<Promo> {
                 onTap: (){
                   Navigator.pushNamed(context, '/detailPromo');
                 },
-                child: PromoCard()
+                child: const PromoCard()
               );
             },
           ),
@@ -80,13 +80,13 @@ class PromoCard extends StatelessWidget {
       height: MediaQuery.of(context).size.height*0.18,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Color.fromARGB(255, 19, 15, 60),
+        color: const Color.fromARGB(255, 19, 15, 60),
         boxShadow: [
           BoxShadow(
-            color: Color.fromARGB(255, 245, 185, 73).withOpacity(0.5),
+            color: const Color.fromARGB(255, 245, 185, 73).withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 10,
-            offset: Offset(5, 5), // changes position of shadow
+            offset: const Offset(5, 5), // changes position of shadow
           ),
         ],
       ),
@@ -94,7 +94,7 @@ class PromoCard extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
                   bottomLeft: Radius.circular(20)
@@ -107,17 +107,17 @@ class PromoCard extends StatelessWidget {
                     begin: Alignment.centerRight,
                     end: Alignment.center,
                     colors: [
-                      Color.fromARGB(255, 241, 170, 5).withOpacity(1),
-                      Color.fromARGB(255, 241, 170, 5).withOpacity(.3),
+                      const Color.fromARGB(255, 241, 170, 5).withOpacity(1),
+                      const Color.fromARGB(255, 241, 170, 5).withOpacity(.3),
                     ],
                   ),
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     bottomLeft: Radius.circular(20)
                   ),
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20), // Melengkungkan sisi kiri atas
                     bottomLeft: Radius.circular(20), // Melengkungkan sisi kiri bawah
                   ),
@@ -131,7 +131,7 @@ class PromoCard extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(20),
                       bottomRight: Radius.circular(20)),
@@ -143,7 +143,7 @@ class PromoCard extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
-                        padding: EdgeInsets.only(left: 20),
+                        padding: const EdgeInsets.only(left: 20),
                         child: Text(
                           'Promo Lebaran',
                           style: TextStyle(
@@ -160,7 +160,7 @@ class PromoCard extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
                       child: Text(
                         'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed a, at ',
                         maxLines: 2,
@@ -176,7 +176,7 @@ class PromoCard extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomRight,
                     child: Padding(
-                      padding: EdgeInsets.only(top:20, left: 20, right: 20),
+                      padding: const EdgeInsets.only(top:20, left: 20, right: 20),
                       child: GestureDetector(
                         onTap: (){},
                         child: Text(

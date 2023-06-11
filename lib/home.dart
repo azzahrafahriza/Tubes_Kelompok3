@@ -17,17 +17,17 @@ class _HomeState extends State<Home> {
       MaterialApp(
       home: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(70.0),
+            preferredSize: const Size.fromHeight(70.0),
             child: AppBar(
               leading: IconButton(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   Icons.account_circle,
                   color: Colors.black,
                   size: 50,
                 ),
               ),
-              backgroundColor: Color(0xffE5E5E5),
+              backgroundColor: const Color(0xffE5E5E5),
               title: Padding(
                 padding: const EdgeInsets.only(top:13.0),
                 child: Text(
@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
                   padding: const EdgeInsets.only(top:8.0),
                   child: IconButton(
                     onPressed: () {Navigator.pushNamed(context, "/pusatBantuan");},
-                    icon: Icon(Icons.headset_mic_rounded),
+                    icon: const Icon(Icons.headset_mic_rounded),
                     color: Colors.black,
                     iconSize: 35,
                   ),
@@ -57,13 +57,13 @@ class _HomeState extends State<Home> {
                   padding: const EdgeInsets.only(top:8.0),
                   child: IconButton(
                     onPressed: () {Navigator.pushNamed(context, "/notifikasi");},
-                    icon: Icon(Icons.notifications_active),
+                    icon: const Icon(Icons.notifications_active),
                     color: Colors.black,
                     iconSize: 35,
                   ),
                 ),
               ],
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(30),
               )),
@@ -89,7 +89,7 @@ class _HomeState extends State<Home> {
                             Container(
                               width: MediaQuery.of(context).size.width*0.53,
                               height: MediaQuery.of(context).size.height*0.11,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color(0xffA76800),
                                 borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30))
                               ),
@@ -97,7 +97,7 @@ class _HomeState extends State<Home> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Container(
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Color(0xffA76800),
                                       borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30))
                                     ),
@@ -105,10 +105,10 @@ class _HomeState extends State<Home> {
                                     height: MediaQuery.of(context).size.height*0.04,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
+                                        shape: const RoundedRectangleBorder(
                                           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30)), 
                                         ),
-                                        backgroundColor: Color(0xffA76800)
+                                        backgroundColor: const Color(0xffA76800)
                                       ),
                                       onPressed: (){Navigator.pushNamed(context, "/pengajuan");},
                                       child: Text("Ajukan Perpanjangan",style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, fontSize: 12, letterSpacing: 1),  ),
@@ -120,7 +120,7 @@ class _HomeState extends State<Home> {
                             Container(
                               width: MediaQuery.of(context).size.width*0.35,
                               height: MediaQuery.of(context).size.height*0.11,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color(0xff14213D),
                                 borderRadius: BorderRadius.only(bottomRight: Radius.circular(30))
                               ),
@@ -128,7 +128,7 @@ class _HomeState extends State<Home> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Container(
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Color(0xff14213D),
                                       borderRadius: BorderRadius.only(bottomRight: Radius.circular(30))
                                     ),
@@ -136,10 +136,10 @@ class _HomeState extends State<Home> {
                                     height: MediaQuery.of(context).size.height*0.04,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
+                                        shape: const RoundedRectangleBorder(
                                           borderRadius: BorderRadius.only(bottomRight: Radius.circular(30)), 
                                         ),
-                                        backgroundColor: Color(0xff14213D)
+                                        backgroundColor: const Color(0xff14213D)
                                       ),
                                       onPressed: (){Navigator.pushNamed(context, "/bayar");},
                                       child: Text("Bayar",style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, fontSize: 12, letterSpacing: 1),  ),
@@ -161,7 +161,7 @@ class _HomeState extends State<Home> {
                           height: MediaQuery.of(context).size.height*0.19,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            color: Color(0xffFCA311)
+                            color: const Color(0xffFCA311)
                           ),
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
@@ -171,25 +171,25 @@ class _HomeState extends State<Home> {
                               children: [
                                 Text("Pembayaran Pinjaman", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, fontSize: 16, color: Colors.white)),
                                 Padding(
-                                  padding: EdgeInsets.only(top: 20),
+                                  padding: const EdgeInsets.only(top: 20),
                                   child: Row(
                                     children: [
                                       Text("Rp 2.000.000", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, fontSize: 28, color: Colors.white)),
                                       Text(" / ", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, fontSize: 20, color: Colors.white)),
-                                      Text("10.000.000", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, fontSize: 18, color: Color(0xfff9c980))),
+                                      Text("10.000.000", style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, fontSize: 18, color: const Color(0xfff9c980))),
                                     ],
                                   ),
                                 ),
                                 LinearPercentIndicator(
-                                  padding: EdgeInsets.only(top:10, left: 10, right: 10),
+                                  padding: const EdgeInsets.only(top:10, left: 10, right: 10),
                                   lineHeight: 20,
                                   percent: 0.2,
-                                  progressColor: Color(0xffd48300),
-                                  backgroundColor: Color(0xffed970b),
+                                  progressColor: const Color(0xffd48300),
+                                  backgroundColor: const Color(0xffed970b),
                                 ),
                                 Container(
                                   width: MediaQuery.of(context).size.width*1,
-                                  margin: EdgeInsets.only(top: 13, right: 15),
+                                  margin: const EdgeInsets.only(top: 13, right: 15),
                                   alignment: Alignment.bottomLeft,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -215,7 +215,7 @@ class _HomeState extends State<Home> {
                       Container(
                         width: MediaQuery.of(context).size.width*0.53,
                         height: MediaQuery.of(context).size.height*0.1,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(30), bottomLeft: Radius.circular(30)),
                           color: Color(0xff339989)
                         ),
@@ -238,7 +238,7 @@ class _HomeState extends State<Home> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color(0xff2B2C28),
                                 borderRadius: BorderRadius.only(topRight: Radius.circular(30))
                               ),
@@ -246,17 +246,17 @@ class _HomeState extends State<Home> {
                               width: MediaQuery.of(context).size.width*0.35,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
+                                  shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(topRight: Radius.circular(30)), 
                                   ),
-                                  backgroundColor: Color(0xff2B2C28)
+                                  backgroundColor: const Color(0xff2B2C28)
                                 ),
                                 onPressed: (){Navigator.pushNamed(context, "/pilihTopup");},
                                 child: Text("Topup",style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, fontSize: 12, letterSpacing: 1),  ),
                               ),
                             ),
                             Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color(0xff236D62),
                                 borderRadius: BorderRadius.only(bottomRight: Radius.circular(30))
                               ),
@@ -264,10 +264,10 @@ class _HomeState extends State<Home> {
                               width: MediaQuery.of(context).size.width*0.35,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
+                                  shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(bottomRight: Radius.circular(30)), 
                                   ),
-                                  backgroundColor: Color(0xff236D62)
+                                  backgroundColor: const Color(0xff236D62)
                                 ),
                                 onPressed: (){Navigator.pushNamed(context,"/tarikTunai");},
                                 child: Text("Tarik Tunai",style: TextStyle(fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500).fontFamily, fontSize: 12, letterSpacing: 1),  ),
@@ -288,19 +288,19 @@ class _HomeState extends State<Home> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30), 
                       ),
-                      backgroundColor: Color(0xfffca311)
+                      backgroundColor: const Color(0xfffca311)
                     ),
                     onPressed: (){
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => MainRouting(selectedIndex: 2)),
+                        MaterialPageRoute(builder: (context) => const MainRouting(selectedIndex: 2)),
                         (route) => false,
                       );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.add_circle_outline,
                           color: Color(0xffBF7700),
                           size: 50,
@@ -314,7 +314,7 @@ class _HomeState extends State<Home> {
                   margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.05),
                   width: MediaQuery.of(context).size.width*1,
                   height: MediaQuery.of(context).size.height*0.2,
-                  color: Color(0xff14213D),
+                  color: const Color(0xff14213D),
                   child: Column(
                     children: [
                       Padding(
@@ -332,7 +332,7 @@ class _HomeState extends State<Home> {
                               onTap: (){
                                 Navigator.pushAndRemoveUntil(
                                 context,
-                                MaterialPageRoute(builder: (context) => MainRouting(selectedIndex: 1)),
+                                MaterialPageRoute(builder: (context) => const MainRouting(selectedIndex: 1)),
                                 (route) => false,
                               );
                               },
@@ -350,7 +350,7 @@ class _HomeState extends State<Home> {
                               GestureDetector(
                                 onTap: () => Navigator.pushNamed(context, "/detailPromo"),
                                 child: Container(
-                                  margin: EdgeInsets.only(right: 10),
+                                  margin: const EdgeInsets.only(right: 10),
                                   width: MediaQuery.of(context).size.width*0.6,
                                   height: MediaQuery.of(context).size.height*0.13,
                                   child: Stack(
@@ -381,7 +381,7 @@ class _HomeState extends State<Home> {
                               GestureDetector(
                                 onTap: () => Navigator.pushNamed(context, "/detailPromo"),
                                 child: Container(
-                                  margin: EdgeInsets.only(right: 10),
+                                  margin: const EdgeInsets.only(right: 10),
                                   width: MediaQuery.of(context).size.width*0.6,
                                   height: MediaQuery.of(context).size.height*0.13,
                                   child: Stack(
@@ -412,7 +412,7 @@ class _HomeState extends State<Home> {
                               GestureDetector(
                                 onTap: () => Navigator.pushNamed(context, "/detailPromo"),
                                 child: Container(
-                                  margin: EdgeInsets.only(right: 10),
+                                  margin: const EdgeInsets.only(right: 10),
                                   width: MediaQuery.of(context).size.width*0.6,
                                   height: MediaQuery.of(context).size.height*0.13,
                                   child: Stack(
@@ -451,7 +451,7 @@ class _HomeState extends State<Home> {
                   margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.05),
                   width: MediaQuery.of(context).size.width*1,
                   height: MediaQuery.of(context).size.height*0.2,
-                  color: Color(0xff14213D),
+                  color: const Color(0xff14213D),
                   child: Column(
                     children: [
                       Padding(
@@ -481,7 +481,7 @@ class _HomeState extends State<Home> {
                               GestureDetector(
                                 onTap: () => Navigator.pushNamed(context, "/detailArtikel"),
                                 child: Container(
-                                  margin: EdgeInsets.only(right: 10),
+                                  margin: const EdgeInsets.only(right: 10),
                                   width: MediaQuery.of(context).size.width*0.6,
                                   height: MediaQuery.of(context).size.height*0.13,
                                   child: Stack(
@@ -512,7 +512,7 @@ class _HomeState extends State<Home> {
                               GestureDetector(
                                 onTap: () => Navigator.pushNamed(context, "/detailArtikel"),
                                 child: Container(
-                                  margin: EdgeInsets.only(right: 10),
+                                  margin: const EdgeInsets.only(right: 10),
                                   width: MediaQuery.of(context).size.width*0.6,
                                   height: MediaQuery.of(context).size.height*0.13,
                                   child: Stack(
@@ -543,7 +543,7 @@ class _HomeState extends State<Home> {
                               GestureDetector(
                                 onTap: () => Navigator.pushNamed(context, "/detailArtikel"),
                                 child: Container(
-                                  margin: EdgeInsets.only(right: 10),
+                                  margin: const EdgeInsets.only(right: 10),
                                   width: MediaQuery.of(context).size.width*0.6,
                                   height: MediaQuery.of(context).size.height*0.13,
                                   child: Stack(
@@ -583,6 +583,5 @@ class _HomeState extends State<Home> {
           )
       ),
     );
-    ;
   }
 }

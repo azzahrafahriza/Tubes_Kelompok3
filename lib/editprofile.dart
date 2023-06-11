@@ -15,9 +15,9 @@ class _EditProfileState extends State<EditProfile> {
     return MaterialApp(
       home: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
+          preferredSize: const Size.fromHeight(70.0), // Ukuran preferensi AppBar
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(
                     20.0), // Radius melengkung pada sudut kiri bawah
@@ -31,12 +31,12 @@ class _EditProfileState extends State<EditProfile> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               leading: IconButton(
-                padding: EdgeInsets.only(top: 15.0),
-                icon: Icon(Icons.arrow_back_ios_new_rounded),
+                padding: const EdgeInsets.only(top: 15.0),
+                icon: const Icon(Icons.arrow_back_ios_new_rounded),
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => MainRouting(selectedIndex: 3)),
+                    MaterialPageRoute(builder: (context) => const MainRouting(selectedIndex: 3)),
                     (route) => false,
                   );
                 },
@@ -61,7 +61,7 @@ class _EditProfileState extends State<EditProfile> {
           ),
         ),
         body: Padding(
-          padding: EdgeInsets.only(top: 30),
+          padding: const EdgeInsets.only(top: 30),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,12 +69,12 @@ class _EditProfileState extends State<EditProfile> {
                 Center(
                   child: Column(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.account_circle,
                         size: 120,
                         color: Color.fromARGB(255, 203, 203, 203),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextButton(
                         onPressed: () {
                           // Aksi yang ingin diambil saat tombol ditekan
@@ -91,9 +91,9 @@ class _EditProfileState extends State<EditProfile> {
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Padding(
-                  padding: EdgeInsets.only(left: 50),
+                  padding: const EdgeInsets.only(left: 50),
                   child: Text('Info UMKM',
                       style: TextStyle(
                         fontFamily: GoogleFonts.poppins().fontFamily,
@@ -101,9 +101,9 @@ class _EditProfileState extends State<EditProfile> {
                         fontWeight: FontWeight.bold,
                       )),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 50),
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: Column(
                     children: [
                       TextFormField(
@@ -117,11 +117,11 @@ class _EditProfileState extends State<EditProfile> {
                             onPressed: () {
                               Navigator.pushNamed(context, "/editdetailprofile");
                             },
-                            icon: Icon(Icons.edit),
+                            icon: const Icon(Icons.edit),
                           ),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextFormField(
                         style: TextStyle(
                           fontFamily: GoogleFonts.poppins().fontFamily,
@@ -133,11 +133,11 @@ class _EditProfileState extends State<EditProfile> {
                             onPressed: () {
                               Navigator.pushNamed(context, "/editdetailprofile");
                             },
-                            icon: Icon(Icons.edit),
+                            icon: const Icon(Icons.edit),
                           ),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextFormField(
                         style: TextStyle(
                           fontFamily: GoogleFonts.poppins().fontFamily,
@@ -149,11 +149,11 @@ class _EditProfileState extends State<EditProfile> {
                             onPressed: () {
                               // Aksi yang ingin diambil saat tombol edit ditekan
                             },
-                            icon: Icon(Icons.edit),
+                            icon: const Icon(Icons.edit),
                           ),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextFormField(
                         style: TextStyle(
                           fontFamily: GoogleFonts.poppins().fontFamily,
@@ -165,7 +165,7 @@ class _EditProfileState extends State<EditProfile> {
                             onPressed: () {
                               // Aksi yang ingin diambil saat tombol edit ditekan
                             },
-                            icon: Icon(Icons.edit),
+                            icon: const Icon(Icons.edit),
                           ),
                         ),
                       ),

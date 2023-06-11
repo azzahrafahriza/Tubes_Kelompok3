@@ -16,9 +16,9 @@ class _StatusPerpanjanganState extends State<StatusPerpanjangan> {
   MaterialApp(
       home: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(80.0), // Ukuran preferensi AppBar
+          preferredSize: const Size.fromHeight(80.0), // Ukuran preferensi AppBar
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(30.0), // Radius melengkung pada sudut kiri bawah
                   bottomRight: Radius.circular(30.0), 
@@ -30,8 +30,8 @@ class _StatusPerpanjanganState extends State<StatusPerpanjangan> {
                 backgroundColor: Colors.transparent, // Atur latar belakang AppBar menjadi transparan
                 elevation: 0, // Hilangkan efek bayangan pada AppBar
                 leading: IconButton(
-                  padding: EdgeInsets.only(top: 25.0),
-                  icon: Icon(Icons.arrow_back_ios_new_rounded),
+                  padding: const EdgeInsets.only(top: 25.0),
+                  icon: const Icon(Icons.arrow_back_ios_new_rounded),
                   onPressed: () {
                     Navigator.pushNamed(context, "/home");
                   },
@@ -70,7 +70,7 @@ class _StatusPerpanjanganState extends State<StatusPerpanjangan> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 20),
+                      margin: const EdgeInsets.only(left: 20),
                       height: 150,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,7 +102,7 @@ class _StatusPerpanjanganState extends State<StatusPerpanjangan> {
                     height: 1, // Atur tinggi underline sesuai kebutuhan
                     width: MediaQuery.of(context).size.width * 1.0,
                     child: Container(
-                      color: Color(0xFF747474), // Atur warna underline sesuai kebutuhan
+                      color: const Color(0xFF747474), // Atur warna underline sesuai kebutuhan
                     ),
                   ),
                 ),
@@ -124,90 +124,90 @@ class _StatusPerpanjanganState extends State<StatusPerpanjangan> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                         child: ElevatedButton(
-                          onPressed: (){}, 
+                          onPressed: (){},
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFB0FFC1)),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100.0), // Atur radius lengkungan di sini
+                              ),
+                            ),
+                          ), 
                           child: Text("Semua", style: TextStyle(
                             fontFamily: GoogleFonts.poppins().fontFamily,
                             fontSize: 15,
                             color: Colors.black
                           ),),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFB0FFC1)),
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(100.0), // Atur radius lengkungan di sini
-                              ),
-                            ),
-                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                         child: ElevatedButton(
-                          onPressed: (){}, 
+                          onPressed: (){},
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFC5C5C5)),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100.0), // Atur radius lengkungan di sini
+                              ),
+                            ),
+                          ), 
                           child: Text("Sukses", style: TextStyle(
                             fontFamily: GoogleFonts.poppins().fontFamily,
                             fontSize: 15,
                             color: Colors.black
                           ),),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFC5C5C5)),
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(100.0), // Atur radius lengkungan di sini
-                              ),
-                            ),
-                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                         child: ElevatedButton(
-                          onPressed: (){}, 
+                          onPressed: (){},
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFC5C5C5)),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100.0), // Atur radius lengkungan di sini
+                              ),
+                            ),
+                          ), 
                           child: Text("Gagal", style: TextStyle(
                             fontFamily: GoogleFonts.poppins().fontFamily,
                             fontSize: 15,
                             color: Colors.black
                           ),),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFC5C5C5)),
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(100.0), // Atur radius lengkungan di sini
-                              ),
-                            ),
-                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                         child: ElevatedButton(
-                          onPressed: (){}, 
-                          child: Text("Pending", style: TextStyle(
-                            fontFamily: GoogleFonts.poppins().fontFamily,
-                            fontSize: 15,
-                            color: Colors.black
-                          ),),
+                          onPressed: (){},
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFC5C5C5)),
+                            backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFC5C5C5)),
                             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(100.0), // Atur radius lengkungan di sini
                               ),
                             ),
-                          ),
+                          ), 
+                          child: Text("Pending", style: TextStyle(
+                            fontFamily: GoogleFonts.poppins().fontFamily,
+                            fontSize: 15,
+                            color: Colors.black
+                          ),),
                         ),
                       ),
                     ],
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 30, 0, 10),
+                  margin: const EdgeInsets.fromLTRB(0, 30, 0, 10),
                   height: MediaQuery.of(context).size.height * 0.17,
                   width: MediaQuery.of(context).size.width * 1.0,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
-                      color: Color(0xFFC5C5C5)
+                      color: const Color(0xFFC5C5C5)
                     ),
                     child: Column(
                       children: [
@@ -222,7 +222,7 @@ class _StatusPerpanjanganState extends State<StatusPerpanjangan> {
                                 child: DecoratedBox(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
-                                    color: Color(0xFFFFB800),
+                                    color: const Color(0xFFFFB800),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.fromLTRB(5,0,5,0),
@@ -268,13 +268,13 @@ class _StatusPerpanjanganState extends State<StatusPerpanjangan> {
                   )
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 30, 0, 10),
+                  margin: const EdgeInsets.fromLTRB(0, 30, 0, 10),
                   height: MediaQuery.of(context).size.height * 0.17,
                   width: MediaQuery.of(context).size.width * 1.0,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
-                      color: Color(0xFFC5C5C5)
+                      color: const Color(0xFFC5C5C5)
                     ),
                     child: Column(
                       children: [
@@ -289,7 +289,7 @@ class _StatusPerpanjanganState extends State<StatusPerpanjangan> {
                                 child: DecoratedBox(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
-                                    color: Color(0xFF339989),
+                                    color: const Color(0xFF339989),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.fromLTRB(5,0,5,0),

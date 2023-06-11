@@ -17,9 +17,9 @@ class _KalkulatorState extends State<Kalkulator> {
     return MaterialApp(
         home: Scaffold(
             appBar: PreferredSize(
-          preferredSize: Size.fromHeight(80.0), // Ukuran preferensi AppBar
+          preferredSize: const Size.fromHeight(80.0), // Ukuran preferensi AppBar
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(30.0), // Radius melengkung pada sudut kiri bawah
                   bottomRight: Radius.circular(30.0), 
@@ -51,17 +51,17 @@ class _KalkulatorState extends State<Kalkulator> {
               children: [
                 Center(
                   child: Container(
-                    margin: EdgeInsets.only(top: 25),
+                    margin: const EdgeInsets.only(top: 25),
                     width: MediaQuery.of(context).size.width * 0.93,
                     height: MediaQuery.of(context).size.height * 0.1,
                     child: Stack(
                       children: [
-                        Container(
+                        SizedBox(
                           width: MediaQuery.of(context).size.width *1.0 ,
                           height: MediaQuery.of(context).size.height * 0.074,
                           child: DecoratedBox(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(25),
                                 topRight: Radius.circular(25),
                               ),
@@ -70,10 +70,10 @@ class _KalkulatorState extends State<Kalkulator> {
                                   color: Colors.grey.withOpacity(0.5),
                                   spreadRadius: 1,
                                   blurRadius: 5,
-                                  offset: Offset(2, 3)
+                                  offset: const Offset(2, 3)
                                 )
                               ],
-                              color: Color(0xFF14213D)
+                              color: const Color(0xFF14213D)
                             ),
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(12, 5,0,0),
@@ -90,13 +90,13 @@ class _KalkulatorState extends State<Kalkulator> {
                             height: MediaQuery.of(context).size.height * 0.1,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(17),
-                              color: Color(0xFFD9D9D9),
+                              color: const Color(0xFFD9D9D9),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.grey.withOpacity(0.5),
                                   spreadRadius: 1,
                                   blurRadius: 10,
-                                  offset: Offset(2, 3)
+                                  offset: const Offset(2, 3)
                                 )
                               ],
                             ),
@@ -116,7 +116,7 @@ class _KalkulatorState extends State<Kalkulator> {
                                   fontFamily: GoogleFonts.poppins().fontFamily,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xFF6D6D6D),
+                                  color: const Color(0xFF6D6D6D),
                                   letterSpacing: 2
                                 ),
                                 border: InputBorder.none,
@@ -129,12 +129,12 @@ class _KalkulatorState extends State<Kalkulator> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top:25),
+                  margin: const EdgeInsets.only(top:25),
                   height: MediaQuery.of(context).size.height * 0.05,
                   width: MediaQuery.of(context).size.width * 0.8,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Color(0xFFD9D9D9)
+                    color: const Color(0xFFD9D9D9)
                   ),
                   child: TextField(
                     textAlign: TextAlign.center,
@@ -152,7 +152,7 @@ class _KalkulatorState extends State<Kalkulator> {
                         fontFamily: GoogleFonts.poppins().fontFamily,
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
-                        color: Color(0xFF6D6D6D),
+                        color: const Color(0xFF6D6D6D),
                         letterSpacing: 2
                       ),
                       border: InputBorder.none,
@@ -161,11 +161,11 @@ class _KalkulatorState extends State<Kalkulator> {
                 ),
                 // Ini 12 bulan
                 Container(
-                  margin: EdgeInsets.only(top: 40),
+                  margin: const EdgeInsets.only(top: 40),
                   width: MediaQuery.of(context).size.width * 0.93,
                   height: MediaQuery.of(context).size.height * 0.15,
                   decoration: BoxDecoration(
-                    color: Color(0xFF14213D),
+                    color: const Color(0xFF14213D),
                     borderRadius: BorderRadius.circular(20)
                   ),
                   child: Stack(
@@ -175,10 +175,10 @@ class _KalkulatorState extends State<Kalkulator> {
                         right: 0,
                         // left: 0,
                         child: Container(
-                          padding: EdgeInsets.only(bottom: 5),
+                          padding: const EdgeInsets.only(bottom: 5),
                           width: MediaQuery.of(context).size.width * 0.5,
                           child: ElevatedButton(
-                            style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.transparent)),
+                            style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.transparent)),
                             onPressed: (){Navigator.pushNamed(context, '/sk');}, 
                             child: Text("Pinjam Sekarang", style: TextStyle(letterSpacing: 1,fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),)
                           ),
@@ -191,7 +191,7 @@ class _KalkulatorState extends State<Kalkulator> {
                         child: Container(
                           height: MediaQuery.of(context).size.height * 0.11,
                           decoration: BoxDecoration(
-                            color: Color(0xFFFCA311),
+                            color: const Color(0xFFFCA311),
                             borderRadius: BorderRadius.circular(20)
                           ),
                           child: Padding(
@@ -200,7 +200,7 @@ class _KalkulatorState extends State<Kalkulator> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("Cicilan 12 Bulan", style: TextStyle(color: Colors.white, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, fontSize: 16),),
-                                Container(
+                                SizedBox(
                                   width: MediaQuery.of(context).size.width * 1.0,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -216,7 +216,7 @@ class _KalkulatorState extends State<Kalkulator> {
                                     ],
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                   width: MediaQuery.of(context).size.width * 1.0,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -247,11 +247,11 @@ class _KalkulatorState extends State<Kalkulator> {
                 ),
                 // Ini 9 Bulan
                 Container(
-                  margin: EdgeInsets.only(top: 30),
+                  margin: const EdgeInsets.only(top: 30),
                   width: MediaQuery.of(context).size.width * 0.93,
                   height: MediaQuery.of(context).size.height * 0.15,
                   decoration: BoxDecoration(
-                    color: Color(0xFF14213D),
+                    color: const Color(0xFF14213D),
                     borderRadius: BorderRadius.circular(20)
                   ),
                   child: Stack(
@@ -261,10 +261,10 @@ class _KalkulatorState extends State<Kalkulator> {
                         right: 0,
                         // left: 0,
                         child: Container(
-                          padding: EdgeInsets.only(bottom: 5),
+                          padding: const EdgeInsets.only(bottom: 5),
                           width: MediaQuery.of(context).size.width * 0.5,
                           child: ElevatedButton(
-                            style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.transparent)),
+                            style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.transparent)),
                             onPressed: (){Navigator.pushNamed(context, '/sk');},
                             child: Text("Pinjam Sekarang", style: TextStyle(letterSpacing: 1,fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),)
                           ),
@@ -277,7 +277,7 @@ class _KalkulatorState extends State<Kalkulator> {
                         child: Container(
                           height: MediaQuery.of(context).size.height * 0.11,
                           decoration: BoxDecoration(
-                            color: Color(0xFFFCA311),
+                            color: const Color(0xFFFCA311),
                             borderRadius: BorderRadius.circular(20)
                           ),
                           child: Padding(
@@ -286,7 +286,7 @@ class _KalkulatorState extends State<Kalkulator> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("Cicilan 9 Bulan", style: TextStyle(color: Colors.white, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, fontSize: 16),),
-                                Container(
+                                SizedBox(
                                   width: MediaQuery.of(context).size.width * 1.0,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -302,7 +302,7 @@ class _KalkulatorState extends State<Kalkulator> {
                                     ],
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                   width: MediaQuery.of(context).size.width * 1.0,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -333,11 +333,11 @@ class _KalkulatorState extends State<Kalkulator> {
                 ),
                 // Ini 6 bulan
                 Container(
-                  margin: EdgeInsets.only(top: 30),
+                  margin: const EdgeInsets.only(top: 30),
                   width: MediaQuery.of(context).size.width * 0.93,
                   height: MediaQuery.of(context).size.height * 0.15,
                   decoration: BoxDecoration(
-                    color: Color(0xFF14213D),
+                    color: const Color(0xFF14213D),
                     borderRadius: BorderRadius.circular(20)
                   ),
                   child: Stack(
@@ -347,10 +347,10 @@ class _KalkulatorState extends State<Kalkulator> {
                         right: 0,
                         // left: 0,
                         child: Container(
-                          padding: EdgeInsets.only(bottom: 5),
+                          padding: const EdgeInsets.only(bottom: 5),
                           width: MediaQuery.of(context).size.width * 0.5,
                           child: ElevatedButton(
-                            style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.transparent)),
+                            style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.transparent)),
                             onPressed: (){Navigator.pushNamed(context, '/sk');},
                             child: Text("Pinjam Sekarang", style: TextStyle(letterSpacing: 1,fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),)
                           ),
@@ -363,7 +363,7 @@ class _KalkulatorState extends State<Kalkulator> {
                         child: Container(
                           height: MediaQuery.of(context).size.height * 0.11,
                           decoration: BoxDecoration(
-                            color: Color(0xFFFCA311),
+                            color: const Color(0xFFFCA311),
                             borderRadius: BorderRadius.circular(20)
                           ),
                           child: Padding(
@@ -372,7 +372,7 @@ class _KalkulatorState extends State<Kalkulator> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("Cicilan 12 Bulan", style: TextStyle(color: Colors.white, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, fontSize: 16),),
-                                Container(
+                                SizedBox(
                                   width: MediaQuery.of(context).size.width * 1.0,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -388,7 +388,7 @@ class _KalkulatorState extends State<Kalkulator> {
                                     ],
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                   width: MediaQuery.of(context).size.width * 1.0,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -419,11 +419,11 @@ class _KalkulatorState extends State<Kalkulator> {
                 ),
                 // Ini 3 bulan
                 Container(
-                  margin: EdgeInsets.only(top: 30, bottom: 30),
+                  margin: const EdgeInsets.only(top: 30, bottom: 30),
                   width: MediaQuery.of(context).size.width * 0.93,
                   height: MediaQuery.of(context).size.height * 0.15,
                   decoration: BoxDecoration(
-                    color: Color(0xFF14213D),
+                    color: const Color(0xFF14213D),
                     borderRadius: BorderRadius.circular(20)
                   ),
                   child: Stack(
@@ -433,10 +433,10 @@ class _KalkulatorState extends State<Kalkulator> {
                         right: 0,
                         // left: 0,
                         child: Container(
-                          padding: EdgeInsets.only(bottom: 5),
+                          padding: const EdgeInsets.only(bottom: 5),
                           width: MediaQuery.of(context).size.width * 0.5,
                           child: ElevatedButton(
-                            style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.transparent)),
+                            style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.transparent)),
                             onPressed: (){Navigator.pushNamed(context, '/sk');},
                             child: Text("Pinjam Sekarang", style: TextStyle(letterSpacing: 1,fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily),)
                           ),
@@ -449,7 +449,7 @@ class _KalkulatorState extends State<Kalkulator> {
                         child: Container(
                           height: MediaQuery.of(context).size.height * 0.11,
                           decoration: BoxDecoration(
-                            color: Color(0xFFFCA311),
+                            color: const Color(0xFFFCA311),
                             borderRadius: BorderRadius.circular(20)
                           ),
                           child: Padding(
@@ -458,7 +458,7 @@ class _KalkulatorState extends State<Kalkulator> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("Cicilan 12 Bulan", style: TextStyle(color: Colors.white, fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily, fontSize: 16),),
-                                Container(
+                                SizedBox(
                                   width: MediaQuery.of(context).size.width * 1.0,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -474,7 +474,7 @@ class _KalkulatorState extends State<Kalkulator> {
                                     ],
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                   width: MediaQuery.of(context).size.width * 1.0,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

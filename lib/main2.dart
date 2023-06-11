@@ -36,7 +36,7 @@ import 'detailArtikel.dart';
 class MainRouting extends StatefulWidget {
   final int selectedIndex;
 
-  MainRouting({required this.selectedIndex});
+  const MainRouting({super.key, required this.selectedIndex});
 
   @override
   MainRoutingState createState() => MainRoutingState();
@@ -46,12 +46,13 @@ class MainRoutingState extends State<MainRouting> {
   int _currentIndex = 0;
 
   static List<Center> halaman = [
-    Center(child: Home()),
-    Center(child: Promo()),
-    Center(child: Kalkulator()),
-    Center(child: Profile()),
+    const Center(child: Home()),
+    const Center(child: Promo()),
+    const Center(child: Kalkulator()),
+    const Center(child: Profile()),
   ];
 
+  @override
   void initState() {
     super.initState();
     _currentIndex = widget.selectedIndex;
@@ -68,32 +69,32 @@ class MainRoutingState extends State<MainRouting> {
     return MaterialApp(
       title: "FUNDFLEX",
       routes: {
-        "/pusatBantuan": (context) => PusatBantuan(),
-        "/home": (context) => MainRouting(selectedIndex: 0,),
-        "/faq": (context) => Faq(),
-        "/sk": (context) => Sk(),
-        "/notifikasi": (context) => Notifikasi(),
-        "/promo": (context) => (Promo()),
-        "/pengajuan": (context) => (Pengajuan()),
-        "/statusPerpanjangan": (context) => (StatusPerpanjangan()),
-        "/bayar": (context) => (Bayar()),
-        "/topup": (context) => (Topup()),
-        "/enterpin": (context) => (PinEntryApp()),
-        "/sukses": (context) => (Sukses()),
-        "/virtualAkunBayar": (context) => (VirtualAkunBayar()),
-        "/virtualAkunTopup": (context) => (VirtualAkunTopup()),
-        "/pilihTopup": (context) => (PilihTopup()),
-        "/profile": (context) => (Profile()),
-        "/editprofile": (context) => (EditProfile()),
-        "/editdetailprofile": (context) => (EditDetailProfile()),
-        "/tarikTunai": (context) => (TarikTunai()),
-        "/artikel": (context) => (Artikel()),
-        "/detailPromo": (context) => (DetailPromo()),
-        "/detailArtikel": (context) => (DetailArtikel()),
+        "/pusatBantuan": (context) => const PusatBantuan(),
+        "/home": (context) => const MainRouting(selectedIndex: 0,),
+        "/faq": (context) => const Faq(),
+        "/sk": (context) => const Sk(),
+        "/notifikasi": (context) => const Notifikasi(),
+        "/promo": (context) => (const Promo()),
+        "/pengajuan": (context) => (const Pengajuan()),
+        "/statusPerpanjangan": (context) => (const StatusPerpanjangan()),
+        "/bayar": (context) => (const Bayar()),
+        "/topup": (context) => (const Topup()),
+        "/enterpin": (context) => (const PinEntryApp()),
+        "/sukses": (context) => (const Sukses()),
+        "/virtualAkunBayar": (context) => (const VirtualAkunBayar()),
+        "/virtualAkunTopup": (context) => (const VirtualAkunTopup()),
+        "/pilihTopup": (context) => (const PilihTopup()),
+        "/profile": (context) => (const Profile()),
+        "/editprofile": (context) => (const EditProfile()),
+        "/editdetailprofile": (context) => (const EditDetailProfile()),
+        "/tarikTunai": (context) => (const TarikTunai()),
+        "/artikel": (context) => (const Artikel()),
+        "/detailPromo": (context) => (const DetailPromo()),
+        "/detailArtikel": (context) => (const DetailArtikel()),
       },
       home: Scaffold(
         bottomNavigationBar: Container(
-          color: Color(0xffE5E5E5).withOpacity(0.6),
+          color: const Color(0xffE5E5E5).withOpacity(0.6),
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 15,
@@ -101,16 +102,16 @@ class MainRoutingState extends State<MainRouting> {
             ),
             child: GNav(
               selectedIndex: _currentIndex,
-              backgroundColor: Color(0xffE5E5E5).withOpacity(0.6),
-              color: Color(0xff14213D),
-              activeColor: Color(0xff14213D),
-              tabBackgroundColor: Color(0xffFCA311),
+              backgroundColor: const Color(0xffE5E5E5).withOpacity(0.6),
+              color: const Color(0xff14213D),
+              activeColor: const Color(0xff14213D),
+              tabBackgroundColor: const Color(0xffFCA311),
               gap: 8,
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               onTabChange: (index){
                 onTabChange(index);
               },
-              tabs: [ 
+              tabs: const [ 
                 GButton(icon: Icons.home, text: "Home",),
                 GButton(icon: Icons.discount_outlined, text: "Promo",),
                 GButton(icon: Icons.calculate_outlined, text: "Calculate",),

@@ -10,16 +10,16 @@ class Faq extends StatefulWidget {
 }
 
 class _FaqState extends State<Faq> {
-  static final lorem = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. voluptate veritatis aspernatur optio adipisci earum nesciunt commodi ut id corporis quaerat repellat rem, cum quia  aperiam repellendus praesentium magnam?';
+  static const lorem = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. voluptate veritatis aspernatur optio adipisci earum nesciunt commodi ut id corporis quaerat repellat rem, cum quia  aperiam repellendus praesentium magnam?';
 
   @override
   Widget build(BuildContext context) =>
   MaterialApp(
       home: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
+          preferredSize: const Size.fromHeight(70.0), // Ukuran preferensi AppBar
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20.0), // Radius melengkung pada sudut kiri bawah
                   bottomRight: Radius.circular(20.0), // Radius melengkung pada sudut kanan bawah
@@ -30,8 +30,8 @@ class _FaqState extends State<Faq> {
                 backgroundColor: Colors.transparent, // Atur latar belakang AppBar menjadi transparan
                 elevation: 0, // Hilangkan efek bayangan pada AppBar
                 leading: IconButton(
-                  padding: EdgeInsets.only(top: 15.0),
-                  icon: Icon(Icons.arrow_back_ios_new_rounded),
+                  padding: const EdgeInsets.only(top: 15.0),
+                  icon: const Icon(Icons.arrow_back_ios_new_rounded),
                   onPressed: () {
                     Navigator.pushNamed(context, "/pusatBantuan");
                   },
@@ -79,12 +79,12 @@ class _FaqState extends State<Faq> {
     );
 
     Widget buildCard(String title, String expand) => Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(80),
         ),
-        color: Color(0xFF14213D),
+        color: const Color(0xFF14213D),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(35, 10, 0, 0),
           child: ExpandableNotifier(
@@ -99,7 +99,7 @@ class _FaqState extends State<Faq> {
                     fontFamily: GoogleFonts.poppins().fontFamily
                   ),
                 ),
-                collapsed: SizedBox.shrink(), // Menyembunyikan konten terlipat secara default
+                collapsed: const SizedBox.shrink(), // Menyembunyikan konten terlipat secara default
                 expanded: SizedBox( // Ubah warna sesuai keinginan Anda
                   width: 400,
                   child: Column(
@@ -114,7 +114,7 @@ class _FaqState extends State<Faq> {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: EdgeInsets.only(bottom: 10),
+                    padding: const EdgeInsets.only(bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,

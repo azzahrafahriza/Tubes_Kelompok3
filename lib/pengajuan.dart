@@ -16,9 +16,9 @@ class _PengajuanState extends State<Pengajuan> {
   MaterialApp(
       home: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
+          preferredSize: const Size.fromHeight(70.0), // Ukuran preferensi AppBar
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20.0), // Radius melengkung pada sudut kiri bawah
                   bottomRight: Radius.circular(20.0), 
@@ -30,8 +30,8 @@ class _PengajuanState extends State<Pengajuan> {
                 backgroundColor: Colors.transparent, // Atur latar belakang AppBar menjadi transparan
                 elevation: 0, // Hilangkan efek bayangan pada AppBar
                 leading: IconButton(
-                  padding: EdgeInsets.only(top: 15.0),
-                  icon: Icon(Icons.arrow_back_ios_new_rounded),
+                  padding: const EdgeInsets.only(top: 15.0),
+                  icon: const Icon(Icons.arrow_back_ios_new_rounded),
                   onPressed: () {
                     Navigator.pushNamed(context, "/home");
                   },
@@ -57,7 +57,7 @@ class _PengajuanState extends State<Pengajuan> {
         body: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(top: 30),
+              padding: const EdgeInsets.only(top: 30),
               width: MediaQuery.of(context).size.width * 1.0,
               height: MediaQuery.of(context).size.height * 0.30,
               
@@ -70,7 +70,7 @@ class _PengajuanState extends State<Pengajuan> {
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.90,
                       height: MediaQuery.of(context).size.height * 0.10,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Color(0xFF14213D),
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(20),
@@ -107,7 +107,7 @@ class _PengajuanState extends State<Pengajuan> {
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.90,
                       height: MediaQuery.of(context).size.height * 0.10,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Color(0xFFD9D9D9),
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(20),
@@ -140,12 +140,12 @@ class _PengajuanState extends State<Pengajuan> {
                               fontFamily: GoogleFonts.poppins().fontFamily,
                               fontSize: 15,
                               fontWeight: FontWeight.w300,
-                              color: Color(0xFF6D6D6D),
+                              color: const Color(0xFF6D6D6D),
                             ),
-                            enabledBorder: UnderlineInputBorder(
+                            enabledBorder: const UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent),
                             ),
-                            focusedBorder: UnderlineInputBorder(
+                            focusedBorder: const UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent),
                             ),
                           ),
@@ -157,7 +157,7 @@ class _PengajuanState extends State<Pengajuan> {
               )
             ),
             Container(
-              margin: EdgeInsets.only(top:30),
+              margin: const EdgeInsets.only(top:30),
               width: MediaQuery.of(context).size.width * 0.90,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,7 +173,7 @@ class _PengajuanState extends State<Pengajuan> {
                                 )),
                   ),
                   RadioListTile(
-                    title: Text('1 Minggu'),
+                    title: const Text('1 Minggu'),
                     value: 1,
                     groupValue: selectedValue,
                     onChanged: (value) {
@@ -184,7 +184,7 @@ class _PengajuanState extends State<Pengajuan> {
                     controlAffinity: ListTileControlAffinity.leading,
                   ),
                   RadioListTile(
-                    title: Text('1 Bulan'),
+                    title: const Text('1 Bulan'),
                     value: 2,
                     groupValue: selectedValue,
                     onChanged: (value) {
@@ -194,7 +194,7 @@ class _PengajuanState extends State<Pengajuan> {
                     },
                   ),
                   RadioListTile(
-                    title: Text('3 Bulan'),
+                    title: const Text('3 Bulan'),
                     value: 3,
                     groupValue: selectedValue,
                     onChanged: (value) {
@@ -204,7 +204,7 @@ class _PengajuanState extends State<Pengajuan> {
                     },
                   ),
                   RadioListTile(
-                    title: Text('Lainnya'),
+                    title: const Text('Lainnya'),
                     value: 4,
                     groupValue: selectedValue,
                     onChanged: (value) {
@@ -218,11 +218,11 @@ class _PengajuanState extends State<Pengajuan> {
             ),
             Center(
               child: Container(
-                margin: EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 10),
                 width: MediaQuery.of(context).size.width * 0.90,
                 height: MediaQuery.of(context).size.height * 0.05,
                 child: DecoratedBox(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(100)),
                     color: Color(0xFFD9D9D9),
                   ),
@@ -242,7 +242,7 @@ class _PengajuanState extends State<Pengajuan> {
                         fontFamily: GoogleFonts.poppins().fontFamily,
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
-                        color: Color(0xFF6D6D6D),
+                        color: const Color(0xFF6D6D6D),
                         letterSpacing: 2
                       ),
                       border: InputBorder.none,
@@ -251,7 +251,7 @@ class _PengajuanState extends State<Pengajuan> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.25,
               width: MediaQuery.of(context).size.width * 0.90,
               child: Stack(
@@ -262,11 +262,11 @@ class _PengajuanState extends State<Pengajuan> {
                     left: 0,
                     right: 0,
                     child: Container(
-                      padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                       height: 45,
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFFCA311)),
+                          backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFFCA311)),
                           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(100.0), // Atur radius lengkungan di sini
