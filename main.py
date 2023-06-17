@@ -67,8 +67,17 @@ def init_db():
             idpromo         INTEGER PRIMARY KEY     AUTOINCREMENT,
             judulpromo      TEXT                    NOT NULL,
             tenggatpromo    TEXT                    NOT NULL,
-            desc            TEXT                    NOT NULL
+            desc            TEXT                    NOT NULL,
+            kodepromo       TEXT                    NOT NULL
         );
+
+        CREATE TABLE artikel(
+            idart           INTEGER PRIMARY KEY     AUTOINCREMENT,
+            judulart        TEXT                    NOT NULL,
+            desc            TEXT                    NOT NULL,
+            gambar          TEXT                    NOT NULL
+        );
+
         """
     cur.executescript(create_table)
     con.commit()
@@ -95,6 +104,7 @@ class Prm(BaseModel):
    judulpromo: str
    tenggat: str
    desc: str
+   kodepromo: str
 
 
 #status code 201 standard return creation
@@ -187,13 +197,13 @@ def tampil_semua_user():
    return {"data":recs}
 
 @app.post("/tambah_promo/", response_model=Prm,status_code=201)  
-def tambah_user(m: Prm,response: Response, request: Request):
+def tambah_promo(m: Prm,response: Response, request: Request):
    try:
        DB_NAME = "user.db"
        con = sqlite3.connect(DB_NAME)
        cur = con.cursor()
        # hanya untuk test, rawal sql injecttion, gunakan spt SQLAlchemy
-       cur.execute("""INSERT INTO promo (judulpromo,tenggatpromo,desc) values ( "{}","{}","{}")""".format(m.judulpromo,m.tenggat,m.desc))
+       cur.execute("""INSERT INTO promo (judulpromo,tenggatpromo,desc,kodepromo) values ( "{}","{}","{}","{}")""".format(m.judulpromo,m.tenggat,m.desc,m.kodepromo))
        con.commit() 
    except:
        print("oioi error")
@@ -204,6 +214,7 @@ def tambah_user(m: Prm,response: Response, request: Request):
    print(m.judulpromo)
    print(m.tenggat)
    print(m.desc)
+   print(m.kodepromo)
   
    return m
 
@@ -276,3 +287,89 @@ def delete_promo(id: str):
        con.close()
     
     return {"status":"ok"}
+
+
+#------------------------------------------------
+#Ini Artikel
+
+class Art(BaseModel):
+    judulart: str
+    desc: str
+    gambar: str
+
+@app.post("/tambah_artikel/", response_model=Art,status_code=201)
+def tambah_artikel(m: Art,response: Response, request: Request):
+    try:
+       DB_NAME = "user.db"
+       con = sqlite3.connect(DB_NAME)
+       cur = con.cursor()
+       # hanya untuk test, rawal sql injecttion, gunakan spt SQLAlchemy
+       cur.execute("""INSERT INTO artikel (judulart,desc,gambar) values ( "{}","{}","{}")""".format(m.judulart,m.desc,m.gambar))
+       con.commit() 
+    except:
+       print("oioi error")
+       return ({"status":"terjadi error"})   
+    finally:  	 
+       con.close()
+    response.headers["Location"] = "/artikel/{}".format(m.judulart) 
+    print(m.judulart)
+    print(m.desc)
+    print(m.gambar)
+  
+    return m
+
+@app.get("/tampilkan_semua_artikel/")
+def tampil_semua_artikel():
+    try:
+        DB_NAME = "user.db"
+        con = sqlite3.connect(DB_NAME)
+        cur = con.cursor()
+        cur.execute("SELECT * FROM artikel")
+        rows = cur.fetchall()
+
+        recs = []
+        for row in rows:
+            artikel = {
+                "id": str(row[0]),
+                "judul": row[1],
+                "desc": row[2],
+                "gambar": row[3]
+            }
+            recs.append(artikel)
+    except:
+        return {"status": "terjadi error"}   
+    finally:
+        con.close()
+    
+    return {"data": recs}
+
+
+@app.get("/tampilkan_artikel_detail/{idart}")
+def tampil_artikel_detail(idart: str):
+    try:
+        DB_NAME = "user.db"
+        con = sqlite3.connect(DB_NAME)
+        cur = con.cursor()
+        
+        # Update the SQL query to select a specific promo by ID
+        cur.execute("SELECT * FROM artikel WHERE idart = ?", (idart,))
+        
+        row = cur.fetchone()  # Fetch a single row
+        
+        if row is None:
+            return {"status": "Promo not found"}
+
+        artikel = {
+            "id": str(row[0]),
+            "judul": row[1],
+            "desc": row[2],
+            "gambar": row[3]
+        }
+        
+    except:
+        return {"status": "Terjadi error"}   
+    finally:
+        con.close()
+    
+    return artikel
+
