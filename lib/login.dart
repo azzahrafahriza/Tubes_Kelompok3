@@ -1,6 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'main.dart';
+import 'main2.dart';
+import 'home.dart';
+import 'user.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -11,64 +16,13 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
+
   final textEditController = TextEditingController();
   String _username = '';
   String _password = '';
 
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
-
-  void signUserIn() async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-
-    //try sign in
-    try {
-      if (_formKey.currentState!.validate()) {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: usernameController.text,
-          password: passwordController.text,
-        );
-        Navigator.pop(context);
-      }
-    } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-      if (e.code == 'user-not-found') {
-        wrongEmailMessage();
-      } else if (e.code == 'wrong-password') {
-        wrongPasswordMessage();
-      }
-    }
-    // Navigator.pop(context);
-  }
-
-  void wrongEmailMessage() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          title: Text('Email Salah'),
-        );
-      },
-    );
-  }
-
-  void wrongPasswordMessage() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          title: Text('Password Salah'),
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -190,37 +144,60 @@ class _LoginState extends State<Login> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.9,
-                              height: 50.0,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                border: Border.all(
-                                  width: 2.0,
-                                  color: const Color(0xFFFCA311),
-                                ),
-                              ),
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  signUserIn();
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFFFCA311),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
+                            BlocBuilder<UserCubit, UserModel>(
+                                builder: (context, user) {
+                              return Container(
+                                width: MediaQuery.of(context).size.width * 0.9,
+                                height: 50.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  border: Border.all(
+                                    width: 2.0,
+                                    color: const Color(0xFFFCA311),
                                   ),
                                 ),
-                                child: Text(
-                                  'Login',
-                                  style: TextStyle(
-                                    fontFamily: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w600,
-                                    ).fontFamily,
-                                    fontSize: 18,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    _username = usernameController.text;
+                                    _password = passwordController.text;
+                                    context
+                                        .read<UserCubit>()
+                                        .fetchData(_username);
+                                    if (_password == user.password) {
+                                      Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => MainRouting(
+                                                  selectedIndex: 0,
+                                                )),
+                                        (route) => true,
+                                      );
+                                    } else {
+                                      AlertDialog(
+                                          title: Text('Password Salah'));
+                                      usernameController.clear();
+                                      passwordController.clear();
+                                    }
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xFFFCA311),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    'Login',
+                                    style: TextStyle(
+                                      fontFamily: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w600,
+                                      ).fontFamily,
+                                      fontSize: 18,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
+                              );
+                            }),
+
                             const SizedBox(
                                 height: 1), // Jarak antara tombol dan teks
                             TextButton(
