@@ -4,6 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'detailPromo.dart';
+import 'main2.dart';
+
+class ById {
+  String byId;
+
+  ById({required this.byId});
+}
 
 class DetilJenisPromoModel {
   String id;
@@ -21,10 +28,10 @@ class DetilJenisPromoModel {
 
 class DetilJenisPromoCubit extends Cubit<DetilJenisPromoModel> {
   //String url = "http://127.0.0.1:8000/detil_jenis_pinjaman/";
-  String url = "http://178.128.17.76:8000/detil_jenis_pinjaman/";
+  String url = "http://127.0.0.1:8000/tampilkan_promo_detail/";
 
   DetilJenisPromoCubit()
-      : super(DetilJenisPromoModel(judul: '', tenggat: '', id: '', desc: ''));
+      : super(DetilJenisPromoModel(id: '', judul: '', tenggat: '', desc: ''));
 
   //map dari json ke atribut
   void setFromJson(Map<String, dynamic> json) {
@@ -100,79 +107,83 @@ class _PromoState extends State<Promo> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        routes: {
-          // Rute beranda Promo
-          '/detailPromo': (context) => DetailPromo(), // Rute detailPromo
-        },
         home: MultiBlocProvider(
-          providers: [
-            BlocProvider<JenisPromoCubit>(
-              create: (BuildContext context) => JenisPromoCubit(),
-            ),
-            BlocProvider<DetilJenisPromoCubit>(
-              create: (BuildContext context) => DetilJenisPromoCubit(),
-            )
-          ],
-          child: Container(
-            child: Scaffold(
-                appBar: PreferredSize(
-                  preferredSize:
-                      Size.fromHeight(70.0), // Ukuran preferensi AppBar
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(
-                            20.0), // Radius melengkung pada sudut kiri bawah
-                        bottomRight: Radius.circular(
-                            20.0), // Radius melengkung pada sudut kanan bawah
-                      ),
-                      color: Color.fromARGB(
-                          255, 232, 231, 231), // Warna latar belakang AppBar
-                    ),
-                    child: AppBar(
-                      backgroundColor: Colors
-                          .transparent, // Atur latar belakang AppBar menjadi transparan
-                      elevation: 0, // Hilangkan efek bayangan pada AppBar
-                      title: Padding(
-                        padding: const EdgeInsets.only(top: 15.0),
-                        child: Text(
-                          'Promo',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.0,
-                              fontSize: 24.0),
-                        ),
-                      ),
-                      centerTitle: true,
+      providers: [
+        BlocProvider<JenisPromoCubit>(
+          create: (BuildContext context) => JenisPromoCubit(),
+        ),
+        BlocProvider<DetilJenisPromoCubit>(
+          create: (BuildContext context) => DetilJenisPromoCubit(),
+        )
+      ],
+      child: Container(
+        child: Scaffold(
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(
+                        20.0), // Radius melengkung pada sudut kiri bawah
+                    bottomRight: Radius.circular(
+                        20.0), // Radius melengkung pada sudut kanan bawah
+                  ),
+                  color: Color.fromARGB(
+                      255, 232, 231, 231), // Warna latar belakang AppBar
+                ),
+                child: AppBar(
+                  backgroundColor: Colors
+                      .transparent, // Atur latar belakang AppBar menjadi transparan
+                  elevation: 0, // Hilangkan efek bayangan pada AppBar
+                  title: Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: Text(
+                      'Promo',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.0,
+                          fontSize: 24.0),
                     ),
                   ),
+                  centerTitle: true,
                 ),
-                body: BlocBuilder<JenisPromoCubit, JenisPromoModel>(
-                    builder: (context, jenisPromo) {
-                  context.read<JenisPromoCubit>().fetchData();
-                  return Center(child:
-                      BlocBuilder<DetilJenisPromoCubit, DetilJenisPromoModel>(
-                    builder: (context, detilPromo) {
-                      return ListView.builder(
-                        itemCount: jenisPromo.dataPromo.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              context
-                                  .read<DetilJenisPromoCubit>()
-                                  .fetchData(jenisPromo.dataPromo[index].id);
-                              Navigator.pushNamed(context, '/detailPromo');
-                            },
-                            child: PromoCard(coba: jenisPromo.dataPromo[index]),
-                          );
+              ),
+            ),
+            body: BlocBuilder<JenisPromoCubit, JenisPromoModel>(
+                builder: (context, jenisPromo) {
+              context.read<JenisPromoCubit>().fetchData();
+              return Center(child:
+                  BlocBuilder<DetilJenisPromoCubit, DetilJenisPromoModel>(
+                builder: (context, detilPromo) {
+                  return ListView.builder(
+                    itemCount: jenisPromo.dataPromo.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Message message = Message('2');
+                          ById byId =
+                              ById(byId: jenisPromo.dataPromo[index].id);
+                          context
+                              .read<DetilJenisPromoCubit>()
+                              .fetchData(jenisPromo.dataPromo[index].id);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailPromo(
+                                        id: byId, 
+                                        message: message,
+                                      )));
                         },
+                        child: PromoCard(coba: jenisPromo.dataPromo[index]),
                       );
                     },
-                  ));
-                })),
-          ),
-        ));
+                  );
+                },
+              ));
+            })),
+      ),
+    ));
   }
 }
 

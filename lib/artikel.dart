@@ -1,9 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tubes/detailArtikel.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'main2.dart';
 
+class Art {
+  String content;
 
+  Art({required this.content});
+}
+
+class JenisArtikel {
+  String id;
+  String judulart;
+  String desc;
+  String gambar;
+  JenisArtikel(
+      {required this.id,
+      required this.judulart,
+      required this.desc,
+      required this.gambar});
+}
+
+class JenisArtikelModel {
+  List<JenisArtikel> dataArt;
+  JenisArtikelModel({required this.dataArt});
+}
+
+class JenisArtikelCubit extends Cubit<JenisArtikelModel> {
+  String url = "http://127.0.0.1:8000/tampilkan_semua_artikel/";
+
+  JenisArtikelCubit() : super(JenisArtikelModel(dataArt: []));
+
+  void setFromJson(Map<String, dynamic> json) {
+    var arrData = json["data"];
+    List<JenisArtikel> arrOut = [];
+
+    for (var el in arrData) {
+      String id = el["id"];
+      String judulart = el["judul"];
+      String desc = el["desc"];
+      String gambar = el["gambar"];
+      arrOut.add(JenisArtikel(
+          id: el["id"],
+          judulart: el["judul"],
+          desc: el["desc"],
+          gambar: el["gambar"]));
+    }
+    emit(JenisArtikelModel(dataArt: arrOut));
+  }
+
+  void fetchData() async {
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      setFromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Gagal load');
+    }
+  }
+}
 
 class Artikel extends StatefulWidget {
   const Artikel({super.key});
@@ -16,10 +73,16 @@ class _ArtikelState extends State<Artikel> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Container(
+        home: MultiBlocProvider(
+      providers: [
+        BlocProvider<JenisArtikelCubit>(
+            create: (BuildContext context) => JenisArtikelCubit())
+      ],
+      child: Container(
         child: Scaffold(
-          appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(70.0), // Ukuran preferensi AppBar
+            appBar: PreferredSize(
+              preferredSize:
+                  const Size.fromHeight(70.0), // Ukuran preferensi AppBar
               child: Container(
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -33,18 +96,20 @@ class _ArtikelState extends State<Artikel> {
                 ),
                 child: AppBar(
                   leading: IconButton(
-                padding: const EdgeInsets.only(top: 15.0),
-                icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MainRouting(selectedIndex: 0)),
-                    (route) => false,
-                  );
-                },
-                color: Colors.black,
-                iconSize: 24.0,
-              ),
+                    padding: const EdgeInsets.only(top: 15.0),
+                    icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const MainRouting(selectedIndex: 0)),
+                        (route) => false,
+                      );
+                    },
+                    color: Colors.black,
+                    iconSize: 24.0,
+                  ),
                   backgroundColor: Colors
                       .transparent, // Atur latar belakang AppBar menjadi transparan
                   elevation: 0, // Hilangkan efek bayangan pada AppBar
@@ -63,36 +128,45 @@ class _ArtikelState extends State<Artikel> {
                 ),
               ),
             ),
-          body: ListView.builder(
-            itemCount: 2,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: (){
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => const DetailArtikel()),
-                    (route) => false,
-                  );
+            body: BlocBuilder<JenisArtikelCubit, JenisArtikelModel>(
+                builder: (context, jenisArt) {
+              context.read<JenisArtikelCubit>().fetchData();
+              return ListView.builder(
+                itemCount: jenisArt.dataArt.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                      onTap: () {
+                        Art id = Art(content: jenisArt.dataArt[index].id);
+                        Message message2 = Message('1');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailArtikel(message2: message2, id: id),
+                          ),
+                        );
+                      },
+                      child: ArtikelCard(coba: jenisArt.dataArt[index]));
                 },
-                child: const ArtikelCard()
               );
-            },
-          ),
-        ),
-      )
-    );
+            })),
+      ),
+    ));
   }
 }
 
 class ArtikelCard extends StatelessWidget {
-  const ArtikelCard({super.key});
+  final JenisArtikel coba;
+
+  const ArtikelCard({super.key, required this.coba});
+
   static const warnaBiru = Color(0xff14213D);
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(20),
       width: double.infinity,
-      height: MediaQuery.of(context).size.height*0.18,
+      height: MediaQuery.of(context).size.height * 0.18,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: const Color.fromARGB(255, 19, 15, 60),
@@ -108,42 +182,40 @@ class ArtikelCard extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  bottomLeft: Radius.circular(20)
-                ),
-              ),
               child: Container(
-                decoration: BoxDecoration(
-                  // borderRadius: BorderRadius.circular(20),
-                  gradient: LinearGradient(
-                    begin: Alignment.centerRight,
-                    end: Alignment.center,
-                    colors: [
-                      const Color.fromARGB(255, 241, 170, 5).withOpacity(1),
-                      const Color.fromARGB(255, 241, 170, 5).withOpacity(.3),
-                    ],
-                  ),
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    bottomLeft: Radius.circular(20)
-                  ),
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  bottomLeft: Radius.circular(20)),
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                // borderRadius: BorderRadius.circular(20),
+                gradient: LinearGradient(
+                  begin: Alignment.centerRight,
+                  end: Alignment.center,
+                  colors: [
+                    const Color.fromARGB(255, 241, 170, 5).withOpacity(1),
+                    const Color.fromARGB(255, 241, 170, 5).withOpacity(.3),
+                  ],
                 ),
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20), // Melengkungkan sisi kiri atas
-                    bottomLeft: Radius.circular(20), // Melengkungkan sisi kiri bawah
-                  ),
-                  child: Image.asset(
-                    '../asset/square.png',
-                    fit: BoxFit.cover,
-                  ),
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    bottomLeft: Radius.circular(20)),
+              ),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20), // Melengkungkan sisi kiri atas
+                  bottomLeft:
+                      Radius.circular(20), // Melengkungkan sisi kiri bawah
+                ),
+                child: Image.asset(
+                  '../asset/${coba.gambar}',
+                  fit: BoxFit.cover,
                 ),
               ),
-            )
-          ),
+            ),
+          )),
           Expanded(
             child: Container(
               decoration: const BoxDecoration(
@@ -152,7 +224,7 @@ class ArtikelCard extends StatelessWidget {
                       bottomRight: Radius.circular(20)),
                   color: Color.fromARGB(255, 241, 170, 5)),
               child: Column(
-                children:[
+                children: [
                   SizedBox(
                     height: 75,
                     child: Align(
@@ -160,14 +232,12 @@ class ArtikelCard extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: Text(
-                          'Artikel Lebaran',
+                          coba.judulart,
                           style: TextStyle(
                               fontSize: 22,
                               color: warnaBiru,
                               fontWeight: FontWeight.w600,
-                              fontFamily: GoogleFonts.poppins().fontFamily
-                          ),
-                              
+                              fontFamily: GoogleFonts.poppins().fontFamily),
                         ),
                       ),
                     ),
@@ -180,28 +250,27 @@ class ArtikelCard extends StatelessWidget {
                         'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed a, at ',
                         maxLines: 2,
                         style: TextStyle(
-                          fontSize: 12,
-                          color: warnaBiru,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: GoogleFonts.poppins().fontFamily
-                        ),
+                            fontSize: 12,
+                            color: warnaBiru,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: GoogleFonts.poppins().fontFamily),
                       ),
                     ),
                   ),
                   Align(
                     alignment: Alignment.bottomRight,
                     child: Padding(
-                      padding: const EdgeInsets.only(top:20, left: 20, right: 20),
+                      padding:
+                          const EdgeInsets.only(top: 20, left: 20, right: 20),
                       child: GestureDetector(
-                        onTap: (){},
+                        onTap: () {},
                         child: Text(
-                          'Lihat Selengkapnya >', 
+                          'Lihat Selengkapnya >',
                           style: TextStyle(
-                            fontSize: 10,
-                            color: warnaBiru,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: GoogleFonts.poppins().fontFamily
-                          ),
+                              fontSize: 10,
+                              color: warnaBiru,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: GoogleFonts.poppins().fontFamily),
                         ),
                       ),
                     ),
