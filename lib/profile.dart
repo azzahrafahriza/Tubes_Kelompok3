@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tubes/user.dart';
 import 'riwayat.dart';
-
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -31,35 +32,39 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
       home: Scaffold(
         backgroundColor: const Color(0xfff6f1f1),
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(70.0), // Ukuran preferensi AppBar
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20.0), // Radius melengkung pada sudut kiri bawah
-                  bottomRight: Radius.circular(20.0), // Radius melengkung pada sudut kanan bawah
-                ),
-                color: Color.fromARGB(255,232,231,231), // Warna latar belakang AppBar
+          preferredSize:
+              const Size.fromHeight(70.0), // Ukuran preferensi AppBar
+          child: Container(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(
+                    20.0), // Radius melengkung pada sudut kiri bawah
+                bottomRight: Radius.circular(
+                    20.0), // Radius melengkung pada sudut kanan bawah
               ),
-              child: AppBar(
-                backgroundColor: Colors.transparent, // Atur latar belakang AppBar menjadi transparan
-                elevation: 0, // Hilangkan efek bayangan pada AppBar
-                title: Padding(
-                  padding: const EdgeInsets.only(top: 15.0),
-                  child: Text(
-                    'Profile',
-                    style: TextStyle(
+              color: Color.fromARGB(
+                  255, 232, 231, 231), // Warna latar belakang AppBar
+            ),
+            child: AppBar(
+              backgroundColor: Colors
+                  .transparent, // Atur latar belakang AppBar menjadi transparan
+              elevation: 0, // Hilangkan efek bayangan pada AppBar
+              title: Padding(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: Text(
+                  'Profile',
+                  style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.0,
                       fontSize: 24.0,
-                      fontFamily: GoogleFonts.poppins().fontFamily
-                    ),
-                  ),
+                      fontFamily: GoogleFonts.poppins().fontFamily),
                 ),
-                centerTitle: true,
               ),
+              centerTitle: true,
             ),
           ),
+        ),
         body: Padding(
           padding: const EdgeInsets.only(top: 30),
           child: SingleChildScrollView(
@@ -67,61 +72,64 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const CircleAvatar(
-                      radius: 68,
-                      backgroundImage: NetworkImage(
-                          "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"),
-                    ),
-                    const SizedBox(width: 5),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Align(
+                BlocBuilder<UserCubit, UserModel>(builder: (context, user) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CircleAvatar(
+                        radius: 68,
+                        backgroundImage: NetworkImage(
+                            "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"),
+                      ),
+                      const SizedBox(width: 5),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 8.0),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  user.nama.toString(),
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily:
+                                        GoogleFonts.poppins().fontFamily,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 5),
+                            Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                'Nama Pengguna',
+                                user.email.toString(),
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
                                   fontFamily: GoogleFonts.poppins().fontFamily,
                                 ),
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 5),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'email@example.com',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: GoogleFonts.poppins().fontFamily,
-                              ),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, "/editprofile");
-                      },
-                      icon: const Icon(
-                        Icons.edit_outlined,
-                        size: 27,
-                        color: Color.fromARGB(255, 80, 80, 80),
+                      const SizedBox(height: 20),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/editprofile");
+                        },
+                        icon: const Icon(
+                          Icons.edit_outlined,
+                          size: 27,
+                          color: Color.fromARGB(255, 80, 80, 80),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  );
+                }),
                 const SizedBox(height: 10),
                 const Divider(
                   color: Colors.grey,
@@ -135,7 +143,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     children: [
                       TabBar(
                         indicatorSize: TabBarIndicatorSize.tab,
-                        indicatorPadding: const EdgeInsets.symmetric(horizontal: 50.0),
+                        indicatorPadding:
+                            const EdgeInsets.symmetric(horizontal: 50.0),
                         indicatorColor: Colors.black,
                         controller: _tabController,
                         tabs: [
@@ -143,20 +152,22 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                             child: Text(
                               'Pengajuan Perpanjangan',
                               style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 12,
-                                fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily
-                              ),
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontFamily: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w600)
+                                      .fontFamily),
                             ),
                           ),
                           Tab(
                             child: Text(
                               'Riwayat Peminjaman',
                               style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 12,
-                                fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w600).fontFamily
-                              ),
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontFamily: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w600)
+                                      .fontFamily),
                             ),
                           ),
                         ],
