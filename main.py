@@ -90,6 +90,11 @@ class User(BaseModel):
    pin: str
    email: str
    no_telp: str
+   
+class Prm(BaseModel):
+   judulpromo: str
+   tenggat: str
+   desc: str
 
 
 #status code 201 standard return creation
@@ -180,6 +185,27 @@ def tampil_semua_user():
    finally:    
     con.close()
    return {"data":recs}
+
+@app.post("/tambah_promo/", response_model=Prm,status_code=201)  
+def tambah_user(m: Prm,response: Response, request: Request):
+   try:
+       DB_NAME = "user.db"
+       con = sqlite3.connect(DB_NAME)
+       cur = con.cursor()
+       # hanya untuk test, rawal sql injecttion, gunakan spt SQLAlchemy
+       cur.execute("""INSERT INTO promo (judulpromo,tenggatpromo,desc) values ( "{}","{}","{}")""".format(m.judulpromo,m.tenggat,m.desc))
+       con.commit() 
+   except:
+       print("oioi error")
+       return ({"status":"terjadi error"})   
+   finally:  	 
+       con.close()
+   response.headers["Location"] = "/promo/{}".format(m.judulpromo) 
+   print(m.judulpromo)
+   print(m.tenggat)
+   print(m.desc)
+  
+   return m
 
 @app.get("/tampilkan_semua_promo/")
 def tampil_semua_promo():
