@@ -6,7 +6,6 @@ from typing import Union
 from fastapi import FastAPI,Response,Request,HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import sqlite3
-import json
 
 app = FastAPI()
 
@@ -58,11 +57,12 @@ def init_db():
             jumlah_pinjaman INTEGER             NOT NULL,
             jumlah_tagihan  INTEGER             NOT NULL,
             tagihan_bulanan INTEGER             NOT NULL,
-	        tagihan_terbayarkan INTEGER	    NOT NULL,
+	        tagihan_terbayarkan INTERTGER	    NOT NULL,
             jangka_waktu    TEXT                NOT NULL,
+            tenggat_waktu   NUMERIC             NOT NULL,
             status          TEXT                NOT NULL 
         );
-
+        
         CREATE TABLE promo(
             idpromo         INTEGER PRIMARY KEY     AUTOINCREMENT,
             judulpromo      TEXT                    NOT NULL,
@@ -83,7 +83,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-class Mhs(BaseModel):
+class User(BaseModel):
    nama: str
    nama_umkm: str
    password: str
@@ -94,8 +94,8 @@ class Mhs(BaseModel):
 
 #status code 201 standard return creation
 #return objek yang baru dicreate (response_model tipenya Mhs)
-@app.post("/tambah_user/", response_model=Mhs,status_code=201)  
-def tambah_user(m: Mhs,response: Response, request: Request):
+@app.post("/tambah_user/", response_model=User,status_code=201)  
+def tambah_user(m: User,response: Response, request: Request):
    try:
        DB_NAME = "user.db"
        con = sqlite3.connect(DB_NAME)
@@ -118,31 +118,53 @@ def tambah_user(m: Mhs,response: Response, request: Request):
   
    return m
 
-class Prm(BaseModel):
-   judulpromo: str
-   tenggat: str
-   desc: str
-
-@app.post("/tambah_promo/", response_model=Prm,status_code=201)  
-def tambah_user(m: Prm,response: Response, request: Request):
+@app.get("/tampilkan_semua_user/")
+def tampil_semua_user():
    try:
+    DB_NAME = "user.db"
+    con = sqlite3.connect(DB_NAME)
+    cur = con.cursor()
+    recs = []
+    for row in cur.execute("select * from user"):
+        recs.append(row)
+   except:
+    return ({"status":"terjadi error"})   
+   finally:    
+    con.close()
+   return {"data":recs}
+
+@app.delete("/delete_user/{ID}")
+def delete_user(id: str):
+    try:
        DB_NAME = "user.db"
        con = sqlite3.connect(DB_NAME)
        cur = con.cursor()
-       # hanya untuk test, rawal sql injecttion, gunakan spt SQLAlchemy
-       cur.execute("""INSERT INTO promo (judulpromo,tenggatpromo,desc) values ( "{}","{}","{}")""".format(m.judulpromo,m.tenggat,m.desc))
-       con.commit() 
-   except:
-       print("oioi error")
+       sqlstr = "delete from user  where id='{}'".format(id)                 
+       print(sqlstr) # debug 
+       cur.execute(sqlstr)
+       con.commit()
+    except:
        return ({"status":"terjadi error"})   
-   finally:  	 
+    finally:  	 
        con.close()
-   response.headers["Location"] = "/promo/{}".format(m.judulpromo) 
-   print(m.judulpromo)
-   print(m.tenggat)
-   print(m.desc)
-  
-   return m
+    
+    return {"status":"ok"}
+
+@app.get("/login_user/")
+def login_user(email: str):
+   try:
+    DB_NAME = "user.db"
+    con = sqlite3.connect(DB_NAME)
+    cur = con.cursor()
+    recs = []
+    for row in cur.execute("select * from user where email='{}'".format(email)):
+        # maps = {"ID":row[0], "nama":row[1], "nama_umkm":row[3], "email":row[4], "password":row[5], "pin":row[6], "no_Telp":row[7], "saldo":row[8]}
+        recs.append(row)
+   except:
+    return ({"status":"terjadi error"})   
+   finally:    
+    con.close()
+   return recs[0]
 
 @app.get("/tampilkan_semua_user/")
 def tampil_semua_user():
@@ -212,23 +234,6 @@ def tampil_promo_detail(idpromo: str):
     
     return promo
 
-@app.delete("/delete_user/{ID}")
-def delete_user(id: str):
-    try:
-       DB_NAME = "user.db"
-       con = sqlite3.connect(DB_NAME)
-       cur = con.cursor()
-       sqlstr = "delete from user  where id='{}'".format(id)                 
-       print(sqlstr) # debug 
-       cur.execute(sqlstr)
-       con.commit()
-    except:
-       return ({"status":"terjadi error"})   
-    finally:  	 
-       con.close()
-    
-    return {"status":"ok"}
-
 @app.delete("/delete_promo/{ID}")
 def delete_promo(id: str):
     try:
@@ -245,18 +250,3 @@ def delete_promo(id: str):
        con.close()
     
     return {"status":"ok"}
-
-# @app.get("/tampilkan_semua_user/{id}")
-# def tampil_mhs_by_id(id: int):
-#     try:
-#         DB_NAME = "upi.db"
-#         con = sqlite3.connect(DB_NAME)
-#         cur = con.cursor()
-#         recs = []
-#         for row in cur.execute("SELECT * FROM user WHERE ID=?", (id)):
-#             recs.append(row)
-#     except:
-#         return {"status": "Terjadi error"}
-#     finally:
-#         con.close()
-#     return {"data": recs}
