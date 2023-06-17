@@ -20,12 +20,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   //buat user
-  final user = FirebaseAuth.instance.currentUser!;
-
-  //buat logout
-  void signUserOut() {
-    FirebaseAuth.instance.signOut();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +48,7 @@ class _HomeState extends State<Home> {
               title: Padding(
                 padding: const EdgeInsets.only(top: 13.0),
                 child: Text(
-                  "Hi, ${user.email!}",
+                  "Hi, ..",
                   style: TextStyle(
                       fontFamily: GoogleFonts.poppins().fontFamily,
                       color: Colors.black,
@@ -66,7 +60,7 @@ class _HomeState extends State<Home> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: IconButton(
-                    onPressed: signUserOut,
+                    onPressed: () {},
                     icon: const Icon(Icons.logout),
                     color: Colors.black,
                     iconSize: 35,
