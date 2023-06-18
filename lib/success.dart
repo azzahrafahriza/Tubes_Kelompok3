@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'main2.dart';
 
 class Sukses extends StatefulWidget {
   const Sukses({super.key});
@@ -58,7 +59,14 @@ class _SuksesState extends State<Sukses> {
                 ),
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, "/home");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MainRouting(
+                          selectedIndex: 0,
+                        ),
+                      ),
+                    );
                   },
                   child: Text(
                     'Finish',
@@ -79,4 +87,3 @@ class _SuksesState extends State<Sukses> {
     );
   }
 }
-

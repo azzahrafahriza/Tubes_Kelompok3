@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tubes/topup.dart';
+
+class TopSum {
+  int jumlah;
+
+  TopSum({required this.jumlah});
+}
 
 class PilihTopup extends StatefulWidget {
   const PilihTopup({super.key});
@@ -9,14 +17,26 @@ class PilihTopup extends StatefulWidget {
 }
 
 class _PilihTopupState extends State<PilihTopup> {
+  int valueSeratusRb = 100000;
+  int valueTigaratusRb = 300000;
+  int valueLimaratusRb = 500000;
+  int valueSatujutaRb = 1000000;
+  int valueTigajutaRb = 3000000;
+  int valueLimajutaRb = 5000000;
+
+  final _formKey = GlobalKey<FormState>();
+  final textSum = TextEditingController();
+
+  int _sumValue = 0;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(70.0), // Ukuran preferensi AppBar
+          preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
           child: Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(
                     20.0), // Radius melengkung pada sudut kiri bawah
@@ -31,8 +51,8 @@ class _PilihTopupState extends State<PilihTopup> {
                   .transparent, // Atur latar belakang AppBar menjadi transparan
               elevation: 0, // Hilangkan efek bayangan pada AppBar
               leading: IconButton(
-                padding: const EdgeInsets.only(top: 15.0),
-                icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                padding: EdgeInsets.only(top: 15.0),
+                icon: Icon(Icons.arrow_back_ios_new_rounded),
                 onPressed: () {
                   Navigator.pushNamed(context, "/home");
                 },
@@ -55,95 +75,178 @@ class _PilihTopupState extends State<PilihTopup> {
             ),
           ),
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.only(top: 30.0, right: 20.0, left: 20.0),
-              child: Text(
-                'Choose an amount',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: GoogleFonts.poppins().fontFamily,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height*0.3,
-              child: GridView.count(
-                childAspectRatio: (25 / 10),
-                crossAxisCount: 2,
-                children: [
-                  buildAmountContainer('Rp. 100.000'),
-                  buildAmountContainer('Rp. 500.000'),
-                  buildAmountContainer('Rp. 1.000.000'),
-                  buildAmountContainer('Rp. 3.000.000'),
-                  buildAmountContainer('Rp. 5.000.000'),
-                  buildAmountContainer('Rp. 10.000.000'),
-                ],
-              ),
-            ),
-            Center(
-              child: Container(
-                margin: const EdgeInsets.only(top: 10),
-                width: MediaQuery.of(context).size.width * 0.90,
-                height: MediaQuery.of(context).size.height * 0.05,
-                child: DecoratedBox(
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(100)),
-                    color: Color(0xFFD9D9D9),
-                  ),
-                  child: TextField(
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: GoogleFonts.poppins().fontFamily,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                      letterSpacing: 2
-                    ),
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      hintText: 'or type the amount',
-                      hintStyle: TextStyle(
-                        fontFamily: GoogleFonts.poppins(fontWeight: FontWeight.w500,).fontFamily,
-                        fontSize: 13,
-                        color: const Color(0xFF979696),
-                      ),
-                      border: InputBorder.none,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height*0.3,),
-            Container(
-              width: double.infinity,
-              height: 50,
-              margin: const EdgeInsets.all(40.0),
-              decoration: BoxDecoration(
-                color: Colors.orange,
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "/topup");
-                },
+        body: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.only(top: 30.0, right: 20.0, left: 20.0),
                 child: Text(
-                  'Continue',
+                  'Choose an amount',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    letterSpacing: 1.8,
                     fontFamily: GoogleFonts.poppins().fontFamily,
                   ),
                 ),
               ),
-            ),
-          ],
+              Container(
+                height: MediaQuery.of(context).size.height * 0.3,
+                child: GridView.count(
+                  childAspectRatio: (25 / 10),
+                  crossAxisCount: 2,
+                  children: [
+                    GestureDetector(
+                        onTap: () {
+                          TopSum jumlah = TopSum(jumlah: valueSeratusRb);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Topup(
+                                        jumlah: jumlah, 
+                          )));
+                        },
+                        child: buildAmountContainer('Rp. 100.000')),
+                    GestureDetector(
+                        onTap: () {
+                          TopSum jumlah = TopSum(jumlah: valueTigaratusRb);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Topup(
+                                        jumlah: jumlah, 
+                          )));
+                        },
+                        child: buildAmountContainer('Rp. 300.000')),
+                    GestureDetector(
+                        onTap: () {
+                          TopSum jumlah = TopSum(jumlah: valueLimaratusRb);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Topup(
+                                        jumlah: jumlah, 
+                          )));
+                        },
+                        child: buildAmountContainer('Rp. 500.000')),
+                    GestureDetector(
+                        onTap: () {
+                          TopSum jumlah = TopSum(jumlah: valueSatujutaRb);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Topup(
+                                        jumlah: jumlah, 
+                          )));
+                        },
+                        child: buildAmountContainer('Rp. 1.000.000')),
+                    GestureDetector(
+                        onTap: () {
+                          TopSum jumlah = TopSum(jumlah: valueTigajutaRb);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Topup(
+                                        jumlah: jumlah, 
+                          )));
+                        },
+                        child: buildAmountContainer('Rp. 3.000.000')),
+                    GestureDetector(
+                        onTap: () {
+                          TopSum jumlah = TopSum(jumlah: valueLimajutaRb);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Topup(
+                                        jumlah: jumlah, 
+                          )));
+                        },
+                        child: buildAmountContainer('Rp. 5.000.000')),
+                  ],
+                ),
+              ),
+              Center(
+                child: Container(
+                  margin: EdgeInsets.only(top: 10),
+                  width: MediaQuery.of(context).size.width * 0.90,
+                  height: MediaQuery.of(context).size.height * 0.05,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(100)),
+                      color: Color(0xFFD9D9D9),
+                    ),
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      style: TextStyle(
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                          letterSpacing: 2),
+                      maxLines: 1,
+                      decoration: InputDecoration(
+                        hintText: 'or type the amount',
+                        hintStyle: TextStyle(
+                          fontFamily: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w500,
+                          ).fontFamily,
+                          fontSize: 13,
+                          color: Color(0xFF979696),
+                        ),
+                        border: InputBorder.none,
+                      ),
+                      controller: textSum,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.3,
+              ),
+              Container(
+                width: double.infinity,
+                height: 50,
+                margin: EdgeInsets.all(40.0),
+                decoration: BoxDecoration(
+                  color: Colors.orange,
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      setState(() {
+                        _sumValue = int.parse(textSum.text);
+                        TopSum jumlah = TopSum(jumlah: _sumValue);
+                        Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Topup(
+                                        jumlah: jumlah, 
+                        )));
+                        //Navigator.pushNamed(context, "/topup");
+                      });
+                    }
+                  },
+                  child: Text(
+                    'Continue',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      letterSpacing: 1.8,
+                      fontFamily: GoogleFonts.poppins().fontFamily,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -153,7 +256,7 @@ class _PilihTopupState extends State<PilihTopup> {
     return Container(
       width: 50,
       height: 25,
-      margin: const EdgeInsets.only(left: 25.0, right: 25.0, bottom: 10.0, top: 10.0),
+      margin: EdgeInsets.only(left: 25.0, right: 25.0, bottom: 10.0, top: 10.0),
       decoration: BoxDecoration(
         color: Colors.orange,
         borderRadius: BorderRadius.circular(40),
@@ -171,7 +274,3 @@ class _PilihTopupState extends State<PilihTopup> {
     );
   }
 }
-
-
-  
-
