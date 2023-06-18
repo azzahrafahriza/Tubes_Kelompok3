@@ -165,6 +165,60 @@ def delete_user(id: str):
     
     return {"status":"ok"}
 
+class UsrPatch(BaseModel):
+   umkm: str | None = "kosong"
+   email: str | None = "kosong"
+   no_telp: str | None = "kosong"
+
+@app.patch("/update_usr_patch/{id}",response_model = UsrPatch)
+def update_mhs_patch(response: Response, id: str, m: UsrPatch):
+    try:
+      print(str(m))
+      DB_NAME = "user.db"
+      con = sqlite3.connect(DB_NAME)
+      cur = con.cursor() 
+      cur.execute("SELECT * FROM user WHERE ID = ?", (id,) )  #tambah koma untuk menandakan tupple
+      existing_item = cur.fetchone()
+    except Exception as e:
+      raise HTTPException(status_code=500, detail="Terjadi exception: {}".format(str(e))) # misal database down  
+    
+    if existing_item:  #data ada, lakukan update
+        sqlstr = "UPDATE user SET " #asumsi minimal ada satu field update
+        # todo: bisa direfaktor dan dirapikan
+        if m.umkm!="kosong":
+            if m.umkm!=None:
+                sqlstr = sqlstr + " nama_umkm = '{}' ,".format(m.umkm)
+            else:     
+                sqlstr = sqlstr + " nama_umkm = null ,"
+        
+        if m.email!="kosong":
+            if m.email!=None:
+                sqlstr = sqlstr + " email = '{}' ,".format(m.email)
+            else:
+                sqlstr = sqlstr + " email = null ,"
+        
+        if m.no_telp!="kosong":
+            if m.no_telp!=None:
+                sqlstr = sqlstr + " no_telp = '{}' ,".format(m.no_telp) 
+            else:
+                sqlstr = sqlstr + " no_telp = null, "     
+
+        sqlstr = sqlstr[:-1] + " where ID='{}' ".format(id)  #buang koma yang trakhir  
+        print(sqlstr)      
+        try:
+            cur.execute(sqlstr)
+            con.commit()         
+            response.headers["location"] = "/user/{}".format(id)
+        except Exception as e:
+            raise HTTPException(status_code=500, detail="Terjadi exception: {}".format(str(e)))   
+        
+
+    else:  # data tidak ada 404, item not found
+         raise HTTPException(status_code=404, detail="Item Not Found")
+   
+    con.close()
+    return m
+
 @app.get("/login_user/")
 def login_user(email: str):
    try:
@@ -180,6 +234,88 @@ def login_user(email: str):
    finally:    
     con.close()
    return recs[0]
+
+#---------------------------------------------
+# Untuk Update Saldo
+class UsrSaldo(BaseModel):
+   saldo: Optional[int] | None = -9999
+
+@app.patch("/update_usr_saldo/{id}",response_model = UsrSaldo)
+def update_usr_saldo(response: Response, id: str, m: UsrSaldo):
+    try:
+      #print(str(m))
+      DB_NAME = "user.db"
+      con = sqlite3.connect(DB_NAME)
+      cur = con.cursor() 
+      cur.execute("SELECT * FROM user WHERE ID = ?", (id,) )  #tambah koma untuk menandakan tupple
+      existing_item = cur.fetchone()
+    except Exception as e:
+      raise HTTPException(status_code=500, detail="Terjadi exception: {}".format(str(e))) # misal database down  
+    
+    if existing_item:  #data ada, lakukan update
+        sqlstr = "UPDATE user SET " #asumsi minimal ada satu field update
+        # todo: bisa direfaktor dan dirapikan
+        if m.saldo!= -9999:
+            if m.saldo!=None:
+                sqlstr = sqlstr + " saldo = saldo + {} ,".format(m.saldo)
+            else:     
+                sqlstr = sqlstr + " saldo = null ,"
+
+
+        sqlstr = sqlstr[:-1] + " where ID='{}' ".format(id)  #buang koma yang trakhir  
+        print(sqlstr)      
+        try:
+            cur.execute(sqlstr)
+            con.commit()         
+            response.headers["location"] = "/user/{}".format(id)
+        except Exception as e:
+            raise HTTPException(status_code=500, detail="Terjadi exception: {}".format(str(e)))   
+        
+
+    else:  # data tidak ada 404, item not found
+         raise HTTPException(status_code=404, detail="Item Not Found")
+   
+    con.close()
+    return m
+
+@app.patch("/update_tarik_saldo/{id}",response_model = UsrSaldo)
+def update_tarik_saldo(response: Response, id: str, m: UsrSaldo):
+    try:
+      #print(str(m))
+      DB_NAME = "user.db"
+      con = sqlite3.connect(DB_NAME)
+      cur = con.cursor() 
+      cur.execute("SELECT * FROM user WHERE ID = ?", (id,) )  #tambah koma untuk menandakan tupple
+      existing_item = cur.fetchone()
+    except Exception as e:
+      raise HTTPException(status_code=500, detail="Terjadi exception: {}".format(str(e))) # misal database down  
+    
+    if existing_item:  #data ada, lakukan update
+        sqlstr = "UPDATE user SET " #asumsi minimal ada satu field update
+        # todo: bisa direfaktor dan dirapikan
+        if m.saldo!= -9999:
+            if m.saldo!=None:
+                sqlstr = sqlstr + " saldo = saldo - {} ,".format(m.saldo)
+            else:     
+                sqlstr = sqlstr + " saldo = null ,"
+
+
+        sqlstr = sqlstr[:-1] + " where ID='{}' ".format(id)  #buang koma yang trakhir  
+        print(sqlstr)      
+        try:
+            cur.execute(sqlstr)
+            con.commit()         
+            response.headers["location"] = "/user/{}".format(id)
+        except Exception as e:
+            raise HTTPException(status_code=500, detail="Terjadi exception: {}".format(str(e)))   
+        
+
+    else:  # data tidak ada 404, item not found
+         raise HTTPException(status_code=404, detail="Item Not Found")
+   
+    con.close()
+    return m
+
 
 @app.get("/tampilkan_semua_user/")
 def tampil_semua_user():
@@ -258,7 +394,7 @@ def tampil_promo_detail(idpromo: str):
             return {"status": "Promo not found"}
 
         promo = {
-            "id": row[0],
+            "id": str(row[0]),
             "judul": row[1],
             "tenggat": row[2],
             "desc": row[3]
