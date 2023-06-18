@@ -24,7 +24,6 @@ import 'artikel.dart';
 import 'detailPromo.dart';
 import 'detailArtikel.dart';
 
-
 // class MainRouting extends StatefulWidget {
 //   const MainRouting({Key? key}) : super(key: key);
 //   @override
@@ -32,6 +31,12 @@ import 'detailArtikel.dart';
 //     return MainRoutingState();
 //   }
 // }
+
+class Message {
+  final String content;
+
+  Message(this.content);
+}
 
 class MainRouting extends StatefulWidget {
   final int selectedIndex;
@@ -70,7 +75,9 @@ class MainRoutingState extends State<MainRouting> {
       title: "FUNDFLEX",
       routes: {
         "/pusatBantuan": (context) => const PusatBantuan(),
-        "/home": (context) => const MainRouting(selectedIndex: 0,),
+        "/home": (context) => const MainRouting(
+              selectedIndex: 0,
+            ),
         "/faq": (context) => const Faq(),
         "/sk": (context) => const Sk(),
         "/notifikasi": (context) => const Notifikasi(),
@@ -78,28 +85,24 @@ class MainRoutingState extends State<MainRouting> {
         "/pengajuan": (context) => (const Pengajuan()),
         "/statusPerpanjangan": (context) => (const StatusPerpanjangan()),
         "/bayar": (context) => (const Bayar()),
-        "/topup": (context) => (const Topup()),
+        //"/topup": (context) => (const Topup()),
         "/enterpin": (context) => (const PinEntryApp()),
         "/sukses": (context) => (const Sukses()),
         "/virtualAkunBayar": (context) => (const VirtualAkunBayar()),
-        "/virtualAkunTopup": (context) => (const VirtualAkunTopup()),
+        //"/virtualAkunTopup": (context) => (const VirtualAkunTopup()),
         "/pilihTopup": (context) => (const PilihTopup()),
         "/profile": (context) => (const Profile()),
         "/editprofile": (context) => (const EditProfile()),
         "/editdetailprofile": (context) => (const EditDetailProfile()),
         "/tarikTunai": (context) => (const TarikTunai()),
         "/artikel": (context) => (const Artikel()),
-        "/detailPromo": (context) => (const DetailPromo()),
-        "/detailArtikel": (context) => (const DetailArtikel()),
+        //"/detailArtikel": (context) => (const DetailArtikel()),
       },
       home: Scaffold(
         bottomNavigationBar: Container(
           color: const Color(0xffE5E5E5).withOpacity(0.6),
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 15,
-              vertical: 10
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: GNav(
               selectedIndex: _currentIndex,
               backgroundColor: const Color(0xffE5E5E5).withOpacity(0.6),
@@ -108,14 +111,26 @@ class MainRoutingState extends State<MainRouting> {
               tabBackgroundColor: const Color(0xffFCA311),
               gap: 8,
               padding: const EdgeInsets.all(16),
-              onTabChange: (index){
+              onTabChange: (index) {
                 onTabChange(index);
               },
-              tabs: const [ 
-                GButton(icon: Icons.home, text: "Home",),
-                GButton(icon: Icons.discount_outlined, text: "Promo",),
-                GButton(icon: Icons.calculate_outlined, text: "Calculate",),
-                GButton(icon: Icons.person, text: "Profile",),
+              tabs: const [
+                GButton(
+                  icon: Icons.home,
+                  text: "Home",
+                ),
+                GButton(
+                  icon: Icons.discount_outlined,
+                  text: "Promo",
+                ),
+                GButton(
+                  icon: Icons.calculate_outlined,
+                  text: "Calculate",
+                ),
+                GButton(
+                  icon: Icons.person,
+                  text: "Profile",
+                ),
               ],
             ),
           ),
