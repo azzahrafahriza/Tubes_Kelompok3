@@ -17,13 +17,14 @@ class DetilJenisPromoModel {
   String judul;
   String tenggat;
   String desc;
+  String kode;
 
-  DetilJenisPromoModel({
-    required this.id,
-    required this.judul,
-    required this.tenggat,
-    required this.desc,
-  }); //constructor
+  DetilJenisPromoModel(
+      {required this.id,
+      required this.judul,
+      required this.tenggat,
+      required this.desc,
+      required this.kode}); //constructor
 }
 
 class DetilJenisPromoCubit extends Cubit<DetilJenisPromoModel> {
@@ -31,16 +32,17 @@ class DetilJenisPromoCubit extends Cubit<DetilJenisPromoModel> {
   String url = "http://127.0.0.1:8000/tampilkan_promo_detail/";
 
   DetilJenisPromoCubit()
-      : super(DetilJenisPromoModel(id: '', judul: '', tenggat: '', desc: ''));
+      : super(DetilJenisPromoModel(
+            id: '', judul: '', tenggat: '', desc: '', kode: ''));
 
   //map dari json ke atribut
   void setFromJson(Map<String, dynamic> json) {
     emit(DetilJenisPromoModel(
-      id: json["id"],
-      judul: json["judul"],
-      tenggat: json["tenggat"],
-      desc: json["desc"],
-    ));
+        id: json["id"],
+        judul: json["judul"],
+        tenggat: json["tenggat"],
+        desc: json["desc"],
+        kode: json["kodepromo"]));
   }
 
   void fetchData(String id) async {
@@ -60,7 +62,12 @@ class JenisPromo {
   String id;
   String judulpromo;
   String desc;
-  JenisPromo({required this.id, required this.judulpromo, required this.desc});
+  String kode;
+  JenisPromo(
+      {required this.id,
+      required this.judulpromo,
+      required this.desc,
+      required this.kode});
 }
 
 class JenisPromoModel {
@@ -80,8 +87,12 @@ class JenisPromoCubit extends Cubit<JenisPromoModel> {
       String id = el["id"];
       String judulpromo = el["judul"];
       String desc = el["desc"];
-      arrOut.add(
-          JenisPromo(id: el["id"], judulpromo: el["judul"], desc: el["desc"]));
+      String kode = el["kodepromo"];
+      arrOut.add(JenisPromo(
+          id: el["id"],
+          judulpromo: el["judul"],
+          desc: el["desc"],
+          kode: el["kodepromo"]));
     }
     emit(JenisPromoModel(dataPromo: arrOut));
   }
@@ -171,7 +182,7 @@ class _PromoState extends State<Promo> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => DetailPromo(
-                                        id: byId, 
+                                        id: byId,
                                         message: message,
                                       )));
                         },
@@ -279,6 +290,21 @@ class PromoCard extends StatelessWidget {
                       padding: EdgeInsets.only(left: 20, right: 20),
                       child: Text(
                         coba.desc,
+                        maxLines: 2,
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: warnaBiru,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: GoogleFonts.poppins().fontFamily),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20, right: 20),
+                      child: Text(
+                        coba.kode,
                         maxLines: 2,
                         style: TextStyle(
                             fontSize: 12,
