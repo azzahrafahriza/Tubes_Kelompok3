@@ -19,7 +19,9 @@ Login menuju aplikasi
 
 
 Pada halaman ini, diperlihatkan fitur-fitur yang pada pada aplikasi, diantaranya :
+  
   a. Pembayaran pinjaman => fungsinya untuk melakukan pengajuan perpanjangan atau melakukan pembayaran
+     
      1) Halaman ketika melakukan ajukan Pembayaran
      
   ![image](https://github.com/azzahrafahriza/Tubes_Kelompok3/assets/90915678/cd1121c8-14f2-4e5b-a6b7-4e9a5b4d3185)
