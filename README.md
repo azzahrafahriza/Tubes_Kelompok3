@@ -4,11 +4,13 @@
 1. **Register**
 
 ![image](https://github.com/azzahrafahriza/Tubes_Kelompok3/assets/90915678/e2ae991a-1404-431c-8bbf-2c7444d23f84)
+
 Pada bagian ini, user diharuskan untuk mengisi data agar dapat melakukan login ke aplikasi 
 
 2. **Login**
 
 ![image](https://github.com/azzahrafahriza/Tubes_Kelompok3/assets/90915678/1d8c0356-020f-48e1-bcb9-00e40e8509fb)
+
 Login menuju aplikasi
 
 3. **Halaman Home**
@@ -25,6 +27,7 @@ Pada halaman ini, diperlihatkan fitur-fitur yang pada pada aplikasi, diantaranya
      2) Jika menekan tombol bayar, berikut halamannya 
      
      ![image](https://github.com/azzahrafahriza/Tubes_Kelompok3/assets/90915678/1db33775-d24b-4785-b00b-bb3ad25d603f)
+        
         a) Ketika telah memilih salah satu metode pembayaran, akan pindah halaman ke halaman berikut
         
         ![image](https://github.com/azzahrafahriza/Tubes_Kelompok3/assets/90915678/f15923e2-cbd3-4552-b06b-234ab61d1f99)
@@ -32,6 +35,7 @@ Pada halaman ini, diperlihatkan fitur-fitur yang pada pada aplikasi, diantaranya
         Ketika menekan OK, maka progress akan berubah, misalnya dari 2 juta, kemudian membayar 3 juta, akan berubah menjadi  5 juta pada halaman home
         
         ![image](https://github.com/azzahrafahriza/Tubes_Kelompok3/assets/90915678/f6dd61e5-7e95-4062-adcb-5bbff75294e0)
+           
            - Sukses
            
            ![image](https://github.com/azzahrafahriza/Tubes_Kelompok3/assets/90915678/1d9cd955-300a-4c91-a99d-22d13c5c5993)
