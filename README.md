@@ -69,6 +69,10 @@ Pada halaman ini, diperlihatkan fitur-fitur yang pada pada aplikasi, diantaranya
   maka saldo akan berkurang
   
   c. Lakukan Peminjaman => berfungsi untuk diarahkan ke halaman kalkulator
+
+  1) Peminjaman, isi textfield yang tersedia dengan jumlah nominal pinjaman yang diinginkan, setelah itu akan muncul pilihan yg ditawarkan seperti lama waktu peminjaman, bunga, serta jumlah yg harus dibayarkan tiap bulan
+
+[Gambar]
   
 ### Anggota : 
     1. Muhammad Daffa Yusuf 2100543
