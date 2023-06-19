@@ -75,6 +75,6 @@ Pada halaman ini, diperlihatkan fitur-fitur yang pada pada aplikasi, diantaranya
     2. Rachman Faiz Maulana 2106791
     3. Muhammad Azka Atqiya 2100812
     4. Rasyid Andriansyah 2101963
-    5. Azzahra Fahriza 
+    5. Azzahra Fahriza 2102296
 
 
