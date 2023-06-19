@@ -7,6 +7,7 @@ import 'dart:convert';
 import 'main2.dart';
 import 'promo.dart';
 import 'kalkulator.dart';
+import 'bloc.dart';
 
 class DetailPromo extends StatefulWidget {
   final ById id;
@@ -34,12 +35,7 @@ class _DetailPromoState extends State<DetailPromo> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: MultiBlocProvider(
-      providers: [
-        BlocProvider<DetilJenisPromoCubit>(
-            create: (BuildContext context) => DetilJenisPromoCubit())
-      ],
-      child: Builder(
+        home: Builder(
         builder: (context) => Container(
           child: Scaffold(
               appBar: PreferredSize(
@@ -184,15 +180,7 @@ class _DetailPromoState extends State<DetailPromo> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      Kalkulator()),
-                                              (route) => true,
-                                            );
-                                          } else {
-                                            Navigator.pushAndRemoveUntil(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      Kalkulator()),
+                                                      Kalkulator(kode: detilPromo.kode)),
                                               (route) => true,
                                             );
                                           }
@@ -237,6 +225,6 @@ class _DetailPromoState extends State<DetailPromo> {
               )),
         ),
       ),
-    ));
+    );
   }
 }

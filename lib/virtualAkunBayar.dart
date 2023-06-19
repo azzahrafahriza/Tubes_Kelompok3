@@ -193,7 +193,10 @@ class _VirtualAkunBayarState extends State<VirtualAkunBayar> {
                             borderRadius: BorderRadius.circular(100)
                           )
                         ),
-                        onPressed: (){Navigator.pushNamed(context, "/sukses");}, 
+                        onPressed: (){
+                          
+                          Navigator.pushNamed(context, "/sukses");
+                          }, 
                         child: Text("Continue", style: TextStyle(fontSize: 18, fontFamily: GoogleFonts.poppins().fontFamily,fontWeight: FontWeight.bold, letterSpacing: 2.0),)
                       ),
                     )

@@ -1,110 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'detailPromo.dart';
 import 'main2.dart';
+import 'bloc.dart';
 
 class ById {
   String byId;
 
   ById({required this.byId});
-}
-
-class DetilJenisPromoModel {
-  String id;
-  String judul;
-  String tenggat;
-  String desc;
-  String kode;
-
-  DetilJenisPromoModel(
-      {required this.id,
-      required this.judul,
-      required this.tenggat,
-      required this.desc,
-      required this.kode}); //constructor
-}
-
-class DetilJenisPromoCubit extends Cubit<DetilJenisPromoModel> {
-  //String url = "http://127.0.0.1:8000/detil_jenis_pinjaman/";
-  String url = "http://127.0.0.1:8000/tampilkan_promo_detail/";
-
-  DetilJenisPromoCubit()
-      : super(DetilJenisPromoModel(
-            id: '', judul: '', tenggat: '', desc: '', kode: ''));
-
-  //map dari json ke atribut
-  void setFromJson(Map<String, dynamic> json) {
-    emit(DetilJenisPromoModel(
-        id: json["id"],
-        judul: json["judul"],
-        tenggat: json["tenggat"],
-        desc: json["desc"],
-        kode: json["kodepromo"]));
-  }
-
-  void fetchData(String id) async {
-    String urlJenis = "$url$id";
-    final response = await http.get(Uri.parse(urlJenis));
-    if (response.statusCode == 200) {
-      setFromJson(jsonDecode(response.body));
-    } else {
-      throw Exception('Gagal load');
-    }
-  }
-}
-
-//-----------------------------------------------------------
-
-class JenisPromo {
-  String id;
-  String judulpromo;
-  String desc;
-  String kode;
-  JenisPromo(
-      {required this.id,
-      required this.judulpromo,
-      required this.desc,
-      required this.kode});
-}
-
-class JenisPromoModel {
-  List<JenisPromo> dataPromo;
-  JenisPromoModel({required this.dataPromo});
-}
-
-class JenisPromoCubit extends Cubit<JenisPromoModel> {
-  String url = "http://127.0.0.1:8000/tampilkan_semua_promo/";
-
-  JenisPromoCubit() : super(JenisPromoModel(dataPromo: []));
-
-  void setFromJson(Map<String, dynamic> json) {
-    var arrData = json["data"];
-    List<JenisPromo> arrOut = [];
-    for (var el in arrData) {
-      String id = el["id"];
-      String judulpromo = el["judul"];
-      String desc = el["desc"];
-      String kode = el["kodepromo"];
-      arrOut.add(JenisPromo(
-          id: el["id"],
-          judulpromo: el["judul"],
-          desc: el["desc"],
-          kode: el["kodepromo"]));
-    }
-    emit(JenisPromoModel(dataPromo: arrOut));
-  }
-
-  void fetchData() async {
-    final response = await http.get(Uri.parse(url));
-    if (response.statusCode == 200) {
-      setFromJson(jsonDecode(response.body));
-    } else {
-      throw Exception('Gagal load');
-    }
-  }
 }
 
 class Promo extends StatefulWidget {
@@ -118,16 +22,7 @@ class _PromoState extends State<Promo> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: MultiBlocProvider(
-      providers: [
-        BlocProvider<JenisPromoCubit>(
-          create: (BuildContext context) => JenisPromoCubit(),
-        ),
-        BlocProvider<DetilJenisPromoCubit>(
-          create: (BuildContext context) => DetilJenisPromoCubit(),
-        )
-      ],
-      child: Container(
+      home: Container(
         child: Scaffold(
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(70.0), // Ukuran preferensi AppBar
@@ -163,7 +58,6 @@ class _PromoState extends State<Promo> {
             ),
             body: BlocBuilder<JenisPromoCubit, JenisPromoModel>(
                 builder: (context, jenisPromo) {
-              context.read<JenisPromoCubit>().fetchData();
               return Center(child:
                   BlocBuilder<DetilJenisPromoCubit, DetilJenisPromoModel>(
                 builder: (context, detilPromo) {
@@ -175,9 +69,6 @@ class _PromoState extends State<Promo> {
                           Message message = Message('2');
                           ById byId =
                               ById(byId: jenisPromo.dataPromo[index].id);
-                          context
-                              .read<DetilJenisPromoCubit>()
-                              .fetchData(jenisPromo.dataPromo[index].id);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -194,7 +85,7 @@ class _PromoState extends State<Promo> {
               ));
             })),
       ),
-    ));
+    );
   }
 }
 
@@ -290,21 +181,6 @@ class PromoCard extends StatelessWidget {
                       padding: EdgeInsets.only(left: 20, right: 20),
                       child: Text(
                         coba.desc,
-                        maxLines: 2,
-                        style: TextStyle(
-                            fontSize: 12,
-                            color: warnaBiru,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: GoogleFonts.poppins().fontFamily),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: Text(
-                        coba.kode,
                         maxLines: 2,
                         style: TextStyle(
                             fontSize: 12,

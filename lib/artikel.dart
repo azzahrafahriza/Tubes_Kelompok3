@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'main2.dart';
+import 'bloc.dart';
 
 class Art {
   String content;
@@ -12,55 +13,7 @@ class Art {
   Art({required this.content});
 }
 
-class JenisArtikel {
-  String id;
-  String judulart;
-  String desc;
-  String gambar;
-  JenisArtikel(
-      {required this.id,
-      required this.judulart,
-      required this.desc,
-      required this.gambar});
-}
 
-class JenisArtikelModel {
-  List<JenisArtikel> dataArt;
-  JenisArtikelModel({required this.dataArt});
-}
-
-class JenisArtikelCubit extends Cubit<JenisArtikelModel> {
-  String url = "http://127.0.0.1:8000/tampilkan_semua_artikel/";
-
-  JenisArtikelCubit() : super(JenisArtikelModel(dataArt: []));
-
-  void setFromJson(Map<String, dynamic> json) {
-    var arrData = json["data"];
-    List<JenisArtikel> arrOut = [];
-
-    for (var el in arrData) {
-      String id = el["id"];
-      String judulart = el["judul"];
-      String desc = el["desc"];
-      String gambar = el["gambar"];
-      arrOut.add(JenisArtikel(
-          id: el["id"],
-          judulart: el["judul"],
-          desc: el["desc"],
-          gambar: el["gambar"]));
-    }
-    emit(JenisArtikelModel(dataArt: arrOut));
-  }
-
-  void fetchData() async {
-    final response = await http.get(Uri.parse(url));
-    if (response.statusCode == 200) {
-      setFromJson(jsonDecode(response.body));
-    } else {
-      throw Exception('Gagal load');
-    }
-  }
-}
 
 class Artikel extends StatefulWidget {
   const Artikel({super.key});
@@ -73,12 +26,7 @@ class _ArtikelState extends State<Artikel> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: MultiBlocProvider(
-      providers: [
-        BlocProvider<JenisArtikelCubit>(
-            create: (BuildContext context) => JenisArtikelCubit())
-      ],
-      child: Container(
+        home: Container(
         child: Scaffold(
             appBar: PreferredSize(
               preferredSize:
@@ -151,7 +99,7 @@ class _ArtikelState extends State<Artikel> {
               );
             })),
       ),
-    ));
+    );
   }
 }
 

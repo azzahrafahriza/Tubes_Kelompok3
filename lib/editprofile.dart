@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tubes/profile.dart';
-import 'package:tubes/user.dart';
+import 'package:tubes/bloc.dart';
 import 'package:http/http.dart' as http;
-
 import 'main2.dart';
 
 class EditProfile extends StatefulWidget {
@@ -73,11 +72,13 @@ class _EditProfileState extends State<EditProfile> {
                 padding: const EdgeInsets.only(top: 15.0),
                 icon: const Icon(Icons.arrow_back_ios_new_rounded),
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Profile(),
-                    ),
+                        builder: (context) => MainRouting(
+                              selectedIndex: 3,
+                            )),
+                    (route) => true,
                   );
                 },
                 color: Colors.black,
@@ -214,6 +215,12 @@ class _EditProfileState extends State<EditProfile> {
                                     _telp = textTelp.text;
                                     respPost =
                                         fetchData(user.userID.toString());
+                                    Future.delayed(Duration(seconds: 1), () {
+                                      context
+                                          .read<UserCubit>()
+                                          .fetchData(_email);
+                                    });
+                                    // context.read<UserCubit>().fetchData(_email);
                                     // Navigator.push(
                                     //   context,
                                     //   MaterialPageRoute(

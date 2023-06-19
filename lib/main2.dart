@@ -53,7 +53,7 @@ class MainRoutingState extends State<MainRouting> {
   static List<Center> halaman = [
     const Center(child: Home()),
     const Center(child: Promo()),
-    const Center(child: Kalkulator()),
+    Center(child: Kalkulator(kode: '')),
     const Center(child: Profile()),
   ];
 
@@ -79,12 +79,18 @@ class MainRoutingState extends State<MainRouting> {
               selectedIndex: 0,
             ),
         "/faq": (context) => const Faq(),
-        "/sk": (context) => const Sk(),
+        "/sk": (context) => Sk(
+            jumlah_pinjaman: 0,
+            jumlah_tagihan: 0,
+            tagihan_bulanan: 0,
+            jangka_waktu: "",
+            tenggat_waktu: Null,
+            cashback: 0),
         "/notifikasi": (context) => const Notifikasi(),
         "/promo": (context) => (const Promo()),
         "/pengajuan": (context) => (const Pengajuan()),
         "/statusPerpanjangan": (context) => (const StatusPerpanjangan()),
-        "/bayar": (context) => (const Bayar()),
+        "/bayar": (context) => (Bayar(tagihan_bulanan: 0,)),
         //"/topup": (context) => (const Topup()),
         "/enterpin": (context) => (const PinEntryApp()),
         "/sukses": (context) => (const Sukses()),

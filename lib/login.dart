@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'main.dart';
 import 'main2.dart';
 import 'home.dart';
-import 'user.dart';
+import 'bloc.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -23,6 +23,25 @@ class _LoginState extends State<Login> {
 
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  void wrongMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Email/Password Anda Salah'),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,18 +182,29 @@ class _LoginState extends State<Login> {
                                     context
                                         .read<UserCubit>()
                                         .fetchData(_username);
-                                    if (_password == user.password) {
-                                      Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => MainRouting(
-                                                  selectedIndex: 0,
-                                                )),
-                                        (route) => true,
-                                      );
+                                    if ((_password == user.password) &&
+                                        (_username != '')) {
+                                      context
+                                          .read<JenisPromoCubit>()
+                                          .fetchData();
+                                      context
+                                          .read<JenisArtikelCubit>()
+                                          .fetchData();
+                                      context
+                                          .read<PeminjamanBerjalanCubit>()
+                                          .fetchData(user.userID.toString());
+                                      Future.delayed(Duration(seconds: 1), () {
+                                        Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => MainRouting(
+                                                    selectedIndex: 0,
+                                                  )),
+                                          (route) => true,
+                                        );
+                                      });
                                     } else {
-                                      AlertDialog(
-                                          title: Text('Password Salah'));
+                                      wrongMessage();
                                       usernameController.clear();
                                       passwordController.clear();
                                     }
