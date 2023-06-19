@@ -26,6 +26,26 @@ class _HomeState extends State<Home> {
   var _email;
   var _id;
 
+  late int dibayar;
+  late int goals;
+  late double percent;
+
+  @override
+  void initState() {
+    super.initState();
+    dibayar = context.read<PeminjamanBerjalanCubit>().getTagihanTerbayar();
+    goals = context.read<PeminjamanBerjalanCubit>().getJumlahTagihan();
+    calculate();
+  }
+
+  void calculate() {
+    if (goals == 0 || dibayar == 0) {
+      percent = 0;
+    } else {
+      percent = dibayar / goals;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -158,8 +178,14 @@ class _HomeState extends State<Home> {
                                             backgroundColor:
                                                 const Color(0xffA76800)),
                                         onPressed: () {
-                                          Navigator.pushNamed(
-                                              context, "/pengajuan");
+                                          if (context
+                                                  .read<
+                                                      PeminjamanBerjalanCubit>()
+                                                  .getStatus() ==
+                                              "Diterima") {
+                                            Navigator.pushNamed(
+                                                context, "/pengajuan");
+                                          }
                                         },
                                         child: Text(
                                           "Ajukan Perpanjangan",
@@ -208,15 +234,21 @@ class _HomeState extends State<Home> {
                                             backgroundColor:
                                                 const Color(0xff14213D)),
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) => Bayar(
-                                                        tagihan_bulanan: context
-                                                            .read<
-                                                                PeminjamanBerjalanCubit>()
-                                                            .getTagihanBulanan(),
-                                                      )));
+                                          if (context
+                                                  .read<
+                                                      PeminjamanBerjalanCubit>()
+                                                  .getStatus() ==
+                                              "Diterima") {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) => Bayar(
+                                                          tagihan_bulanan: context
+                                                              .read<
+                                                                  PeminjamanBerjalanCubit>()
+                                                              .getTagihanBulanan(),
+                                                        )));
+                                          }
                                         },
                                         child: Text(
                                           "Bayar",
@@ -316,9 +348,7 @@ class _HomeState extends State<Home> {
                                         padding: const EdgeInsets.only(
                                             top: 10, left: 10, right: 10),
                                         lineHeight: 20,
-                                        percent:
-                                            (curPinjam.tagihan_terbayarkan /
-                                                curPinjam.jumlah_tagihan),
+                                        percent: percent,
                                         progressColor: const Color(0xffd48300),
                                         backgroundColor:
                                             const Color(0xffed970b),
