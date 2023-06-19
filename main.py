@@ -60,6 +60,8 @@ def init_db():
 	        tagihan_terbayarkan INTERTGER	    NOT NULL,
             jangka_waktu    TEXT                NOT NULL,
             tenggat_waktu   NUMERIC             NOT NULL,
+            perpanjang      INTEGER             NULL,
+            cashback        INTEGER             NULL,
             status          TEXT                NOT NULL 
         );
         
@@ -68,6 +70,7 @@ def init_db():
             judulpromo      TEXT                    NOT NULL,
             tenggatpromo    TEXT                    NOT NULL,
             desc            TEXT                    NOT NULL,
+            cashback_per    INTEGER                 NULL,
             kodepromo       TEXT                    NOT NULL
         );
 
@@ -99,12 +102,22 @@ class User(BaseModel):
    pin: str
    email: str
    no_telp: str
+
+class Pnj(BaseModel):
+   ID: int
+   jumlah_pinjaman: int
+   jumlah_tagihan: int
+   tagihan_bulanan: int
+   tagihan_terbayarkan: int
+   jangka_waktu: str
+   tenggat_waktu: str
+   cashback: int
    
 class Prm(BaseModel):
    judulpromo: str
    tenggat: str
    desc: str
-   kodepromo: str
+   kode: str
 
 
 #status code 201 standard return creation
@@ -229,11 +242,11 @@ def login_user(email: str):
     for row in cur.execute("select * from user where email='{}'".format(email)):
         # maps = {"ID":row[0], "nama":row[1], "nama_umkm":row[3], "email":row[4], "password":row[5], "pin":row[6], "no_Telp":row[7], "saldo":row[8]}
         recs.append(row)
+    return recs[0]
    except:
-    return ({"status":"terjadi error"})   
+    return ['Salah']   
    finally:    
     con.close()
-   return recs[0]
 
 #---------------------------------------------
 # Untuk Update Saldo
@@ -317,6 +330,78 @@ def update_tarik_saldo(response: Response, id: str, m: UsrSaldo):
     return m
 
 
+class updateTagihan(BaseModel):
+   tagihan: int
+
+@app.patch("/update_bayar_tagihan/{id}",response_model = UsrSaldo)
+def update_tarik_saldo(response: Response, id: int, m: updateTagihan):
+    try:
+      #print(str(m))
+      DB_NAME = "user.db"
+      con = sqlite3.connect(DB_NAME)
+      cur = con.cursor() 
+      cur.execute("SELECT * FROM peminjaman WHERE ID ={} AND status='Diterima'".format(id))  #tambah koma untuk menandakan tupple
+      existing_item = cur.fetchone()
+    except Exception as e:
+      raise HTTPException(status_code=500, detail="Terjadi exception: {}".format(str(e))) # misal database down  
+    
+    if existing_item:  #data ada, lakukan update
+        sqlstr = "UPDATE peminjaman SET " #asumsi minimal ada satu field update
+        # todo: bisa direfaktor dan dirapikan
+        if m.tagihan!= -9999:
+            if m.tagihan!=None:
+                sqlstr = sqlstr + " tagihan_terbayarkan = tagihan_terbayarkan + {} ,".format(m.tagihan)
+            else:     
+                sqlstr = sqlstr + " saldo = null ,"
+
+
+        sqlstr = sqlstr[:-1] + " WHERE ID ={} AND status='Diterima'".format(id)  #buang koma yang trakhir  
+        print(sqlstr)      
+        try:
+            cur.execute(sqlstr)
+            con.commit()         
+            response.headers["location"] = "/pinjaman/{}".format(id)
+        except Exception as e:
+            raise HTTPException(status_code=500, detail="Terjadi exception: {}".format(str(e)))   
+        
+
+    else:  # data tidak ada 404, item not found
+         raise HTTPException(status_code=404, detail="Item Not Found")
+   
+    con.close()
+    return m
+
+@app.patch("/lunaskan_peminjaman/{id}",response_model = UsrSaldo)
+def update_lunaskan(response: Response, id: int):
+    try:
+      #print(str(m))
+      DB_NAME = "user.db"
+      con = sqlite3.connect(DB_NAME)
+      cur = con.cursor() 
+      cur.execute("SELECT * FROM peminjaman WHERE ID ={} AND status='Diterima'".format(id))  #tambah koma untuk menandakan tupple
+      existing_item = cur.fetchone()
+    except Exception as e:
+      raise HTTPException(status_code=500, detail="Terjadi exception: {}".format(str(e))) # misal database down  
+    
+    if existing_item:  #data ada, lakukan update
+        sqlstr = "UPDATE peminjaman SET status='Lunas' WHERE ID ={} AND status='Diterima'".format(id) #asumsi minimal ada satu field update
+        # todo: bisa direfaktor dan dirapikan  
+        print(sqlstr)      
+        try:
+            cur.execute(sqlstr)
+            con.commit()         
+            response.headers["location"] = "/pinjaman/{}".format(id)
+        except Exception as e:
+            raise HTTPException(status_code=500, detail="Terjadi exception: {}".format(str(e)))   
+        
+
+    else:  # data tidak ada 404, item not found
+         raise HTTPException(status_code=404, detail="Item Not Found")
+   
+    con.close()
+    return m
+
+
 @app.get("/tampilkan_semua_user/")
 def tampil_semua_user():
    try:
@@ -339,7 +424,7 @@ def tambah_promo(m: Prm,response: Response, request: Request):
        con = sqlite3.connect(DB_NAME)
        cur = con.cursor()
        # hanya untuk test, rawal sql injecttion, gunakan spt SQLAlchemy
-       cur.execute("""INSERT INTO promo (judulpromo,tenggatpromo,desc,kodepromo) values ( "{}","{}","{}","{}")""".format(m.judulpromo,m.tenggat,m.desc,m.kodepromo))
+       cur.execute("""INSERT INTO promo (judulpromo,tenggatpromo,desc,kodepromo) values ( "{}","{}","{}","{}")""".format(m.judulpromo,m.tenggat,m.desc,m.kode))
        con.commit() 
    except:
        print("oioi error")
@@ -350,9 +435,24 @@ def tambah_promo(m: Prm,response: Response, request: Request):
    print(m.judulpromo)
    print(m.tenggat)
    print(m.desc)
-   print(m.kodepromo)
+   print(m.kode)
   
    return m
+
+@app.get("/potongan_promo/")
+def potongan_promo(kode: str):
+    try:
+        DB_NAME = "user.db"
+        con = sqlite3.connect(DB_NAME)
+        cur = con.cursor()
+        cur.execute("SELECT * FROM promo WHERE kodepromo='{}'".format(kode))
+        rows = cur.fetchone()
+
+        return {"cashback": rows[4]}
+    except:
+        return {"cashback": 0}   
+    finally:
+        con.close()
 
 @app.get("/tampilkan_semua_promo/")
 def tampil_semua_promo():
@@ -368,15 +468,16 @@ def tampil_semua_promo():
             promo = {
                 "id": str(row[0]),
                 "judul": row[1],
-                "desc": row[3]
+                "desc": row[3],
+                "kode": row[5]
             }
             recs.append(promo)
+        return {"data": recs}
     except:
         return {"status": "terjadi error"}   
     finally:
         con.close()
     
-    return {"data": recs}
 
 @app.get("/tampilkan_promo_detail/{idpromo}")
 def tampil_promo_detail(idpromo: str):
@@ -397,15 +498,17 @@ def tampil_promo_detail(idpromo: str):
             "id": str(row[0]),
             "judul": row[1],
             "tenggat": row[2],
-            "desc": row[3]
+            "desc": row[3],
+            "kode": row[5]
         }
+        
+        return promo
         
     except:
         return {"status": "Terjadi error"}   
     finally:
         con.close()
     
-    return promo
 
 @app.delete("/delete_promo/{ID}")
 def delete_promo(id: str):
@@ -425,6 +528,65 @@ def delete_promo(id: str):
     return {"status":"ok"}
 
 
+@app.post("/tambah_pinjaman/", response_model=Pnj,status_code=201)  
+def tambah_injaman(m: Pnj,response: Response, request: Request):
+   try:
+       DB_NAME = "user.db"
+       con = sqlite3.connect(DB_NAME)
+       cur = con.cursor()
+       # hanya untuk test, rawal sql injecttion, gunakan spt SQLAlchemy
+       cur.execute("""INSERT INTO peminjaman (ID, jumlah_pinjaman, jumlah_tagihan, tagihan_bulanan, tagihan_terbayarkan, jangka_waktu, tenggat_waktu, cashback, status) values ( {},{},{},{},{},"{}","{}",{},"Diajukan")""".format(m.ID, m.jumlah_pinjaman, m.jumlah_tagihan, m.tagihan_bulanan, m.tagihan_terbayarkan, m.jangka_waktu, m.tenggat_waktu, m.cashback))
+       con.commit() 
+   except:
+       print("oioi error")
+       return ({"status":"terjadi error"})   
+   finally:  	 
+       con.close()
+   response.headers["Location"] = "/promo/{}".format(m.ID) 
+  
+   return m
+
+@app.get("/pinjaman_berjalan/")
+def pinjaman_berjalan(id: int):
+   try:
+    DB_NAME = "user.db"
+    con = sqlite3.connect(DB_NAME)
+    cur = con.cursor()
+    cur.execute("SELECT * FROM peminjaman WHERE ID={} AND status='Diterima'".format(id))
+    
+    row = cur.fetchone()
+    
+        
+    pinjaman = {
+            "ID": row[0],
+            "jumlah_pinjaman": row[1],
+            "jumlah_tagihan": row[2],
+            "tagihan_bulanan": row[3],
+            "tagihan_terbayarkan": row[4],
+            "jangka_waktu": str (row[5]),
+            "tenggat_waktu": str (row[6]),
+            "cashback": row[7],
+            "perpanjangan": row[8],
+            "status": str (row[9])
+        }
+    
+    return pinjaman
+   except:
+    pinjaman = {
+            "ID": 0,
+            "jumlah_pinjaman": 0,
+            "jumlah_tagihan": 0,
+            "tagihan_bulanan": 0,
+            "tagihan_terbayarkan": 0,
+            "jangka_waktu": "",
+            "tenggat_waktu": "0000-00-00 00:00:00.000",
+            "cashback": 0,
+            "perpanjangan": 0,
+            "status": "Belum Meminjam"
+        }
+    return pinjaman   
+   finally:    
+    con.close()
 #------------------------------------------------
 #Ini Artikel
 
@@ -451,8 +613,8 @@ def tambah_artikel(m: Art,response: Response, request: Request):
     print(m.judulart)
     print(m.desc)
     print(m.gambar)
-  
     return m
+  
 
 @app.get("/tampilkan_semua_artikel/")
 def tampil_semua_artikel():
@@ -472,12 +634,12 @@ def tampil_semua_artikel():
                 "gambar": row[3]
             }
             recs.append(artikel)
+        return {"data": recs}
     except:
         return {"status": "terjadi error"}   
     finally:
         con.close()
     
-    return {"data": recs}
 
 
 @app.get("/tampilkan_artikel_detail/{idart}")
@@ -501,11 +663,11 @@ def tampil_artikel_detail(idart: str):
             "desc": row[2],
             "gambar": row[3]
         }
+        return artikel
         
     except:
         return {"status": "Terjadi error"}   
     finally:
         con.close()
     
-    return artikel
 
