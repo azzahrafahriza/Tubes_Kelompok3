@@ -401,6 +401,151 @@ def update_lunaskan(response: Response, id: int):
     con.close()
     return m
 
+#----------------------------------------------------------------------
+# Untuk Perpanjangan pinjaman
+
+class Perpanjangan(BaseModel):
+   perpanjang: Optional[int] | None = -9999
+
+@app.patch("/update_perpanjangan/{id}",response_model = Perpanjangan)
+def update_perpanjangan(response: Response, id: str, m: Perpanjangan):
+    try:
+      #print(str(m))
+      DB_NAME = "user.db"
+      con = sqlite3.connect(DB_NAME)
+      cur = con.cursor() 
+      cur.execute("SELECT * FROM peminjaman WHERE ID = ?", (id,) )  #tambah koma untuk menandakan tupple
+      existing_item = cur.fetchone()
+    except Exception as e:
+      raise HTTPException(status_code=500, detail="Terjadi exception: {}".format(str(e))) # misal database down  
+    
+    if existing_item:  #data ada, lakukan update
+        sqlstr = "UPDATE peminjaman SET status='Diperpanjang', " #asumsi minimal ada satu field update
+        # todo: bisa direfaktor dan dirapikan
+        if m.perpanjang!= -9999:
+            if m.perpanjang!=None:
+                sqlstr = sqlstr + " perpanjangan = {} ,".format(m.perpanjang)
+            else:     
+                sqlstr = sqlstr + " perpanjangan = null ,"
+
+
+        sqlstr = sqlstr[:-1] + " where ID='{}' ".format(id)  #buang koma yang trakhir  
+        print(sqlstr)      
+        try:
+            cur.execute(sqlstr)
+            con.commit()         
+            response.headers["location"] = "/user/{}".format(id)
+        except Exception as e:
+            raise HTTPException(status_code=500, detail="Terjadi exception: {}".format(str(e)))   
+        
+
+    else:  # data tidak ada 404, item not found
+         raise HTTPException(status_code=404, detail="Item Not Found")
+   
+    con.close()
+    return m
+
+class SetStatus(BaseModel):
+    status : str | None = "kosong"
+
+@app.patch("/update_status/{id}",response_model = SetStatus)
+def update_status(response: Response, id: str, m: SetStatus):
+    try:
+      #print(str(m))
+      DB_NAME = "user.db"
+      con = sqlite3.connect(DB_NAME)
+      cur = con.cursor() 
+      cur.execute("SELECT * FROM peminjaman WHERE ID = ?", (id,) )  #tambah koma untuk menandakan tupple
+      existing_item = cur.fetchone()
+    except Exception as e:
+      raise HTTPException(status_code=500, detail="Terjadi exception: {}".format(str(e))) # misal database down  
+    
+    if existing_item:  #data ada, lakukan update
+        sqlstr = "UPDATE peminjaman SET " #asumsi minimal ada satu field update
+        # todo: bisa direfaktor dan dirapikan
+        if m.status!= "kosong":
+            if m.status!=None:
+                sqlstr = sqlstr + " status = '{}' ,".format(m.status)
+            else:     
+                sqlstr = sqlstr + " status = null ,"
+
+
+        sqlstr = sqlstr[:-1] + " where ID='{}' ".format(id)  #buang koma yang trakhir  
+        print(sqlstr)      
+        try:
+            cur.execute(sqlstr)
+            con.commit()         
+            response.headers["location"] = "/user/{}".format(id)
+        except Exception as e:
+            raise HTTPException(status_code=500, detail="Terjadi exception: {}".format(str(e)))   
+        
+
+    else:  # data tidak ada 404, item not found
+         raise HTTPException(status_code=404, detail="Item Not Found")
+   
+    con.close()
+    return m
+
+@app.get("/history_perpanjangan/{id}")
+def history_perpanjangan(id: str):
+    try:
+        DB_NAME = "user.db"
+        con = sqlite3.connect(DB_NAME)
+        cur = con.cursor()
+        cur.execute("SELECT * FROM peminjaman WHERE ID = {} AND perpanjangan NOT NULL".format(id))
+        rows = cur.fetchall()
+
+        recs = []
+        for row in rows:
+            artikel = {
+                "id": row[0],
+                "jumlah_pinjaman": row[1],
+                "jumlah_tagihan": row[2],
+                "tagihan_bulanan": row[3],
+                "tagihan_terbayarkan": row[4],
+                "jangka_waktu": row[5],
+                "tenggat_waktu": row[6],
+                "cashback": row[7],
+                "perpanjangan": row[8],
+                "status": row[9]
+            }
+            recs.append(artikel)
+        return {"data": recs}
+    except:
+        return {"status": "terjadi error"}   
+    finally:
+        con.close()
+# "SELECT * FROM peminjaman WHERE ID = {}".format(id)
+
+@app.get("/history_peminjaman/{id}")
+def history_peminjaman(id: str):
+    try:
+        DB_NAME = "user.db"
+        con = sqlite3.connect(DB_NAME)
+        cur = con.cursor()
+        cur.execute("SELECT * FROM peminjaman WHERE ID = {}".format(id))
+        rows = cur.fetchall()
+
+        recs = []
+        for row in rows:
+            artikel = {
+                "id": row[0],
+                "jumlah_pinjaman": row[1],
+                "jumlah_tagihan": row[2],
+                "tagihan_bulanan": row[3],
+                "tagihan_terbayarkan": row[4],
+                "jangka_waktu": row[5],
+                "tenggat_waktu": row[6],
+                "cashback": row[7],
+                "perpanjangan": row[8],
+                "status": row[9]
+            }
+            recs.append(artikel)
+        return {"data": recs}
+    except:
+        return {"status": "terjadi error"}   
+    finally:
+        con.close()
 
 @app.get("/tampilkan_semua_user/")
 def tampil_semua_user():
@@ -417,6 +562,11 @@ def tampil_semua_user():
     con.close()
    return {"data":recs}
 
+
+#-------------------------------------------------------------------
+#/*
+#   Promo 
+# */
 @app.post("/tambah_promo/", response_model=Prm,status_code=201)  
 def tambah_promo(m: Prm,response: Response, request: Request):
    try:

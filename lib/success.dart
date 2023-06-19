@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'main2.dart';
+import 'package:tubes/main2.dart';
 
 class Sukses extends StatefulWidget {
   const Sukses({super.key});
@@ -18,32 +18,32 @@ class _SuksesState extends State<Sukses> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(height: 100),
-              Image.network(
-                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
-                height: 200,
-                width: 250,
+              SizedBox(height: 100),
+              Image.asset(
+                '../asset/suksesBayar.gif',
+                height: 250,
+                width: 300,
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 10),
               Text(
-                'Success',
+                'Sukses',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   fontFamily: GoogleFonts.poppins().fontFamily,
                 ),
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: 8),
               Text(
-                'Your purchase already done',
+                'Pembayaranmu telah selesai',
                 style: TextStyle(
                   fontSize: 16,
                   fontFamily: GoogleFonts.poppins().fontFamily,
                 ),
               ),
-              const SizedBox(height: 200),
+              SizedBox(height: 200),
               Text(
-                'You will automatically redirect to homescreen in 3 second',
+                'Akan dialihkan ke halaman home dalam 9 detik',
                 style: TextStyle(
                     fontSize: 12,
                     fontFamily: GoogleFonts.poppins().fontFamily,
@@ -52,7 +52,7 @@ class _SuksesState extends State<Sukses> {
               Container(
                 width: double.infinity,
                 height: 50,
-                margin: const EdgeInsets.all(35.0),
+                margin: EdgeInsets.all(35.0),
                 decoration: BoxDecoration(
                   color: Colors.orange,
                   borderRadius: BorderRadius.circular(25),
@@ -60,16 +60,13 @@ class _SuksesState extends State<Sukses> {
                 child: TextButton(
                   onPressed: () {
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MainRouting(
-                          selectedIndex: 0,
-                        ),
-                      ),
-                    );
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) =>
+                                MainRouting(selectedIndex: 0))));
                   },
                   child: Text(
-                    'Finish',
+                    'Selesai',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

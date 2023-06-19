@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 class UserModel {
@@ -81,6 +81,10 @@ class UserCubit extends Cubit<UserModel> {
 
   getSaldo() {
     return state.saldo;
+  }
+
+  getUser() {
+    return state.nama;
   }
 
   // void getUser() async {
@@ -174,6 +178,10 @@ class PeminjamanBerjalanCubit extends Cubit<PinjamanModel> {
           cashback: Null,
           status: ""));
     }
+  }
+
+  getStatus() {
+    return state.status;
   }
 
   getTagihanBulanan() {
@@ -357,6 +365,107 @@ class JenisArtikelCubit extends Cubit<JenisArtikelModel> {
 
   void fetchData() async {
     final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      setFromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Gagal load');
+    }
+  }
+}
+
+//-----------------------------------------------------
+
+class HistoryModel {
+  List<PinjamanModel> dataHistory;
+  HistoryModel({required this.dataHistory});
+}
+
+class HistoryCubitPinjam extends Cubit<HistoryModel> {
+  String urlpinjam = "http://127.0.0.1:8000/history_peminjaman/";
+
+  HistoryCubitPinjam() : super(HistoryModel(dataHistory: []));
+
+  void setFromJson(Map<String, dynamic> json) {
+    var arrData = json["data"];
+
+    List<PinjamanModel> arrOut = [];
+
+    for (var el in arrData) {
+      int id = el["id"];
+      int jumlah_pinjaman = el["jumlah_pinjaman"];
+      int jumlah_tagihan = el["jumlah_tagihan"];
+      int tagihan_bulanan = el["tagihan_bulanan"];
+      int tagihan_terbayarkan = el["tagihan_terbayarkan"];
+      String jangka_waktu = el["jangka_waktu"];
+      var tenggat_waktu = el["tenggat_waktu"];
+      var perpanjangan = el["perpanjangan"];
+      var cashback = el["cashback"];
+      String status = el["status"];
+      arrOut.add(PinjamanModel(
+          userID: el["id"],
+          jumlah_pinjaman: el["jumlah_pinjaman"],
+          jumlah_tagihan: el["jumlah_tagihan"],
+          tagihan_bulanan: el["tagihan_bulanan"],
+          tagihan_terbayarkan: el["tagihan_terbayarkan"],
+          jangka_waktu: el["jangka_waktu"],
+          tenggat_waktu: el["tenggat_waktu"],
+          perpanjangan: el["perpanjangan"],
+          cashback: el["cashback"],
+          status: el["status"]));
+    }
+    emit(HistoryModel(dataHistory: arrOut));
+  }
+
+  void fetchPinjam(String id) async {
+    String urlJenis = "$urlpinjam$id";
+    final response = await http.get(Uri.parse(urlJenis));
+    if (response.statusCode == 200) {
+      setFromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Gagal load');
+    }
+  }
+}
+
+class HistoryCubitPanjang extends Cubit<HistoryModel> {
+  String urlpanjang = "http://127.0.0.1:8000/history_perpanjangan/";
+
+  HistoryCubitPanjang() : super(HistoryModel(dataHistory: []));
+
+  void setFromJson(Map<String, dynamic> json) {
+    var arrData = json["data"];
+
+    List<PinjamanModel> arrOut = [];
+
+    for (var el in arrData) {
+      int id = el["id"];
+      int jumlah_pinjaman = el["jumlah_pinjaman"];
+      int jumlah_tagihan = el["jumlah_tagihan"];
+      int tagihan_bulanan = el["tagihan_bulanan"];
+      int tagihan_terbayarkan = el["tagihan_terbayarkan"];
+      String jangka_waktu = el["jangka_waktu"];
+      var tenggat_waktu = el["tenggat_waktu"];
+      var cashback = el["cashback"];
+      var perpanjangan = el["perpanjangan"];
+      String status = el["status"];
+      arrOut.add(PinjamanModel(
+          userID: el["id"],
+          jumlah_pinjaman: el["jumlah_pinjaman"],
+          jumlah_tagihan: el["jumlah_tagihan"],
+          tagihan_bulanan: el["tagihan_bulanan"],
+          tagihan_terbayarkan: el["tagihan_terbayarkan"],
+          jangka_waktu: el["jangka_waktu"],
+          tenggat_waktu: el["tenggat_waktu"],
+          perpanjangan: el["perpanjangan"],
+          cashback: el["cashback"],
+          status: el["status"]));
+    }
+    emit(HistoryModel(dataHistory: arrOut));
+  }
+
+  void fetchPanjang(String id) async {
+    String urlJenis = "$urlpanjang$id";
+    final response = await http.get(Uri.parse(urlJenis));
     if (response.statusCode == 200) {
       setFromJson(jsonDecode(response.body));
     } else {

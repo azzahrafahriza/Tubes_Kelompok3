@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 class UserModel {
@@ -41,7 +41,7 @@ class UserCubit extends Cubit<UserModel> {
   }
 
   void setFromJson(List json) async {
-    final prefs = await SharedPreferences.getInstance();
+    //final prefs = await SharedPreferences.getInstance();
     int userID = json[0];
     String nama = json[1];
     String umkm = json[2];
@@ -52,14 +52,14 @@ class UserCubit extends Cubit<UserModel> {
     int saldo = json[7];
     print(saldo);
 
-    await prefs.setInt('userID', userID);
-    await prefs.setString('nama', nama);
-    await prefs.setString('umkm', umkm);
-    await prefs.setString('email', email);
-    await prefs.setString('password', password);
-    await prefs.setString('pin', pin);
-    await prefs.setString('no_Telp', no_Telp);
-    await prefs.setInt('saldo', saldo);
+    // await prefs.setInt('userID', userID);
+    // await prefs.setString('nama', nama);
+    // await prefs.setString('umkm', umkm);
+    // await prefs.setString('email', email);
+    // await prefs.setString('password', password);
+    // await prefs.setString('pin', pin);
+    // await prefs.setString('no_Telp', no_Telp);
+    // await prefs.setInt('saldo', saldo);
 
     emit(UserModel(
         userID: userID,
@@ -87,28 +87,28 @@ class UserCubit extends Cubit<UserModel> {
   }
 
   void getUser() async {
-    final prefs = await SharedPreferences.getInstance();
-    emit(UserModel(
-        userID: prefs.getInt('userID') ?? 0,
-        nama: prefs.getString('nama') ?? "",
-        umkm: prefs.getString('umkm') ?? "",
-        email: prefs.getString('email') ?? "",
-        password: prefs.getString('password') ?? "",
-        pin: prefs.getString('pin') ?? "",
-        no_Telp: prefs.getString('no_Telp') ?? "",
-        saldo: prefs.getInt('saldo') ?? 0));
+    //final prefs = await SharedPreferences.getInstance();
+    // emit(UserModel(
+    //     userID: prefs.getInt('userID') ?? 0,
+    //     nama: prefs.getString('nama') ?? "",
+    //     umkm: prefs.getString('umkm') ?? "",
+    //     email: prefs.getString('email') ?? "",
+    //     password: prefs.getString('password') ?? "",
+    //     pin: prefs.getString('pin') ?? "",
+    //     no_Telp: prefs.getString('no_Telp') ?? "",
+    //     saldo: prefs.getInt('saldo') ?? 0));
   }
 
   void deleteUser() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('userID');
-    await prefs.remove('nama');
-    await prefs.remove('umkm');
-    await prefs.remove('email');
-    await prefs.remove('password');
-    await prefs.remove('pin');
-    await prefs.remove('no_Telp');
-    await prefs.remove('saldo');
+    //final prefs = await SharedPreferences.getInstance();
+    // await prefs.remove('userID');
+    // await prefs.remove('nama');
+    // await prefs.remove('umkm');
+    // await prefs.remove('email');
+    // await prefs.remove('password');
+    // await prefs.remove('pin');
+    // await prefs.remove('no_Telp');
+    // await prefs.remove('saldo');
     emit(UserModel(
         userID: 0,
         nama: "",

@@ -37,6 +37,10 @@ class Main extends StatelessWidget {
                   create: (BuildContext context) => DetilJenisPromoCubit()),
               BlocProvider<JenisArtikelCubit>(
                   create: (BuildContext context) => JenisArtikelCubit()),
+              BlocProvider<HistoryCubitPinjam>(
+                  create: (BuildContext context) => HistoryCubitPinjam()),
+              BlocProvider<HistoryCubitPanjang>(
+                  create: (BuildContext context) => HistoryCubitPanjang()),
             ], child: const Login()),
         "/register": (context) => const Register(),
         "/home": (context) => BlocProvider.value(

@@ -193,6 +193,12 @@ class _LoginState extends State<Login> {
                                       context
                                           .read<PeminjamanBerjalanCubit>()
                                           .fetchData(user.userID.toString());
+                                      context
+                                          .read<HistoryCubitPanjang>()
+                                          .fetchPanjang(user.userID.toString());
+                                      context
+                                          .read<HistoryCubitPinjam>()
+                                          .fetchPinjam(user.userID.toString());
                                       Future.delayed(Duration(seconds: 1), () {
                                         Navigator.pushAndRemoveUntil(
                                           context,

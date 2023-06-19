@@ -11,7 +11,6 @@ import 'kalkulator.dart';
 import 'bayar.dart';
 import 'home.dart';
 import 'topup.dart';
-import 'enterPIN.dart';
 import 'success.dart';
 import 'virtualAkunBayar.dart';
 import 'virtualAkunTopup.dart';
@@ -90,9 +89,10 @@ class MainRoutingState extends State<MainRouting> {
         "/promo": (context) => (const Promo()),
         "/pengajuan": (context) => (const Pengajuan()),
         "/statusPerpanjangan": (context) => (const StatusPerpanjangan()),
-        "/bayar": (context) => (Bayar(tagihan_bulanan: 0,)),
+        "/bayar": (context) => (Bayar(
+              tagihan_bulanan: 0,
+            )),
         //"/topup": (context) => (const Topup()),
-        "/enterpin": (context) => (const PinEntryApp()),
         "/sukses": (context) => (const Sukses()),
         "/virtualAkunBayar": (context) => (const VirtualAkunBayar()),
         //"/virtualAkunTopup": (context) => (const VirtualAkunTopup()),
