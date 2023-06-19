@@ -5,7 +5,7 @@ import 'package:tubes/bloc.dart';
 import 'package:http/http.dart' as http;
 
 class Bayar extends StatefulWidget {
-  late int tagihan_bulanan;
+  final int tagihan_bulanan;
 
   Bayar({super.key, required this.tagihan_bulanan});
 
@@ -25,29 +25,43 @@ class _BayarState extends State<Bayar> {
     tagihan_bulanan = widget.tagihan_bulanan;
   }
 
-  Future<int> fetchSaldo(String id) async {
-    final String url = "http://127.0.0.1:8000/update_tarik_saldo/";
+  Future<int> fetchSaldo(String id, int tagihanBulanan) async {
+    const String url = "http://127.0.0.1:8000/update_tarik_saldo/";
     final response = await http.patch(Uri.parse(url + id),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8'
         },
         body: """
       {
-        "saldo": $tagihan_bulanan
+        "saldo": ${tagihanBulanan}
       } """);
 
     return response.statusCode;
   }
 
-  Future<int> updateTagihan(String id) async {
-    final String url = "http://127.0.0.1:8000/update_bayar_tagihan/";
+  Future<int> UpdateSaldo(String id, int cashback) async {
+    const String url = "http://127.0.0.1:8000/update_usr_saldo/";
     final response = await http.patch(Uri.parse(url + id),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8'
         },
         body: """
       {
-        "tagihan": $tagihan_bulanan
+        "saldo": ${cashback}
+      } """);
+
+    return response.statusCode;
+  }
+
+  Future<int> updateTagihan(String id, int tagihanBulanan) async {
+    const String url = "http://127.0.0.1:8000/update_bayar_tagihan/";
+    final response = await http.patch(Uri.parse(url + id),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8'
+        },
+        body: """
+      {
+        "tagihan": ${tagihanBulanan}
       } """);
 
     return response.statusCode;
@@ -478,31 +492,39 @@ class _BayarState extends State<Bayar> {
 
                         if (saldo >= tagihan_bulanan) {
                           fetchSaldo(
-                              context.read<UserCubit>().getid().toString());
-                          updateTagihan(
-                              context.read<UserCubit>().getid().toString());
+                              context.read<UserCubit>().getid().toString(),
+                              tagihan_bulanan);
 
-                          if (context
-                                  .read<PeminjamanBerjalanCubit>()
-                                  .getJumlahTagihan() ==
-                              context
-                                      .read<PeminjamanBerjalanCubit>()
-                                      .getTagihanTerbayar() +
-                                  tagihan_bulanan) {
-                            updateLunas(
-                                context.read<UserCubit>().getid().toString());
+                          updateTagihan(
+                              context.read<UserCubit>().getid().toString(),
+                              tagihan_bulanan);
+
+                          Future.delayed(Duration(seconds: 1), () {
                             if (context
                                     .read<PeminjamanBerjalanCubit>()
-                                    .getCashback() !=
-                                0) {
-                              tagihan_bulanan = context
-                                  .read<PeminjamanBerjalanCubit>()
-                                  .getCashback();
-                              fetchSaldo(
+                                    .getJumlahTagihan() ==
+                                context
+                                        .read<PeminjamanBerjalanCubit>()
+                                        .getTagihanTerbayar() +
+                                    tagihan_bulanan) {
+                              if (context
+                                      .read<PeminjamanBerjalanCubit>()
+                                      .getCashback() !=
+                                  0) {
+                                UpdateSaldo(
+                                    context
+                                        .read<UserCubit>()
+                                        .getid()
+                                        .toString(),
+                                    context
+                                        .read<PeminjamanBerjalanCubit>()
+                                        .getCashback());
+                              }
+                              updateLunas(
                                   context.read<UserCubit>().getid().toString());
                             }
-                          }
-                          Navigator.pushNamed(context, "/sukses");
+                            Navigator.pushNamed(context, "/sukses");
+                          });
                         }
                       },
                       child: Padding(

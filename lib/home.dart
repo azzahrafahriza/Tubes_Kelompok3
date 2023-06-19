@@ -33,17 +33,16 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    dibayar = context.read<PeminjamanBerjalanCubit>().getTagihanTerbayar();
-    goals = context.read<PeminjamanBerjalanCubit>().getJumlahTagihan();
-    calculate();
   }
 
-  void calculate() {
+  calculate(int goals, int dibayar) {
     if (goals == 0 || dibayar == 0) {
       percent = 0;
     } else {
       percent = dibayar / goals;
     }
+
+    return percent;
   }
 
   @override
@@ -348,7 +347,13 @@ class _HomeState extends State<Home> {
                                         padding: const EdgeInsets.only(
                                             top: 10, left: 10, right: 10),
                                         lineHeight: 20,
-                                        percent: percent,
+                                        percent: calculate(
+                                            context
+                                                .read<PeminjamanBerjalanCubit>()
+                                                .getJumlahTagihan(),
+                                            context
+                                                .read<PeminjamanBerjalanCubit>()
+                                                .getTagihanTerbayar()),
                                         progressColor: const Color(0xffd48300),
                                         backgroundColor:
                                             const Color(0xffed970b),
