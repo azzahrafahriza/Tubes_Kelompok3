@@ -129,6 +129,70 @@ class _BayarState extends State<Bayar> {
               child: Column(
                 children: [
                   Container(
+                    margin: const EdgeInsets.only(top: 30),
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: const Color(0xFF339989),
+                    ),
+                    child: GestureDetector(
+                      onTap: () {
+                        var saldo = context.read<UserCubit>().getSaldo();
+
+                        if (saldo >= tagihan_bulanan) {
+                          fetchSaldo(
+                              context.read<UserCubit>().getid().toString(),
+                              tagihan_bulanan);
+
+                          updateTagihan(
+                              context.read<UserCubit>().getid().toString(),
+                              tagihan_bulanan);
+
+                          Future.delayed(Duration(seconds: 1), () {
+                            if (context
+                                    .read<PeminjamanBerjalanCubit>()
+                                    .getJumlahTagihan() ==
+                                context
+                                        .read<PeminjamanBerjalanCubit>()
+                                        .getTagihanTerbayar() +
+                                    tagihan_bulanan) {
+                              if (context
+                                      .read<PeminjamanBerjalanCubit>()
+                                      .getCashback() !=
+                                  0) {
+                                UpdateSaldo(
+                                    context
+                                        .read<UserCubit>()
+                                        .getid()
+                                        .toString(),
+                                    context
+                                        .read<PeminjamanBerjalanCubit>()
+                                        .getCashback());
+                              }
+                              updateLunas(
+                                  context.read<UserCubit>().getid().toString());
+                            }
+                            Navigator.pushNamed(context, "/sukses");
+                          });
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 15, top: 8),
+                        child: Text(
+                          "My Wallet",
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontFamily: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: 1)
+                                  .fontFamily),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
                     margin: const EdgeInsets.only(top: 30, left: 15, right: 15),
                     width: MediaQuery.of(context).size.width * 1,
                     decoration: BoxDecoration(
@@ -369,7 +433,38 @@ class _BayarState extends State<Bayar> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, "/sukses");
+                            updateTagihan(
+                                context.read<UserCubit>().getid().toString(),
+                                tagihan_bulanan);
+
+                            Future.delayed(Duration(seconds: 1), () {
+                              if (context
+                                      .read<PeminjamanBerjalanCubit>()
+                                      .getJumlahTagihan() ==
+                                  context
+                                          .read<PeminjamanBerjalanCubit>()
+                                          .getTagihanTerbayar() +
+                                      tagihan_bulanan) {
+                                if (context
+                                        .read<PeminjamanBerjalanCubit>()
+                                        .getCashback() !=
+                                    0) {
+                                  UpdateSaldo(
+                                      context
+                                          .read<UserCubit>()
+                                          .getid()
+                                          .toString(),
+                                      context
+                                          .read<PeminjamanBerjalanCubit>()
+                                          .getCashback());
+                                }
+                                updateLunas(context
+                                    .read<UserCubit>()
+                                    .getid()
+                                    .toString());
+                              }
+                              Navigator.pushNamed(context, "/sukses");
+                            });
                           },
                           child: Container(
                             height: MediaQuery.of(context).size.height * 0.05,
@@ -405,7 +500,38 @@ class _BayarState extends State<Bayar> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, "/sukses");
+                            updateTagihan(
+                                context.read<UserCubit>().getid().toString(),
+                                tagihan_bulanan);
+
+                            Future.delayed(Duration(seconds: 1), () {
+                              if (context
+                                      .read<PeminjamanBerjalanCubit>()
+                                      .getJumlahTagihan() ==
+                                  context
+                                          .read<PeminjamanBerjalanCubit>()
+                                          .getTagihanTerbayar() +
+                                      tagihan_bulanan) {
+                                if (context
+                                        .read<PeminjamanBerjalanCubit>()
+                                        .getCashback() !=
+                                    0) {
+                                  UpdateSaldo(
+                                      context
+                                          .read<UserCubit>()
+                                          .getid()
+                                          .toString(),
+                                      context
+                                          .read<PeminjamanBerjalanCubit>()
+                                          .getCashback());
+                                }
+                                updateLunas(context
+                                    .read<UserCubit>()
+                                    .getid()
+                                    .toString());
+                              }
+                              Navigator.pushNamed(context, "/sukses");
+                            });
                           },
                           child: Container(
                             height: MediaQuery.of(context).size.height * 0.05,
@@ -441,7 +567,38 @@ class _BayarState extends State<Bayar> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, "/sukses");
+                            updateTagihan(
+                                context.read<UserCubit>().getid().toString(),
+                                tagihan_bulanan);
+
+                            Future.delayed(Duration(seconds: 1), () {
+                              if (context
+                                      .read<PeminjamanBerjalanCubit>()
+                                      .getJumlahTagihan() ==
+                                  context
+                                          .read<PeminjamanBerjalanCubit>()
+                                          .getTagihanTerbayar() +
+                                      tagihan_bulanan) {
+                                if (context
+                                        .read<PeminjamanBerjalanCubit>()
+                                        .getCashback() !=
+                                    0) {
+                                  UpdateSaldo(
+                                      context
+                                          .read<UserCubit>()
+                                          .getid()
+                                          .toString(),
+                                      context
+                                          .read<PeminjamanBerjalanCubit>()
+                                          .getCashback());
+                                }
+                                updateLunas(context
+                                    .read<UserCubit>()
+                                    .getid()
+                                    .toString());
+                              }
+                              Navigator.pushNamed(context, "/sukses");
+                            });
                           },
                           child: Container(
                             height: MediaQuery.of(context).size.height * 0.05,
@@ -476,70 +633,6 @@ class _BayarState extends State<Bayar> {
                           ),
                         ),
                       ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 30),
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: const Color(0xFF339989),
-                    ),
-                    child: GestureDetector(
-                      onTap: () {
-                        var saldo = context.read<UserCubit>().getSaldo();
-
-                        if (saldo >= tagihan_bulanan) {
-                          fetchSaldo(
-                              context.read<UserCubit>().getid().toString(),
-                              tagihan_bulanan);
-
-                          updateTagihan(
-                              context.read<UserCubit>().getid().toString(),
-                              tagihan_bulanan);
-
-                          Future.delayed(Duration(seconds: 1), () {
-                            if (context
-                                    .read<PeminjamanBerjalanCubit>()
-                                    .getJumlahTagihan() ==
-                                context
-                                        .read<PeminjamanBerjalanCubit>()
-                                        .getTagihanTerbayar() +
-                                    tagihan_bulanan) {
-                              if (context
-                                      .read<PeminjamanBerjalanCubit>()
-                                      .getCashback() !=
-                                  0) {
-                                UpdateSaldo(
-                                    context
-                                        .read<UserCubit>()
-                                        .getid()
-                                        .toString(),
-                                    context
-                                        .read<PeminjamanBerjalanCubit>()
-                                        .getCashback());
-                              }
-                              updateLunas(
-                                  context.read<UserCubit>().getid().toString());
-                            }
-                            Navigator.pushNamed(context, "/sukses");
-                          });
-                        }
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 15, top: 8),
-                        child: Text(
-                          "My Wallet",
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontFamily: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w500,
-                                      letterSpacing: 1)
-                                  .fontFamily),
-                        ),
-                      ),
                     ),
                   ),
                   SizedBox(
