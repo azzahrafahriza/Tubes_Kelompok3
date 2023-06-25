@@ -1,5 +1,11 @@
 # Tubes_Kelompok3
 ## Aplikasi Peminjaman Untuk Usaha UMKM Menggunakan Flutter
+### Anggota : 
+    1. Muhammad Daffa Yusuf 2100543
+    2. Rachman Faiz Maulana 2106791
+    3. Muhammad Azka Atqiya 2100812
+    4. Rasyid Andriansyah 2101963
+    5. Azzahra Fahriza 2102296
 ## Alur Program
 1. **Register**
 
@@ -109,11 +115,6 @@ Pada halaman ini, diperlihatkan fitur-fitur yang pada pada aplikasi, diantaranya
 
 
   
-### Anggota : 
-    1. Muhammad Daffa Yusuf 2100543
-    2. Rachman Faiz Maulana 2106791
-    3. Muhammad Azka Atqiya 2100812
-    4. Rasyid Andriansyah 2101963
-    5. Azzahra Fahriza 2102296
+
 
 
